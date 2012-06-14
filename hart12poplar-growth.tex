@@ -1,12 +1,5 @@
 % Template for PLoS
 % Version 1.0 January 2009
-%
-% To compile to pdf, run:
-% latex plos.template
-% bibtex plos.template
-% latex plos.template
-% latex plos.template
-% dvipdf plos.template
 
 \documentclass[10pt]{article}
 
@@ -22,7 +15,8 @@
 % cite package, to clean up citations in the main text. Do not remove.
 \usepackage{cite}
 
-\usepackage{color} 
+\usepackage{color}
+\usepackage[squaren]{SIunits} 
 \usepackage{units}
 
 % Use doublespacing - comment out for single spacing
@@ -56,9 +50,10 @@
 \pagestyle{myheadings}
 %% ** EDIT HERE **
 
-
 %% ** EDIT HERE **
 %% PLEASE INCLUDE ALL MACROS BELOW
+\usepackage[printonlyused]{acronym}
+\usepackage{multicol}
 
 %% END MACROS SECTION
 
@@ -94,6 +89,34 @@ $\ast$ E-mail: qjhart@ucdavis.edu
 
 \section*{Introduction}
 
+GOALS 
+- Model Poplar growth
+- Include harvesting practice
+- Add in technical availability
+- compare to field plots
+
+\begin{multicols}{2}[\section*{Acronyms}]
+\addcontentsline{toc}{section}{Acronyms}
+%\renewcommand{\baselinestretch}{1.0}
+{\normalsize
+\raggedright
+%\setlength{\columnseprule}{1pt}
+\begin{acronym}
+\acro{3pg}{[\textsc{3PG}]Physiological Principles in Predicting Growth}
+\acro{CIMIS}{California Irrigation Management Information System}
+\acro{CRS}{Coordinate Reference System}
+\acro{ESRI}{Environmental Systems Research Institute}
+\acro{GIS}{Geographic Information System}
+\acro{GRASS}{Geographic Resources Analysis Support System}
+\acro{LIDAR}{Light Detection and Ranging}
+\acro{pg}[Post\textsc{GIS}]{Post\textsc{GIS}}
+\acro{RSI}{Remotely-Sensed Imagery}
+\acro{USGS}{U.S. Geological Survey}                           
+\acro{WRF}{Weather Research and Forecasting}
+\end{acronym}
+}
+\end{multicols}
+
 % Results and Discussion can be combined.
 \section*{Results}
 \subsection*{Potential Growth}
@@ -107,32 +130,11 @@ $\ast$ E-mail: qjhart@ucdavis.edu
 % authors may use "Analysis" 
 \section*{Models}
 
-Figure~\ref{fig:study-area} shows the area of study.
+Poplar growth modeling was performed on a large region in the Pacific
+Northwest.  Figure~\ref{fig:study-area} shows the area of study.  The
+modeling was performed in a grid based manner, were the parameters to
+the model estimated for each grid point in the region.  
 
-Tabl
-
-\subsection*{Potential Growth Model}
-
-Figure~\ref{fig:growth-model} shows the modeling path used in the
-development of the poplar growth model. The model developed shows the
-total potential of the grieed
-
-\subsection*{Poplar hybrids}
-
-Table 
-
-\subsection*{Technical Availibility Model}
-
-
-% Do NOT remove this, even if you are not including acknowledgments
-\section*{Acknowledgments}
-This project was funded by the USDA's Advanced Hardwood Biofuels for the Pacific Northwest project, #.
-
-%\section*{References}
-% The bibtex filename
-\bibliography{template}
-
-\section*{Figure Legends}
 \begin{figure}[!ht]
 \begin{center}
 \vspace*{4cm}
@@ -145,52 +147,126 @@ This project was funded by the USDA's Advanced Hardwood Biofuels for the Pacific
 \label{fig:study-area}
 \end{figure}
 
-\begin{figure}[!ht]
-\begin{center}
-\vspace*{4cm}
-\end{center}
-\caption{ {\bf Potential Growth Modeling Workflow.} This graph shows the processing steps used to develop the potential growth model }
-\label{fig:growth-model}
-\end{figure}
+In order to study the effects of grid size, the model was run at two
+seperate grid sizes, \unit[2]{$km^2$} and \unit[8]{$km^2$}.  The
+\unit[2]{$km^2$} gridded model is about 16 times larger and runs about
+16 time slower than the \unit[8]{$km^2$} model.  
+
+All grid points were run regardless of the land use of the underlying
+region, except pixels in the ocean, Canada, were excluded.
+\emph{Should we really bounda by counties on the other sides? }
+
+
+\subsection*{Potential Growth Model}
+
+The first step in the modeling of the poplar growth was to develop an
+estimate of the potential yield of poplar throughout the study area.
+Potential yield maps only take into consideration the climatic,
+environmental and phenological aspects.  They do not include the
+technical considerations of the technical feasibility of poplar as a
+crop.  However, because the haresting techniques to effect the long
+term growth of the poplar trees, different harvesting patterns are
+included in the potential growth models.  The two practices considered
+were 12 year cycled harvesting, and 4 four year coppicing cycles.
+\emph{Should we try inter cropping?}
+
+The potential growth model implemented the \ac{3pg} forest growth
+model over the study area, by implementing the \ac{3pg} model within a
+\ac{GIS}.  \ac{3pg} modeled the growth of the poplar over a 12 year
+cycle, ether with or without the coppicing cycles.  
+
+The \ac{GIS} modeling was implemented using a combination of \ac{pg}
+and \ac{GRASS} applications.
+
+Figure~\ref{fig:growth-model} shows the modeling path used in the
+development of the poplar growth model. The model developed shows the
+total potential of the grieed
 
 \begin{figure}[!ht]
 \begin{center}
-\vspace*{4cm}
 \end{center}
-\caption{ {\bf Potential Poplar Growth.} This shows the potential popular growth for a number of hybrids.  }
+\caption{ {\bf Potential Growth Modeling Workflow.} This graph shows
+  the processing steps used to develop the potential growth model }
+\label{fig:growth-model}
+\end{figure}
+
+Table~\ref{tab:3pg-grids} shows the required input grid parameters for
+the \ac{3pg} model.  In addtion, the model requires a number of other
+parameterizations, primarily for the modeling of the forest. Table
+
+\begin{table}[!ht]
+\caption{
+\bf{Modeling Grids}}
+\begin{tabular}{|c|c|c|}
+\hline
+Parameter & Units & Source \\
+\hline
+elevation & \meter & PRISM~\cite{prism-dem} \\
+\hline
+precipitation & \milli\meter & \cite{prism-precip} \\
+\hline
+temperature & \celsius & \cite{prism-temp} \\
+\hline
+humidity & \unit{\%}  & \\
+\hline
+radiation & \mega\joule\per\squaremetre\usk\dday &  \\
+\hline
+sub-freezing days & \dday  & \\
+\hline
+\end{tabular}
+\begin{flushleft}The table shows the data sources used for the
+  modeling of the potential Growth model for poplar.
+\end{flushleft}
+\label{tab:3pg-grids}
+ \end{table}
+
+\begin{table}[!ht]
+\caption{
+\bf{\ac{3pg} Model Constants}}
+\begin{tabular}{|c|c|c|}
+\hline
+Parameter & Units & Source \\
+\hline
+Stand Age & \meter & PRISM~\cite{Amichev2010} \\
+\hline
+precipitation & \milli\meter & \cite{prism-precip} \\
+\hline
+\end{tabular}
+\begin{flushleft}The table shows the data sources used for the
+  modeling of the potential Growth model for poplar.
+\end{flushleft}
+\label{tab:3pg-grids}
+ \end{table}
+
+
+\begin{figure}[!ht]
+\begin{center}
+\end{center}
+\caption{ {\bf Potential Poplar Growth.} This shows the potential
+  popular growth for a number of hybrids.  These maps are for
+  non-irrigated fields}
 \label{fig:growth-map}
 \end{figure}
 
 
 \begin{figure}[!ht]
 \begin{center}
-\vspace*{4cm}
 \end{center}
-\caption{ {\bf Technical Modeling Workflow.} This graph shows the determination of the availability of lands for poplar plantations.  }
-\label{fig:tech-model}
+\caption{ {\bf Potential Poplar Growth.} This shows the potential
+  popular growth for a number of hybrids.  These maps for for
+  irrigated poplar.} 
+\label{fig:growth-map}
 \end{figure}
 
 \begin{figure}[!ht]
 \begin{center}
-\vspace*{4cm}
-
 \end{center}
-\caption{ {\bf Technical Hardwood Availability}  }
-\label{fig:tech-map}
+\caption{ {\bf Irragation Requirements.} This shows the amount of
+  water needed to maintain optimum growth.} 
+\label{fig:growth-map}
 \end{figure}
 
-
-\section*{Tables}
-\begin{table}[!ht]
-\caption{
-\bf{Modeling Grids}}
-\begin{tabular}{|c|c|c|}
-table information
-\end{tabular}
-\begin{flushleft}Caption
-\end{flushleft}
-\label{tab:}
- \end{table}
+\subsection*{Poplar hybrids}
 
 \begin{table}[!ht]
 \caption{
@@ -203,6 +279,17 @@ table information
 \label{tab:data}
  \end{table}
 
+
+\subsection*{Technical Availibility Model}
+
+\begin{figure}[!ht]
+\begin{center}
+\end{center}
+\caption{ {\bf Technical Modeling Workflow.} This graph shows the determination of the availability of lands for poplar plantations.  }
+\label{fig:tech-model}
+\end{figure}
+
+
 \begin{table}[!ht]
 \caption{
 \bf{Technical Availability Source Data}}
@@ -213,6 +300,32 @@ table information
 \end{flushleft}
 \label{tab:}
  \end{table}
+
+\begin{figure}[!ht]
+\begin{center}
+\end{center}
+\caption{ {\bf Technical Hardwood Availability}  }
+\label{fig:tech-map}
+\end{figure}
+
+
+
+% Do NOT remove this, even if you are not including acknowledgments
+\section*{Acknowledgments}
+This project was funded by the USDA's Advanced Hardwood Biofuels for
+the Pacific Northwest project, Number \#.
+
+%\section*{References}
+% The bibtex filename
+\bibliography{ahb-pnw}
+
+\section*{Figure Legends}
+
+Move Figures here at the end.
+
+\section*{Tables}
+
+Move Table here at the end.
 
 %% \begin{table}[!ht]
 %% \caption{
