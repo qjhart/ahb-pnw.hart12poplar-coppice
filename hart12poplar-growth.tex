@@ -147,13 +147,13 @@ the model estimated for each grid point in the region.
 \label{fig:study-area}
 \end{figure}
 
-In order to study the effects of grid size, the model was run at two
+In order to analyze the effects of grid size, the model was run at two
 seperate grid sizes, \unit[2]{$km^2$} and \unit[8]{$km^2$}.  The
 \unit[2]{$km^2$} gridded model is about 16 times larger and runs about
-16 time slower than the \unit[8]{$km^2$} model.  
+16X slower than the \unit[8]{$km^2$} model.  
 
 All grid points were run regardless of the land use of the underlying
-region, except pixels in the ocean, Canada, were excluded.
+region, except pixels in the ocean and Canada, were excluded.
 \emph{Should we really bounda by counties on the other sides? }
 
 
@@ -164,8 +164,8 @@ estimate of the potential yield of poplar throughout the study area.
 Potential yield maps only take into consideration the climatic,
 environmental and phenological aspects.  They do not include the
 technical considerations of the technical feasibility of poplar as a
-crop.  However, because the haresting techniques to effect the long
-term growth of the poplar trees, different harvesting patterns are
+crop.  However, because management regimes effect poplar growth rates
+over the period of the rotation different harvesting patterns are
 included in the potential growth models.  The two practices considered
 were 12 year cycled harvesting, and 4 four year coppicing cycles.
 \emph{Should we try inter cropping?}
@@ -278,6 +278,60 @@ table information
 \end{flushleft}
 \label{tab:data}
  \end{table}
+
+
+\subsection*{Management regimes}
+\label{sec:management-reg}
+In wood energy plantations, the management regime impacts the time
+between harvest, the fraction of the total biomass that enters the
+supply chain, and growth rates. Coppice style management generally suggests the use
+of a continuous harvest machine (forage harvester) at 3-5 year
+intervals over a 12-18 year rotation. Following coppice harvest the stumps are left to
+re-sprout and will be harvested again after 3-5 years.  Stem biomass that
+enters the feedstock supply chain under coppice management is determined
+by the year of first entry which determines stump volume.  Stump
+volume under coppice management is not considered to enter the supply
+chain at any point in the rotation. Round wood production implies the
+use of a piece-wise (harvester) or semi piece-wise harvesting
+equipment (feller-buncher). If stem diameter at harvest exceeds
+$\approx$ 8-10 cm, piece-wise harvesting is necessary. Following 
+roundwood harvest, the field will be cleared and preparedn for
+re-planting. Experimental work has suggested that there may be advantages to intercropping
+coppice and roundwood production. \emph{WHY?}. Under intercropping
+regime supply chain loss is determined by the combined loss from
+coppiced stumps and roundwood stumps over the rotation period.
+
+\subsubsection*{Stump volume}
+\label{sec:stump-volume}
+
+The 3PG growth model estimates partitioning of biomass between stem,
+leaf, and roots within a spatial domain defined by model input
+parameters. Harvesting results in the collection of a fraction
+of the total accumulated stem biomass into the feedstock supply chain
+for energy production. The fraction of the biomass retained depends
+upon the management regime. Stump, and saw kerf acount for the
+fraction of stem biomass that is not captured in the supply chain.
+
+Stump volume was determined using total tree volume predicted by 3PG,
+a stem taper function from for young poplar stands
+\cite{Benbrahim2003} , and allometric relationships between total
+biomass and diameter at breast height ($dbh$) \cite{Brahim2000}. The
+taper equation was used to establish stem diameter at stump height,
+and basal diameter, both of which which are necessary for determining
+stump volume. Allometric biomass relationships in forestry are generally described as in ~(\ref{form}). 
+\begin{equation}
+  \label{eq:form}
+  X=aY^b
+\end{equation}
+
+\input{stumpVol}
+
+\subsubsection{Growth impacts}
+\label{sec:growth-impacts}
+
+
+
+
 
 
 \subsection*{Technical Availibility Model}
