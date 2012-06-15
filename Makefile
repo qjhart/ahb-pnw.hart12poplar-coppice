@@ -7,7 +7,7 @@ bib.source:=~/Google\ Drive/Mendeley\ Desktop/ahb-pnw.bib
 # [hooks]
 # precommit = make precommit 
 # show with with `hg showconfig hooks`
-precommit: ${bib.source}
+precommit: ${bib}
 	echo "Ready to commit"
 
 ${bib}:${bib.source}
