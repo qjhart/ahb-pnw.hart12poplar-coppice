@@ -9,6 +9,8 @@ syntax: glob
 *.aux
 *.bbl
 *.blg
+*.pdf
+*.synctex.gz
 # switch to regexp syntax.
 # syntax: regexp
 # ^\.pc/
