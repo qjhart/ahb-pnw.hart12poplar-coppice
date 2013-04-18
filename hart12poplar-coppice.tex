@@ -62,18 +62,22 @@
 % Title must be 150 characters or less
 \begin{flushleft}
 {\Large
-\textbf{Modeling Poplar Growth for the Pacific Northwest}
+\textbf{Modeling Poplar Growth as a Short Rotation Woody Crop for Biofuels}
 }
 % Insert Author names, affiliations and corresponding author email.
 \\
-Quinn Hart$^{1,\ast}$, 
-Peter Tittmann$^{2}$, 
+Quinn Hart$^{1,\ast}$,
+Olga Prilipova$^{3}$,
+Justin Merz$^{1}$,
+Peter Tittmann$^{4}$, 
 Bryan Jenkins$^{2}$
 \\
 \bf{1} Department of Land, Air, and Water, University of Califonia, Davis, USA
 \\
 \bf{2} Energy Institute, University of Califonia, Davis, USA
-%\\
+\bf{3} Department of Computer Science, University of Califonia, Davis, USA
+\bf{4} Department of Forestry, University of Califonia, Berkeley, USA
+\\
 %\\bf{3} Author3 Dept/Program/Center, Institution Name, City, State, Country
 \\
 $\ast$ E-mail: qjhart@ucdavis.edu
@@ -82,6 +86,13 @@ $\ast$ E-mail: qjhart@ucdavis.edu
 % Please keep the abstract between 250 and 300 words
 \section*{Abstract}
 
+Being able to predict the growth and yield of these crop under various
+environmental conditions is an important step in the development of
+energy system that can incorporate these \ac{SRWC} as feedstocks.  In
+this study, the \acf{3pg} model was modified for \ac{SRWC}, with the
+inclusion of a coppicing model.  The model was then tested against a
+number of previous studies found in the literature.  
+
 % Please keep the Author Summary between 150 and 200 words
 % Use first person. PLoS ONE authors please skip this step. 
 % Author Summary not valid for PLoS ONE submissions.   
@@ -89,10 +100,10 @@ $\ast$ E-mail: qjhart@ucdavis.edu
 
 \section*{Introduction}
 
+
 GOALS 
 - Model Poplar growth
 - Include harvesting practice
-- Add in technical availability
 - compare to field plots
 
 \begin{multicols}{2}[\section*{Acronyms}]
@@ -103,59 +114,15 @@ GOALS
 %\setlength{\columnseprule}{1pt}
 \begin{acronym}
 \acro{3pg}{[\textsc{3PG}]Physiological Principles in Predicting Growth}
-\acro{CIMIS}{California Irrigation Management Information System}
-\acro{CRS}{Coordinate Reference System}
-\acro{ESRI}{Environmental Systems Research Institute}
-\acro{GIS}{Geographic Information System}
-\acro{GRASS}{Geographic Resources Analysis Support System}
-\acro{LIDAR}{Light Detection and Ranging}
-\acro{pg}[Post\textsc{GIS}]{Post\textsc{GIS}}
-\acro{RSI}{Remotely-Sensed Imagery}
-\acro{USGS}{U.S. Geological Survey}                           
-\acro{WRF}{Weather Research and Forecasting}
+
 \end{acronym}
 }
 \end{multicols}
-
-% Results and Discussion can be combined.
-\section*{Results}
-\subsection*{Potential Growth}
-\subsection*{Technical Availibility}
-
-
-%\section*{Discussion}
 
 % You may title this section "Methods" or "Models". 
 % "Models" is not a valid title for PLoS ONE authors. However, PLoS ONE
 % authors may use "Analysis" 
 \section*{Models}
-
-Poplar growth modeling was performed on a large region in the Pacific
-Northwest.  Figure~\ref{fig:study-area} shows the area of study.  The
-modeling was performed in a grid based manner, were the parameters to
-the model estimated for each grid point in the region.  
-
-\begin{figure}[!ht]
-\begin{center}
-\vspace*{4cm}
-%\includegraphics[width=4in]{figure_name.2.eps}
-\end{center}
-\caption{ {\bf Study Area.}  Poplar Growth modeling was developed for
-  a larger region of the Pacific Northwest.  The model was run on a
-  standard grid, shown by the rectangle. Grid boundaries where run at
-  \unit[2]{$km^2$} and \unit[8]{$km^2$}.  }
-\label{fig:study-area}
-\end{figure}
-
-In order to analyze the effects of grid size, the model was run at two
-seperate grid sizes, \unit[2]{$km^2$} and \unit[8]{$km^2$}.  The
-\unit[2]{$km^2$} gridded model is about 16 times larger and runs about
-16X slower than the \unit[8]{$km^2$} model.  
-
-All grid points were run regardless of the land use of the underlying
-region, except pixels in the ocean and Canada, were excluded.
-\emph{Should we really bounda by counties on the other sides? }
-
 
 \subsection*{Potential Growth Model}
 
@@ -168,15 +135,11 @@ crop.  However, because management regimes effect poplar growth rates
 over the period of the rotation different harvesting patterns are
 included in the potential growth models.  The two practices considered
 were 12 year cycled harvesting, and 4 four year coppicing cycles.
-\emph{Should we try inter cropping?}
 
 The potential growth model implemented the \ac{3pg} forest growth
 model over the study area, by implementing the \ac{3pg} model within a
 \ac{GIS}.  \ac{3pg} modeled the growth of the poplar over a 12 year
 cycle, ether with or without the coppicing cycles.  
-
-The \ac{GIS} modeling was implemented using a combination of \ac{pg}
-and \ac{GRASS} applications.
 
 Figure~\ref{fig:growth-model} shows the modeling path used in the
 development of the poplar growth model. The model developed shows the
@@ -201,9 +164,9 @@ parameterizations, primarily for the modeling of the forest. Table
 \hline
 Parameter & Units & Source \\
 \hline
-elevation & \meter & PRISM~\cite{prism-dem} \\
+elevation & \meter & \\
 \hline
-precipitation & \milli\meter & \cite{prism-precip} \\
+precipitation & \milli\meter & \\
 \hline
 temperature & \celsius & \cite{prism-temp} \\
 \hline
@@ -237,34 +200,6 @@ precipitation & \milli\meter & \cite{prism-precip} \\
 \end{flushleft}
 \label{tab:3pg-grids}
  \end{table}
-
-
-\begin{figure}[!ht]
-\begin{center}
-\end{center}
-\caption{ {\bf Potential Poplar Growth.} This shows the potential
-  popular growth for a number of hybrids.  These maps are for
-  non-irrigated fields}
-\label{fig:growth-map}
-\end{figure}
-
-
-\begin{figure}[!ht]
-\begin{center}
-\end{center}
-\caption{ {\bf Potential Poplar Growth.} This shows the potential
-  popular growth for a number of hybrids.  These maps for for
-  irrigated poplar.} 
-\label{fig:growth-map}
-\end{figure}
-
-\begin{figure}[!ht]
-\begin{center}
-\end{center}
-\caption{ {\bf Irragation Requirements.} This shows the amount of
-  water needed to maintain optimum growth.} 
-\label{fig:growth-map}
-\end{figure}
 
 \subsection*{Poplar hybrids}
 
@@ -328,39 +263,6 @@ stump volume. Allometric biomass relationships in forestry are generally describ
 
 \subsubsection{Growth impacts}
 \label{sec:growth-impacts}
-
-
-
-
-
-
-\subsection*{Technical Availibility Model}
-
-\begin{figure}[!ht]
-\begin{center}
-\end{center}
-\caption{ {\bf Technical Modeling Workflow.} This graph shows the determination of the availability of lands for poplar plantations.  }
-\label{fig:tech-model}
-\end{figure}
-
-
-\begin{table}[!ht]
-\caption{
-\bf{Technical Availability Source Data}}
-\begin{tabular}{|c|c|c|}
-table information
-\end{tabular}
-\begin{flushleft}Caption
-\end{flushleft}
-\label{tab:}
- \end{table}
-
-\begin{figure}[!ht]
-\begin{center}
-\end{center}
-\caption{ {\bf Technical Hardwood Availability}  }
-\label{fig:tech-map}
-\end{figure}
 
 \section*{Validation}
 
@@ -457,6 +359,32 @@ input parameters of : ?
 \label{fig:afas-biomass}
 \end{figure}
 
+\subsection*{Stocking Density}
+\label{sec:stocking-density}
+
+Initial stocking density is an important consideration, as planting
+density is a primary driver in initialization costs, and need to be
+recoupped with gains in biomass production.  \ac{SRWC} differ from
+more traditional plantations in the the total biomass is important
+rather than the biomass per stem.  Actually, the fact that coppicing
+results in more stems per stump can lead to efficiencies in the
+harvesting 
+
+\cite{proe02} compare the results of two 
+
+To compare comparison with the
+model, it's 
+
+There have been a few studies
+
+
+
+% Results and Discussion can be combined.
+\section*{Results}
+\subsection*{Potential Growth}
+\subsection*{Coppicing Model}
+
+%\section*{Discussion}
 
 % Do NOT remove this, even if you are not including acknowledgments
 \section*{Acknowledgments}
