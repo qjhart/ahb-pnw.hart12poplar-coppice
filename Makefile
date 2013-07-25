@@ -13,3 +13,8 @@ precommit: ${bib}
 ${bib}:${bib.source}
 	cp "$<" $@
 
+iperender:=/Applications/Ipe.app//Contents/Resources/local/bin/iperender
+res:=175
+# PATH=$PATH:/usr/texbin
+tree_pics.?.png:tree_pics.%.png:tree_pics.ipe
+	${iperender} -png -page $* -resolution ${res} tree_pics.ipe img/tree_pics.${*}.png
