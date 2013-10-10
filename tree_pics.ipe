@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
-<ipe version="70005" creator="Ipe 7.1.4">
-<info created="D:20130723230813" modified="D:20130725090917" title="Trees Figures" author="Quinn Hart" subject="AHB Poplar Poster" pagemode="fullscreen"/>
+<ipe version="70005" creator="Ipe 7.1.2">
+<info created="D:20130723230813" modified="D:20131010093612" title="Trees Figures" author="Quinn Hart" subject="AHB Poplar Poster" pagemode="fullscreen"/>
 <preamble>\usepackage{amsmath}</preamble>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
@@ -203,13 +203,13 @@ h
 <dashstyle name="dash dotted" value="[4 2 1 2] 0"/>
 <dashstyle name="dash dot dotted" value="[4 2 1 2 1 2] 0"/>
 <textsize name="large" value="\large"/>
+<textsize name="small" value="\small"/>
+<textsize name="tiny" value="\tiny"/>
 <textsize name="Large" value="\Large"/>
 <textsize name="LARGE" value="\LARGE"/>
 <textsize name="huge" value="\huge"/>
 <textsize name="Huge" value="\Huge"/>
-<textsize name="small" value="\small"/>
 <textsize name="footnote" value="\footnotesize"/>
-<textsize name="tiny" value="\tiny"/>
 <textstyle name="center" begin="\begin{center}" end="\end{center}"/>
 <textstyle name="itemize" begin="\begin{itemize}" end="\end{itemize}"/>
 <textstyle name="item" begin="\begin{itemize}\item{}" end="\end{itemize}"/>
@@ -233,7 +233,7 @@ h
 <page>
 <layer name="tree"/>
 <layer name="soil"/>
-<view layers="tree soil" active="soil"/>
+<view layers="tree soil" active="tree"/>
 <path layer="soil" stroke="black" fill="darkorange" pen="fat">
 192 640 m
 192 496 l
@@ -1203,21 +1203,226 @@ h
 </path>
 </group>
 </group>
-<text matrix="0.989581 0 0 3.59163 -81.3795 -1912.65" transformations="translations" pos="400 672" stroke="black" type="minipage" width="284.248" height="57.229" depth="52.36" valign="baseline" size="LARGE">\begin{tabular}{l l}
-$p_{R\%x}$ &amp; Maximum Root \% \\
-$R_{\Delta\%}$ &amp; Monthly Root Contribution \\
-$W_R$ &amp; Total Root Mass \\
-$f_R$ &amp; Root Conversion efficiency \\
+<text matrix="0.989581 0 0 3.59163 -81.9569 -1915.54" transformations="translations" pos="400 672" stroke="black" type="minipage" width="284.248" height="68.167" depth="63.34" valign="baseline" size="LARGE">\begin{tabular}{l l}
+$\Delta R_{def}$ &amp; Residual root \\
+$p_{R\%x}$ &amp; Maximum root \% \\
+$R_{\Delta\%}$ &amp; Root contribution \\
+$W_R$ &amp; Total root mass \\
+$f_R$ &amp; Root conversion efficiency \\
 $f_i$ &amp; Various growth limiters
 \end{tabular}
 </text>
-<text matrix="0.989581 0 0 3.59163 -373.901 -1912.65" transformations="translations" pos="400 672" stroke="black" type="minipage" width="284.248" height="57.229" depth="52.36" valign="baseline" size="LARGE">\begin{tabular}{l l}
-$\Delta W$ &amp; Monthly Growth \\
-$NPP$ &amp; Net Primary Productivity \\
-$RP$ &amp; Root Productivity \\
-$NPP_{res}$ &amp; Residual Desired Productivity \\
-$\Delta R_{def}$ &amp; Residual Root \\
+<text matrix="0.989581 0 0 3.59163 -373.901 -1916.69" transformations="translations" pos="400 672" stroke="black" type="minipage" width="284.248" height="68.167" depth="63.34" valign="baseline" size="LARGE">\begin{tabular}{l l}
+$\Delta W$ &amp; Monthly growth \\
+$NPP$ &amp; Net Primary productivity \\
+$LAI$ &amp; Leaf area index \\
+$RP$ &amp; Root productivity \\
+$NPP_{res}$ &amp; Residual desired $NPP$ \\
+$NPP_{LAI=10}$ &amp; $NPP$ if $LAI = 10$
 \end{tabular}
 </text>
+</page>
+<page>
+<layer name="tree"/>
+<layer name="soil"/>
+<view layers="tree soil" active="soil"/>
+<path layer="tree" matrix="1 0 0 1 -154.629 33.7782" fill="green">
+192 784 m
+192 784 l
+192 784 l
+192 784 l
+h
+</path>
+<group layer="soil" matrix="1 0 0 1 -199.072 491.702">
+<path fill="gold">
+332.457 316.153
+350.233 325.311
+338.382 305.919
+354.542 290.298
+332.995 294.068
+337.305 267.674
+321.87 287.667
+308.217 267.944
+309.854 291.81
+282.9 281.949
+303.846 301.755
+282.362 313.999
+305.255 313.999
+298.252 337.43
+317.105 320.732
+331.11 343.356 u
+</path>
+<path fill="yellow">
+22.6274 0 0 22.6274 320 304 e
+</path>
+</group>
+<text matrix="0.465346 0 0 -147.736 -128.254 100028.5" transformations="translations" pos="400 672" stroke="black" type="minipage" width="47.05" height="8.374" depth="3.39" valign="baseline" size="LARGE">$NPP$
+</text>
+<text matrix="0.885979 0 0 16562.33 -319.33 -11129310.5" transformations="translations" pos="400 672" stroke="black" type="minipage" width="47.05" height="8.374" depth="3.39" valign="baseline" size="LARGE">$RP$
+</text>
+<text matrix="0.465346 0 0 -147.736 -178.546 99937.68" transformations="translations" pos="400 672" stroke="black" type="minipage" width="47.05" height="8.374" depth="3.39" valign="baseline" size="LARGE">$\Delta W$
+</text>
+<path matrix="2.74493 0 0 1.68208 -158.836 -572.545" stroke="black" pen="ultrafat" arrow="normal/normal">
+77.5664 771.565 m
+68.5589 743.791 l
+</path>
+<path matrix="2.6799 0 0 -1.92118 -159.004 2075.92" stroke="black" pen="ultrafat" arrow="normal/normal">
+77.5664 771.565 m
+68.5589 743.791 l
+</path>
+<path matrix="-1 0 0 1 219.687 6.00501" stroke="black" pen="ultrafat">
+147.375 716.769 m
+159.385 710.764
+159.385 661.222
+166.14 654.467
+158.634 648.462
+160.886 592.915
+149.627 587.661
+149.627 587.661 s
+</path>
+<text matrix="0.465346 0 0 -147.736 -32.924 100023.99" transformations="translations" pos="400 672" stroke="darkgray" type="minipage" width="47.05" height="9.666" depth="4.68" valign="baseline" size="LARGE">$NPP_{T}$
+</text>
+<path matrix="1.27414 0 0 0.698427 78.3499 192.607" stroke="darkgray" pen="ultrafat" arrow="normal/normal">
+77.5664 771.565 m
+68.5589 743.791 l
+</path>
+<group matrix="1 0 0 1 12.7607 -21.7682">
+<path matrix="0.579784 0 0 0.996771 -47.6334 72.1334" stroke="black" fill="darkorange" pen="fat">
+192 640 m
+192 496 l
+384 496 l
+384.068 638.981 l
+h
+</path>
+<path matrix="1 0 0 1 -170.019 70.5318" stroke="black" fill="0.502 0.502 0">
+284.394 646.665 m
+292.544 646.665 l
+296 552 l
+280 552 l
+h
+</path>
+<path matrix="0.677069 0 0 0.797916 -75.6709 185.783" stroke="0" fill="0.502 0.502 0">
+288 608
+320 624
+312 616
+344 616
+312 608
+360 600
+312 600
+376 568
+304 600
+384 528
+320 576
+360 512
+320 560
+328 512
+312 560
+304 472
+304 552
+280 488
+296 544
+256 496
+296 552
+232 496
+288 544
+208 520
+288 552
+184 544
+304 576
+176 552
+296 584
+200 576
+272 584
+232 608
+272 600
+256 624
+280 600
+288 624
+288 624 u
+</path>
+<group matrix="1 0 0 1 -170.019 60.7517">
+<path matrix="0.707107 -0.707107 0.707107 0.707107 -318.254 268.02" stroke="black" fill="green" pen="fat">
+160 704
+152 712
+160 736
+168 712 u
+</path>
+<path matrix="0.948683 -0.316228 0.316228 0.948683 -83.4733 47.5445" stroke="black" fill="green" pen="fat">
+160 704
+152 712
+160 736
+168 712 u
+</path>
+</group>
+<group matrix="-1 0 0 1 407.176 60.7517">
+<path matrix="0.707107 -0.707107 0.707107 0.707107 -318.254 268.02" stroke="black" fill="green" pen="fat">
+160 704
+152 712
+160 736
+168 712 u
+</path>
+<path matrix="0.948683 -0.316228 0.316228 0.948683 -83.4733 47.5445" stroke="black" fill="green" pen="fat">
+160 704
+152 712
+160 736
+168 712 u
+</path>
+</group>
+</group>
+<path matrix="0.517987 0 0 0.541666 -15.1355 313.767" stroke="0" fill="0.502 0.502 0">
+288 608
+320 624
+312 616
+344 616
+312 608
+360 600
+312 600
+376 568
+304 600
+384 528
+320 576
+360 512
+320 560
+328 512
+312 560
+304 472
+304 552
+280 488
+296 544
+256 496
+296 552
+232 496
+288 544
+208 520
+288 552
+184 544
+304 576
+176 552
+296 584
+200 576
+272 584
+232 608
+272 600
+256 624
+280 600
+288 624
+288 624 u
+</path>
+<text matrix="0.678696 0 0 -292.282 -141.435 196973.12" transformations="translations" pos="400 672" stroke="black" type="minipage" width="47.05" height="10.821" depth="5.85" valign="baseline" size="LARGE">$\Delta R_{def}$
+</text>
+<text matrix="0.678696 0 0 -292.282 -80.6338 197033.17" transformations="translations" pos="400 672" stroke="darkgray" type="minipage" width="47.05" height="8.053" depth="3.06" valign="baseline" size="LARGE">$p_{R\%x}$
+</text>
+<text matrix="0.678696 0 0 -292.282 -79.8835 197009.9" transformations="translations" pos="400 672" stroke="darkgray" type="minipage" width="47.05" height="10.225" depth="5.24" valign="baseline" size="LARGE">$R_{\Delta\%}$
+</text>
+<text matrix="0.678696 0 0 -292.282 -189.475 196973.87" transformations="translations" pos="400 672" stroke="black" type="minipage" width="47.05" height="10.143" depth="5.16" valign="baseline" size="LARGE">$f_R$
+</text>
+<path matrix="1.27414 0 0 0.698427 83.6039 71.0052" stroke="darkgray" pen="ultrafat" arrow="normal/normal">
+77.5664 771.565 m
+68.5589 743.791 l
+</path>
+<path matrix="1.27414 0 0 0.698427 88.1076 52.2395" stroke="darkgray" pen="ultrafat" arrow="normal/normal">
+77.5664 771.565 m
+68.5589 743.791 l
+</path>
 </page>
 </ipe>

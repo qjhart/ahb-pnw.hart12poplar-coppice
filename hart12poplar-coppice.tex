@@ -12,12 +12,16 @@
 % include graphics with the command \includegraphics
 \usepackage{graphicx}
 
+% Need to have subfigures
+\usepackage{subcaption}
+\pdfpagebox5
+
 % cite package, to clean up citations in the main text. Do not remove.
 \usepackage{cite}
 
 \usepackage{color}
 \usepackage[squaren]{SIunits} 
-\usepackage{units}
+%\usepackage{units}
 
 % Use doublespacing - comment out for single spacing
 %\usepackage{setspace} 
@@ -67,19 +71,17 @@
 % Insert Author names, affiliations and corresponding author email.
 \\
 Quinn Hart$^{1,\ast}$,
-Olga Prilipova$^{3}$,
+Olga Prelipova$^{2}$,
 Justin Merz$^{1}$,
-Peter Tittmann$^{4}$, 
-Bryan Jenkins$^{2}$
+Peter Tittmann$^{3}$, 
+Bryan Jenkins$^{4}$
 \\
-\bf{1} Department of Land, Air, and Water, University of Califonia, Davis, USA
+$^{\textbf{1}}$ Department of Land, Air, and Water, University of Califonia, Davis, USA
+$^{\textbf{2}}$ Department of Computer Science, University of Califonia, Davis, USA
+$^{\textbf{3}}$ Department of Forestry, University of Califonia, Berkeley, USA
+$^{\textbf{4}}$ Energy Institute, University of Califonia, Davis, USA
 \\
-\bf{2} Energy Institute, University of Califonia, Davis, USA
-\bf{3} Department of Computer Science, University of Califonia, Davis, USA
-\bf{4} Department of Forestry, University of Califonia, Berkeley, USA
-\\
-%\\bf{3} Author3 Dept/Program/Center, Institution Name, City, State, Country
-\\
+%\\textbf{3} Author3 Dept/Program/Center, Institution Name, City, State, Country
 $\ast$ E-mail: qjhart@ucdavis.edu
 \end{flushleft}
 
@@ -96,15 +98,39 @@ number of previous studies found in the literature.
 % Please keep the Author Summary between 150 and 200 words
 % Use first person. PLoS ONE authors please skip this step. 
 % Author Summary not valid for PLoS ONE submissions.   
-\section*{Author Summary}
+%\section*{Author Summary}
 
 \section*{Introduction}
 
+The goals of this research were to develop modifications to the
+\ac{3pg} model to allow for an accurate representation of growth of
+\ac{SRWC} over a range of environmental conditions, and to validate
+the model compared to various field trials.
 
-GOALS 
-- Model Poplar growth
-- Include harvesting practice
-- compare to field plots
+We are developing parameters to use the \acf{3pg} model as a means to
+estimate poplar yields for the Pacific Northwest.  The model includes
+basic processes for forest growth.  Modeling the physiological growth
+is advantageous because it allows variation of poplar species
+parameters and management practices.  Because it is a canopy carbon
+balanced model, allocations for both above and below ground biomass
+can be tracked for studies like life-cycle analysis.
+
+The original \ac{3pg} model does not include coppicing as a management
+practice, which is problematic as it cannot reasonably account for
+post-coppicing regrowth.  The extended model includes coppicing with a
+general model that allows a monthly growth contribution from an
+existing root mass.  The model specifies a relatively small
+contribution of aboveground growth from the accumulated root mass
+after coppicing in order to initiate the next cycle of production.
+
+The primary modification is the inclusion of a coppicing model for the
+prediction of biomass production over the course of a number of
+coppiing cycles.  The coppicing model introduced is a simple extension
+that models the sprouting of the coppice, contribution to growth from
+the existing root system, and modifications to the allocation of
+resources based on the coppicing.
+
+
 
 \begin{multicols}{2}[\section*{Acronyms}]
 \addcontentsline{toc}{section}{Acronyms}
@@ -113,8 +139,22 @@ GOALS
 \raggedright
 %\setlength{\columnseprule}{1pt}
 \begin{acronym}
-\acro{3pg}{[\textsc{3PG}]Physiological Principles in Predicting Growth}
-
+\acro{3pg}[\textsc{3PG}]{Physiological Principles in Predicting Growth}
+\acro{dW}[\ensuremath{\Delta W}]{Total Monthly Growth}
+\acro{GIS}[\textsc{GIS}]{Geograhical Information System}
+\acro{SRWC}[\textsc{SRWC}]{Short Rotation Woody Crops}
+\acro{NPP}[\ensuremath{NPP}]{Net Primary Productivity}
+\acro{LAI}[\ensuremath{LAI}]{Leaf Area Index}
+\acro{RP}[\ensuremath{RP}]{Root Productivity}
+\acro{NPPres}[\ensuremath{NPP_{res}}]{Residual desired $NPP$}
+\acro{NPPt}[\ensuremath{NPP_{T}}]{$NPP$ if $LAI = LAI_{T}$}
+\acro{dRdef}[\ensuremath{\Delta R_{def}}]{Residual root}
+\acro{pRx}[\ensuremath{p_{R\%x}}]{Maximum root \%}
+\acro{Rdp}[\ensuremath{R_{\Delta\%}}]{Root contribution}
+\acro{W}[\ensuremath{W}]{Total plant mass}
+\acro{WR}[\ensuremath{W_R}]{Total root mass}
+\acro{fR}[\ensuremath{f_R}]{Root conversion efficiency}
+\acro{fi}[\ensuremath{f_i}]{Generic growth limiters}
 \end{acronym}
 }
 \end{multicols}
@@ -126,66 +166,81 @@ GOALS
 
 \subsection*{Potential Growth Model}
 
-The first step in the modeling of the poplar growth was to develop an
-estimate of the potential yield of poplar throughout the study area.
-Potential yield maps only take into consideration the climatic,
-environmental and phenological aspects.  They do not include the
-technical considerations of the technical feasibility of poplar as a
-crop.  However, because management regimes effect poplar growth rates
-over the period of the rotation different harvesting patterns are
-included in the potential growth models.  The two practices considered
-were 12 year cycled harvesting, and 4 four year coppicing cycles.
+Figure~\ref{fig:growth-model} shows the modeling path used in the
+development of the poplar growth model. The model developed shows the
+total potential of the grieed
+
+\begin{figure}[!ht]
+
+\caption{ \textbf{\ac{3pg} Overview.} This graph shows
+  the processing steps used to develop the potential growth model }
+\label{fig:grow}
+\end{figure}
+
+The \acf{3pg} model~\cite{landsberg2010physiological} takes as inputs
+weather data, site factors, initial conditions, management practices,
+and species information.
+
+The model runs at a monthly timestep. At each step the physiological
+parameters are calculated and carried forward to the next month. Input
+weather parameters are specified at the same monthly timestep, and
+additional management parameters, such as when the poplar is coppiced
+are also be included.
+
+The physiological components of the \ac{3pg} model comprises of
+submodules for estimating growth modifiers and \ac{NPP}, biomass
+allocation, and soil water balance.  We have added an additional
+module for regrowth after
+coppicing~(Section~\ref{sec:coppicing-model}).
+
+% The first step in the modeling of the poplar growth was to develop an
+% estimate of the potential yield of poplar throughout the study area.
+% Potential yield maps only take into consideration the climatic,
+% environmental and phenological aspects.  They do not include the
+% technical considerations of the technical feasibility of poplar as a
+% crop.  However, because management regimes effect poplar growth rates
+% over the period of the rotation different harvesting patterns are
+% included in the potential growth models.  The two practices considered
+% were 12 year cycled harvesting, and 4 four year coppicing cycles.
 
 The potential growth model implemented the \ac{3pg} forest growth
 model over the study area, by implementing the \ac{3pg} model within a
 \ac{GIS}.  \ac{3pg} modeled the growth of the poplar over a 12 year
 cycle, ether with or without the coppicing cycles.  
 
-Figure~\ref{fig:growth-model} shows the modeling path used in the
-development of the poplar growth model. The model developed shows the
-total potential of the grieed
+% Table~\ref{tab:3pg-grids} shows the required input grid parameters for
+% the \ac{3pg} model.  In addtion, the model requires a number of other
+% parameterizations, primarily for the modeling of the forest. Table
 
-\begin{figure}[!ht]
-\begin{center}
-\end{center}
-\caption{ {\bf Potential Growth Modeling Workflow.} This graph shows
-  the processing steps used to develop the potential growth model }
-\label{fig:growth-model}
-\end{figure}
-
-Table~\ref{tab:3pg-grids} shows the required input grid parameters for
-the \ac{3pg} model.  In addtion, the model requires a number of other
-parameterizations, primarily for the modeling of the forest. Table
-
-\begin{table}[!ht]
-\caption{
-\bf{Modeling Grids}}
-\begin{tabular}{|c|c|c|}
-\hline
-Parameter & Units & Source \\
-\hline
-elevation & \meter & \\
-\hline
-precipitation & \milli\meter & \\
-\hline
-temperature & \celsius & \cite{prism-temp} \\
-\hline
-humidity & \unit{\%}  & \\
-\hline
-radiation & \mega\joule\per\squaremetre\usk\dday &  \\
-\hline
-sub-freezing days & \dday  & \\
-\hline
-\end{tabular}
-\begin{flushleft}The table shows the data sources used for the
-  modeling of the potential Growth model for poplar.
-\end{flushleft}
-\label{tab:3pg-grids}
- \end{table}
+% \begin{table}[!ht]
+% \caption{
+% \textbf{Modeling Grids}}
+% \begin{tabular}{|c|c|c|}
+% \hline
+% Parameter & Units & Source \\
+% \hline
+% elevation & \meter & \\
+% \hline
+% precipitation & \milli\meter & \\
+% \hline
+% temperature & \celsius & \cite{prism-temp} \\
+% \hline
+% humidity & \unit{\%}  & \\
+% \hline
+% radiation & \mega\joule\per\squaremetre\usk\dday &  \\
+% \hline
+% sub-freezing days & \dday  & \\
+% \hline
+% \end{tabular}
+% \begin{flushleft}The table shows the data sources used for the
+%   modeling of the potential Growth model for poplar.
+% \end{flushleft}
+% \label{tab:3pg-grids}
+%  \end{table}
 
 \begin{table}[!ht]
 \caption{
-\bf{\ac{3pg} Model Constants}}
+\textbf{\ac{3pg} Model Constants}}
 \begin{tabular}{|c|c|c|}
 \hline
 Parameter & Units & Source \\
@@ -201,11 +256,11 @@ precipitation & \milli\meter & \cite{prism-precip} \\
 \label{tab:3pg-grids}
  \end{table}
 
-\subsection*{Poplar hybrids}
+\subsection*{Poplar Hybrids}
 
 \begin{table}[!ht]
 \caption{
-\bf{Growth Model Source Data}}
+\textbf{Growth Model Source Data}}
 \begin{tabular}{|c|c|c|}
 table information
 \end{tabular}
@@ -214,46 +269,164 @@ table information
 \label{tab:data}
  \end{table}
 
+\subsection*{Coppicing Model}
+\label{sec:coppicing-model}
+The original \ac{3pg} model allocates mass produced from transpiration
+into the the creation of new roots, stems and foliage.  In the
+standard \ac{3pg} model, the amount allocated to stems is basically a
+constant allocation, with a modifier due to the stress the plantation
+is under.  In a \ac{SWRC} however, coppicing the trees during
+harvesting introduces a situation where the stem and foliage are
+removed, but the root ball remains.  The \ac{3pg} model has no
+mechanism to increase to start re-growth from this stituation, or
+moderate the allocations based on the coppiced plant.
+
+\begin{figure}[!ht]
+\begin{subfigure}[b]{.1125\linewidth}
+\centering
+\includegraphics[width=1.0\linewidth]{img/tree_pics_1}
+\caption{}  %\caption{planting}
+\label{fig:grow_1}
+\end{subfigure}
+\begin{subfigure}[b]{.1125\linewidth}
+\centering
+\includegraphics[width=1.0\linewidth]{img/tree_pics_2}
+\caption{}  %\caption{sprout}
+\label{fig:grow_2}
+\end{subfigure}
+\begin{subfigure}[b]{.1125\linewidth}
+\centering
+\includegraphics[width=1.0\linewidth]{img/tree_pics_3}
+\caption{}  %\caption{growth}
+\label{fig:grow_3}
+\end{subfigure}
+\begin{subfigure}[b]{.1125\linewidth}
+\centering
+\includegraphics[width=1.0\linewidth]{img/tree_pics_4}
+\caption{}  %\caption{maturity}
+\label{fig:grow_4}
+\end{subfigure}
+\begin{subfigure}[b]{.1125\linewidth}
+\centering
+\includegraphics[width=1.0\linewidth]{img/tree_pics_5}
+\caption{}  %\caption{coppiced}
+\label{fig:grow_5}
+\end{subfigure}
+\begin{subfigure}[b]{.1125\linewidth}
+\centering
+\includegraphics[width=1.0\linewidth]{img/tree_pics_6}
+\caption{}  %\caption{resprouting}
+\label{fig:grow_6}
+\end{subfigure}
+\begin{subfigure}[b]{.1125\linewidth}
+\centering
+\includegraphics[width=1.0\linewidth]{img/tree_pics_7}
+\caption{}  %\caption{regrowth}
+\label{fig:grow_7}
+\end{subfigure}
+\begin{subfigure}[b]{.1125\linewidth}
+\centering
+\includegraphics[width=1.0\linewidth]{img/tree_pics_4}
+\caption{}  %\caption{next harvest}
+\label{fig:grow_8}
+\end{subfigure}
+\caption{ \textbf{Poplar \ac{SRWC} growth.} The growth stages for poplar
+  grown as an \ac{SRWC} with one coppicing cycle shown. }
+\label{fig:grow}
+\end{figure}
+
+Figure~\ref{fig:grow} shows a figure of the growth of a poplar planted
+as a \ac{SRWC}.  Poplars are propagated via cuttings of bare poplar
+stem, mostly under the soil,~(Figure~\ref{fig:grow_1}).  The cutting
+provides energy for the establishment of the seedling via buds above
+and below the surface~(Figure~\ref{fig:grow_2}). As the poplar
+matures, all growth comes from the productivity provided by the
+foliage.  This includes the establishment of the root
+ball~(Figure~\ref{fig:grow_3}).By the time the poplar is ready for
+coppicing~(Figure~\ref{fig:grow_4}), the plants are well established.
+
+After coppicing, there is a surfeit of root mass, and no foilage to
+provide photosynthetic based productivity to the
+tree~(Figure~\ref{fig:grow_5}).  Later, resprouting begin with the
+root ball providing initial energy for the restablishment of
+seedlings~(Figure~\ref{fig:grow_6}) which then leads through the
+maturation of the poplar, ready for the next
+harvest~(Figures~\ref{fig:grow_7} and~\ref{fig:grow_8}).
+
+We have developed a simple root interaction system to added to the
+\ac{3pg} model to model the behavior both of the post-coppiced
+situation as well as the initial planting of the cutting.  The model
+basically allows for some additional production to come from the root
+mass under certain conditions.  The seasonal timing of the
+contribution is moderated by comparing the actual~\ac{NPP} to the
+\ac{NPP} the root could produce if it had a more complete canopy.
+This difference serves as a target for the root contribution.  This
+method times regrowth with climatic conditions that are favorable for
+growth.  The monthly root contribution affects the length of time for
+the contribution to be made.  In poplar plantations, the initial
+planting is modeled the same way, with a different set of parameters
+to model the contribution from planted poplar stick.
+
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics{img/tree_pics_10}
+  \caption{\textbf{Coppice Model Overview}}
+  \label{fig:coppice}
+\end{figure}
+
+\begin{align}
+\acs{dW}=\acs{NPP}+\acs{RP} \\
+\acs{RP} = \begin{cases} 0 & \acs{NPPres} <=0 \\
+\acs{fR} ~ min (\acs{dRdef} ,\acs{NPPres}) & \acs{NPPres} > 0  
+\end{cases} \\
+\acs{NPPres} = \acs{NPPt}-\acs{NPP} \\
+\acs{dRdef} = \acs{WR}(\acs{WR}/\acs{W} - \acs{pRx})\acs{Rdp}
+\end{align}
 
 \subsection*{Management regimes}
 \label{sec:management-reg}
 In wood energy plantations, the management regime impacts the time
 between harvest, the fraction of the total biomass that enters the
-supply chain, and growth rates. Coppice style management generally suggests the use
-of a continuous harvest machine (forage harvester) at 3-5 year
-intervals over a 12-18 year rotation. Following coppice harvest the stumps are left to
-re-sprout and will be harvested again after 3-5 years.  Stem biomass that
-enters the feedstock supply chain under coppice management is determined
-by the year of first entry which determines stump volume.  Stump
-volume under coppice management is not considered to enter the supply
-chain at any point in the rotation. Round wood production implies the
-use of a piece-wise (harvester) or semi piece-wise harvesting
-equipment (feller-buncher). If stem diameter at harvest exceeds
-$\approx$ 8-10 cm, piece-wise harvesting is necessary. Following 
-roundwood harvest, the field will be cleared and preparedn for
-re-planting. Experimental work has suggested that there may be advantages to intercropping
-coppice and roundwood production. \emph{WHY?}. Under intercropping
-regime supply chain loss is determined by the combined loss from
-coppiced stumps and roundwood stumps over the rotation period.
+supply chain, and growth rates. Coppice style management generally
+suggests the use of a continuous harvest machine (forage harvester) at
+3-5 year intervals over a 12-18 year rotation. Following coppice
+harvest the stumps are left to re-sprout and will be harvested again
+after 3-5 years.  Stem biomass that enters the feedstock supply chain
+under coppice management is determined by the year of first entry
+which determines stump volume.  Stump volume under coppice management
+is not considered to enter the supply chain at any point in the
+rotation. Round wood production implies the use of a piece-wise
+(harvester) or semi piece-wise harvesting equipment
+(feller-buncher). If stem diameter at harvest exceeds $\approx$ 8-10
+cm, piece-wise harvesting is necessary. Following roundwood harvest,
+the field will be cleared and preparedn for re-planting.
+
+% Experimental work has suggested that there may be advantages to
+% intercropping coppice and roundwood production. \emph{WHY?}. Under
+% intercropping regime supply chain loss is determined by the combined
+% loss from coppiced stumps and roundwood stumps over the rotation
+% period.
 
 \subsubsection*{Stump volume}
 \label{sec:stump-volume}
 
-The 3PG growth model estimates partitioning of biomass between stem,
+The \ac{3pg} growth model estimates partitioning of biomass between stem,
 leaf, and roots within a spatial domain defined by model input
-parameters. Harvesting results in the collection of a fraction
-of the total accumulated stem biomass into the feedstock supply chain
-for energy production. The fraction of the biomass retained depends
-upon the management regime. Stump, and saw kerf acount for the
-fraction of stem biomass that is not captured in the supply chain.
+parameters. Harvesting results in the collection of a fraction of the
+total accumulated stem biomass into the feedstock supply chain for
+energy production. The fraction of the biomass retained depends upon
+the management regime. Stump, and saw kerf acount for the fraction of
+stem biomass that is not captured in the supply chain.
 
-Stump volume was determined using total tree volume predicted by 3PG,
+Stump volume was determined using total tree volume predicted by \ac{3pg},
 a stem taper function from for young poplar stands
 \cite{Benbrahim2003} , and allometric relationships between total
 biomass and diameter at breast height ($dbh$) \cite{Brahim2000}. The
 taper equation was used to establish stem diameter at stump height,
 and basal diameter, both of which which are necessary for determining
-stump volume. Allometric biomass relationships in forestry are generally described as in ~(\ref{form}). 
+stump volume. Allometric biomass relationships in forestry are
+generally described as in ~(\ref{form}).
 \begin{equation}
   \label{eq:form}
   X=aY^b
@@ -261,27 +434,33 @@ stump volume. Allometric biomass relationships in forestry are generally describ
 
 \input{stumpVol}
 
-\subsubsection{Growth impacts}
-\label{sec:growth-impacts}
+%\subsubsection{Growth impacts}
+%\label{sec:growth-impacts}
 
 \section*{Validation}
 
+% Results and Discussion can be combined.
+\section*{Results}
+
+The \ac{3pg} model was tested with a number
+
 \subsection*{Proe 2002}
 
-\cite{Proe2002} described the results of a number of different SWC
+\cite{proe02} described the results of a number of different \ac{SWRC}
 field trials, including annual measurements of biomass, root:shoot
-ratio, LAI, PAR and other parameters.  Light interception was measured
-seasonally as well.  The studies were over a 5 year period. Coppiced
-and single stem comparsions were made, but only for the affects of
-early coppicing after one year.  Proe found increase in biomass
-production for more closely spaced plantings still noticable up to the
-5th year of the study.  Comparisons the the 3PG model where made by
-replicating the three plantings under the conditions described.
-Weather information for the Scotland field plots were determined from
-?.  Comparisons were made between the 3PG model and the measured
-values, for spacings of 1m and 1.5m, and the single stem, and the
-coppicing methods.  Comparisons of the total biomass, LAI, and light
-interception were made. 
+ratio, leaf/stem ratios, LAI, PAR and other parameters.  Light
+interception was measured seasonally as well.  The studies were
+developed over a 5 year period. Coppiced and single stem comparsions
+were made, but only for the affects of early coppicing after one year.
+Proe found increase in biomass production for more closely spaced
+plantings still noticable up to the 5th year of the study.
+
+Comparisons the the \ac{3pg} model where made by replicating the three
+plantings under the conditions described.  Weather information for the
+Scotland field plots were determined from ?.  Comparisons were made
+between the \ac{3pg} model and the measured values, for spacings of 1m and
+1.5m, and the single stem, and the coppicing methods.  Comparisons of
+the total biomass, LAI, and light interception were made.
 
 \begin{figure}
   \centering
@@ -305,15 +484,14 @@ biomass measurements over 5 two year coppicing events for a five
 different poplar species.  Pontailler found consistant biomass returns
 on the plots for the most part, and attributed differences, especially
 the lower returns in 1991-1992, as due to drought conditions for the
-region.  The 3PG model was assigned parametric variations due to
+region.  The \ac{3pg} model was assigned parametric variations due to
 genotype.  These are shown in table~\ref{tab:pont-3pg}.
 
 \begin{table}[!ht]
   \centering
-  \begin{tabular}{}
-    
-  \end{tabular}
-  \caption{3PG parameter variations of 3PG among genotypes}
+%  \begin{tabular}{}    
+%  \end{tabular}
+  \caption{\ac{3pg} parameter variations of \ac{3pg} among genotypes}
   \label{tab:pont-3pg}
 \end{table}
 
@@ -333,21 +511,21 @@ Starting in 1996, Afas,~\cite{Afas2008a} studied 17 types of poplar
 over the course of 11 years for a field study in Belguim.  The study
 included measurements of three seperate coppicing events.  The study
 found relatively high mortality rates for some of the genotypes.
-Comparisons between the 3PG and measured values were made for the
+Comparisons between the \ac{3pg} and measured values were made for the
 genotypes with a survival rate of over 85\%.  No measurements of below
 ground biomass were included.  Afas did propose an alimetric
 realtionship for non-destructive biomass estimations based on diameter
 measurements of the stems from the stool.
 
-Variations among the genotypes were estimated with changes to the 3PG
+Variations among the genotypes were estimated with changes to the \ac{3pg}
 input parameters of : ?
 
 \begin{table}[!ht]
   \centering
-  \begin{tabular}{}
+%  \begin{tabular}{}
     
-  \end{tabular}
-  \caption{3PG parameter variations of 3PG among genotypes}
+%  \end{tabular}
+  \caption{\ac{3pg} parameter variations of \ac{3pg} among genotypes}
   \label{tab:afas-3pg}
 \end{table}
 
@@ -378,12 +556,6 @@ model, it's
 There have been a few studies
 
 
-
-% Results and Discussion can be combined.
-\section*{Results}
-\subsection*{Potential Growth}
-\subsection*{Coppicing Model}
-
 %\section*{Discussion}
 
 % Do NOT remove this, even if you are not including acknowledgments
@@ -405,7 +577,7 @@ Move Table here at the end.
 
 %% \begin{table}[!ht]
 %% \caption{
-%% \bf{Title}}
+%% \textbf{Title}}
 %% \begin{tabular}{|c|c|c|}
 %% table information
 %% \end{tabular}
