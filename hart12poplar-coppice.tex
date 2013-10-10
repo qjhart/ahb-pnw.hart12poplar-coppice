@@ -384,55 +384,6 @@ to model the contribution from planted poplar stick.
 \acs{dRdef} = \acs{WR}(\acs{WR}/\acs{W} - \acs{pRx})\acs{Rdp}
 \end{align}
 
-\subsection*{Management regimes}
-\label{sec:management-reg}
-In wood energy plantations, the management regime impacts the time
-between harvest, the fraction of the total biomass that enters the
-supply chain, and growth rates. Coppice style management generally
-suggests the use of a continuous harvest machine (forage harvester) at
-3-5 year intervals over a 12-18 year rotation. Following coppice
-harvest the stumps are left to re-sprout and will be harvested again
-after 3-5 years.  Stem biomass that enters the feedstock supply chain
-under coppice management is determined by the year of first entry
-which determines stump volume.  Stump volume under coppice management
-is not considered to enter the supply chain at any point in the
-rotation. Round wood production implies the use of a piece-wise
-(harvester) or semi piece-wise harvesting equipment
-(feller-buncher). If stem diameter at harvest exceeds $\approx$ 8-10
-cm, piece-wise harvesting is necessary. Following roundwood harvest,
-the field will be cleared and preparedn for re-planting.
-
-% Experimental work has suggested that there may be advantages to
-% intercropping coppice and roundwood production. \emph{WHY?}. Under
-% intercropping regime supply chain loss is determined by the combined
-% loss from coppiced stumps and roundwood stumps over the rotation
-% period.
-
-\subsubsection*{Stump volume}
-\label{sec:stump-volume}
-
-The \ac{3pg} growth model estimates partitioning of biomass between stem,
-leaf, and roots within a spatial domain defined by model input
-parameters. Harvesting results in the collection of a fraction of the
-total accumulated stem biomass into the feedstock supply chain for
-energy production. The fraction of the biomass retained depends upon
-the management regime. Stump, and saw kerf acount for the fraction of
-stem biomass that is not captured in the supply chain.
-
-Stump volume was determined using total tree volume predicted by \ac{3pg},
-a stem taper function from for young poplar stands
-\cite{Benbrahim2003} , and allometric relationships between total
-biomass and diameter at breast height ($dbh$) \cite{Brahim2000}. The
-taper equation was used to establish stem diameter at stump height,
-and basal diameter, both of which which are necessary for determining
-stump volume. Allometric biomass relationships in forestry are
-generally described as in ~(\ref{form}).
-\begin{equation}
-  \label{eq:form}
-  X=aY^b
-\end{equation}
-
-\input{stumpVol}
 
 %\subsubsection{Growth impacts}
 %\label{sec:growth-impacts}
@@ -442,7 +393,37 @@ generally described as in ~(\ref{form}).
 % Results and Discussion can be combined.
 \section*{Results}
 
-The \ac{3pg} model was tested with a number
+The \ac{3pg} model was tested with a number field tests found in the
+literature.  Field tests that included one or more coppiced rotations,
+where included.  The model was
+
+\subsection{Pontailler 1999}
+\label{sec:pont}
+
+Pontailler, \cite{pontailler99biomass-yield} described the results of
+biomass measurements over 5 two year coppicing events for a five
+different poplar species.  Pontailler found consistant biomass returns
+on the plots for the most part, and attributed differences, especially
+the lower returns in 1991-1992, as due to drought conditions for the
+region.  The \ac{3pg} model was assigned parametric variations due to
+genotype.  These are shown in table~\ref{tab:pont-3pg}.
+
+\begin{table}[!ht]
+  \centering
+%  \begin{tabular}{}    
+%  \end{tabular}
+  \caption{\ac{3pg} parameter variations of \ac{3pg} among genotypes}
+  \label{tab:pont-3pg}
+\end{table}
+
+\begin{figure}[!ht]
+  \centering
+
+  \caption{Comparison of model to measurements for yearly growth over five
+    coppicing events.}
+\label{fig:pont-biomass}
+\end{figure}
+
 
 \subsection*{Proe 2002}
 
@@ -476,32 +457,13 @@ the total biomass, LAI, and light interception were made.
   \label{fig:proe-light}
 \end{figure}
 
-\subsection{Pontailler 1999}
-\label{sec:pont}
+\cite{proe02} compare the results of two stocking densities
 
-Pontailler, \cite{pontailler99biomass-yield} described the results of
-biomass measurements over 5 two year coppicing events for a five
-different poplar species.  Pontailler found consistant biomass returns
-on the plots for the most part, and attributed differences, especially
-the lower returns in 1991-1992, as due to drought conditions for the
-region.  The \ac{3pg} model was assigned parametric variations due to
-genotype.  These are shown in table~\ref{tab:pont-3pg}.
+To compare comparison with the
+model, it's 
 
-\begin{table}[!ht]
-  \centering
-%  \begin{tabular}{}    
-%  \end{tabular}
-  \caption{\ac{3pg} parameter variations of \ac{3pg} among genotypes}
-  \label{tab:pont-3pg}
-\end{table}
+There have been a few studies
 
-\begin{figure}[!ht]
-  \centering
-
-  \caption{Comparison of model to measurements for yearly growth over five
-    coppicing events.}
-\label{fig:pont-biomass}
-\end{figure}
 
 
 \subsection{Afas 2008}
@@ -537,7 +499,32 @@ input parameters of : ?
 \label{fig:afas-biomass}
 \end{figure}
 
-\subsection*{Stocking Density}
+\section*{Management Considerations}
+\label{sec:management-reg}
+
+In wood energy plantations, the management regime impacts the time
+between harvest, the fraction of the total biomass that enters the
+supply chain, and growth rates. Coppice style management generally
+suggests the use of a continuous harvest machine (forage harvester) at
+3-5 year intervals over a 12-18 year rotation. Following coppice
+harvest the stumps are left to re-sprout and will be harvested again
+after 3-5 years.  Stem biomass that enters the feedstock supply chain
+under coppice management is determined by the year of first entry
+which determines stump volume.  Stump volume under coppice management
+is not considered to enter the supply chain at any point in the
+rotation. Round wood production implies the use of a piece-wise
+(harvester) or semi piece-wise harvesting equipment
+(feller-buncher). If stem diameter at harvest exceeds $\approx$ 8-10
+cm, piece-wise harvesting is necessary. Following roundwood harvest,
+the field will be cleared and preparedn for re-planting.
+
+% Experimental work has suggested that there may be advantages to
+% intercropping coppice and roundwood production. \emph{WHY?}. Under
+% intercropping regime supply chain loss is determined by the combined
+% loss from coppiced stumps and roundwood stumps over the rotation
+% period.
+
+\subsubsection*{Stocking Density}
 \label{sec:stocking-density}
 
 Initial stocking density is an important consideration, as planting
@@ -548,13 +535,59 @@ rather than the biomass per stem.  Actually, the fact that coppicing
 results in more stems per stump can lead to efficiencies in the
 harvesting 
 
-\cite{proe02} compare the results of two 
+\subsubsection*{Stump volume}
+\label{sec:stump-volume}
 
-To compare comparison with the
-model, it's 
+The \ac{3pg} growth model estimates partitioning of biomass between stem,
+leaf, and roots within a spatial domain defined by model input
+parameters. Harvesting results in the collection of a fraction of the
+total accumulated stem biomass into the feedstock supply chain for
+energy production. The fraction of the biomass retained depends upon
+the management regime. Stump, and saw kerf acount for the fraction of
+stem biomass that is not captured in the supply chain.
 
-There have been a few studies
+Stump volume was determined using total tree volume predicted by \ac{3pg},
+a stem taper function from for young poplar stands
+\cite{Benbrahim2003} , and allometric relationships between total
+biomass and diameter at breast height ($dbh$) \cite{Brahim2000}. The
+taper equation was used to establish stem diameter at stump height,
+and basal diameter, both of which which are necessary for determining
+stump volume. Allometric biomass relationships in forestry are
+generally described as in ~(\ref{form}).
+\begin{equation}
+  \label{eq:form}
+  X=aY^b
+\end{equation}
 
+First, $dbh$ is calculated from tree mass $M$
+\begin{equation}
+    \label{eqn:dbh}
+    dbh=aM^b
+    \end{equation}
+
+as in (\ref{eqn:form}) where $a=0.122$ and $b=2.38$ from \cite{Landsberg1997}.
+
+We the calculate total tree height ($H$) using coefficients provided by \cite{Brahim2000}
+\begin{equation}
+    \label{eqn:height}
+    \begin{bmatrix}\frac{14705.8823529412 M + 250.0 d^{2.34} -56617.6470588235}{D^{2.34}}\end{bmatrix}
+    \end{equation}where $D$ is $dbh$ for the individual tree and $d$ is the stand average $dbh$. The use of stand average can improve the accuracy of the relationship, however as the 3-PG model does not predict variation in $dbh$ between stands we simply use the derived $dbh$ from \ref{eqn:dbh} fro both values. \cite{Benbrahim2003} also provides (\ref{eqn:taper}) to determine diameter at a given height or height at a given diameter:
+\begin{equation}
+    \label{eqn:taper}
+    0=-d+\left(b_d-b_d\left(\frac{\log{\frac{1-h}{Ha}}}{-b}\right)^{1/c}\right)
+    \end{equation}The taper equation provided by \cite{Benbrahim2003} also requires a basal diameter ($b_d$). We calculate $b_d$ modifying equation (\ref{eqn:taper}) using coefficients provided and $H$, $dbh$ from above. Using a stump height of 10.0 cm we calculate the top stump diameter with whihc we can calculate the stump volume.
+\begin{equation}
+    \label{eqn:sectionvolume}
+    V=\left(\frac{l\pi}{12}\right)(d_1^2+d_a^2+d_1d_2)
+    \end{equation}We then calculate stump mass using a wood density of 0.38 $g \cdot cc^{-1}$ and compare with total tree mass $M$
+\subsubsection*{Stump volume regression}
+To determine a simplified relationship between tree volume and stump volume we derive coefficients $a$ and $b$ in (\ref{eqn:form}) using a the ratio of stump mass to total stem mass over a range of stem volumes based on the allometric relationships in section \ref{sec:allo}.\begin{figure}[h]
+     \centering
+%    \includegraphics[width=0.5\textwidth]{nlm_stump.png}
+    \caption{Stump to stem volume ratio as a function of stem volume}
+    \label{fig:stump_vol}
+    \end{figure}
+Coefficients used in calculating stump volume as a function of total stem volume were found to be $a=0.0179877356445$ and $b=-0.169054308617$.
 
 %\section*{Discussion}
 
