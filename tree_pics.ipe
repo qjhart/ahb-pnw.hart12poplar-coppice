@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70005" creator="Ipe 7.1.2">
-<info created="D:20130723230813" modified="D:20131010093612" title="Trees Figures" author="Quinn Hart" subject="AHB Poplar Poster" pagemode="fullscreen"/>
+<info created="D:20130723230813" modified="D:20131010165046" title="Trees Figures" author="Quinn Hart" subject="AHB Poplar Poster" pagemode="fullscreen"/>
 <preamble>\usepackage{amsmath}</preamble>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">

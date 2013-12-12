@@ -26,3 +26,4 @@ ${pngs}:img/tree_pics.%.png:tree_pics.ipe
 
 ${pdfs}:img/tree_pics.%.pdf:tree_pics.ipe
 	${iperender} -pdf -page $* tree_pics.ipe img/tree_pics_${*}.pdf
+
