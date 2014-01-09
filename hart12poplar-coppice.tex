@@ -27,6 +27,8 @@
 %\usepackage{setspace} 
 %\doublespacing
 
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
 
 % Text layout
 \topmargin 0.0cm
@@ -376,6 +378,144 @@ planted poplar stick.
 As described in Section~\ref{sec:coppicing-model}, there are three
 coppicing parameters that effect the regrowth of the trees after
 coppicing.  \acs{Rdp} affects, \acs{pRx} and \acs{NPPres}.
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      no markers,
+      width=6in,
+      height=2in,
+      date coordinates in=x,
+      xticklabel={\month},
+%      xlabel={date},
+      ylabel=Stem Biomass,
+      ylabel style={yshift=10pt},
+      legend entries={$f=0.05$,$f=0.1$,$f=0.5$}
+%      legend style={
+%        at={(0.5,-0.3)},anchor=north,legend columns=-1}
+      ]
+      \addplot table [color=blue x=date, y=m11f0.05, col sep=comma] {validation/hart12coppice-coppice-WS.csv};
+      \addplot table [color=red x=date, y=m11f0.1, col sep=comma] {validation/hart12coppice-coppice-WS.csv};
+%      \addplot table [x=date, y=m11f0.2, col sep=comma] {validation/hart12coppice-coppice-WS.csv};
+%      \addplot table [x=date, y=m11f0.3, col sep=comma] {validation/hart12coppice-coppice-WS.csv};
+      \addplot table [color=green x=date, y=m11f0.5, col sep=comma] {validation/hart12coppice-coppice-WS.csv};
+    \end{axis}
+  \end{tikzpicture}
+  \begin{tikzpicture}
+    \begin{axis}[
+      no markers,
+      width=6in,
+      height=2in,
+      date coordinates in=x,
+      xticklabel={\month},
+%      xlabel={date},
+      ylabel=Stem Biomass,
+      ylabel style={yshift=10pt},
+      legend entries={$f=0.05$,$f=0.1$,$f=0.5$}
+%      legend style={
+%        at={(0.5,-0.3)},anchor=north,legend columns=-1}
+      ]
+      \addplot table [x=date, y=m9f0.05, col sep=comma] {validation/hart12coppice-coppice-WS.csv};
+      \addplot table [x=date, y=m9f0.1, col sep=comma] {validation/hart12coppice-coppice-WS.csv};
+%      \addplot table [x=date, y=m9f0.2, col sep=comma] {validation/hart12coppice-coppice-WS.csv};
+%      \addplot table [x=date, y=m9f0.3, col sep=comma] {validation/hart12coppice-coppice-WS.csv};
+      \addplot table [x=date, y=m9f0.5, col sep=comma] {validation/hart12coppice-coppice-WS.csv};
+    \end{axis}
+  \end{tikzpicture}
+  \begin{tikzpicture}
+    \begin{axis}[
+      no markers,
+      width=6in,
+      height=2in,
+      date coordinates in=x,
+      xticklabel={\month},
+%      xlabel={date},
+      ylabel=Stem Biomass,
+      ylabel style={yshift=10pt},
+      legend entries={$f=0.05$,$f=0.1$,$f=0.5$}
+%      legend style={
+%        at={(0.5,-0.3)},anchor=north,legend columns=-1}
+      ]
+      \addplot table [x=date, y=m7f0.05, col sep=comma] {validation/hart12coppice-coppice-WS.csv};
+      \addplot table [x=date, y=m7f0.1, col sep=comma] {validation/hart12coppice-coppice-WS.csv};
+%      \addplot table [x=date, y=m7f0.2, col sep=comma] {validation/hart12coppice-coppice-WS.csv};
+%      \addplot table [x=date, y=m7f0.3, col sep=comma] {validation/hart12coppice-coppice-WS.csv};
+      \addplot table [x=date, y=m7f0.5, col sep=comma] {validation/hart12coppice-coppice-WS.csv};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Coppice Regrowth fort various coppicing dates.}
+  \label{fig:test}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      no markers,
+      width=6in,
+      height=2in,
+      date coordinates in=x,
+      xticklabel={\month},
+%      xlabel={date},
+      ylabel=Stem Biomass,
+      ylabel style={yshift=10pt},
+      legend entries={$f=0.05$,$f=0.1$,$f=0.5$}
+%      legend style={
+%        at={(0.5,-0.3)},anchor=north,legend columns=-1}
+      ]
+      \addplot table [x=date, y=m11f0.05, col sep=comma] {validation/hart12coppice-coppice-WR.csv};
+      \addplot table [x=date, y=m11f0.1, col sep=comma] {validation/hart12coppice-coppice-WR.csv};
+%      \addplot table [x=date, y=m11f0.2, col sep=comma] {validation/hart12coppice-coppice-WR.csv};
+%      \addplot table [x=date, y=m11f0.3, col sep=comma] {validation/hart12coppice-coppice-WR.csv};
+      \addplot table [x=date, y=m11f0.5, col sep=comma] {validation/hart12coppice-coppice-WR.csv};
+    \end{axis}
+  \end{tikzpicture}
+  \begin{tikzpicture}
+    \begin{axis}[
+      no markers,
+      width=6in,
+      height=2in,
+      date coordinates in=x,
+      xticklabel={\month},
+%      xlabel={date},
+      ylabel=Stem Biomass,
+      ylabel style={yshift=10pt},
+      legend entries={$f=0.05$,$f=0.1$,$f=0.5$}
+%      legend style={
+%        at={(0.5,-0.3)},anchor=north,legend columns=-1}
+      ]
+      \addplot table [x=date, y=m9f0.05, col sep=comma] {validation/hart12coppice-coppice-WR.csv};
+      \addplot table [x=date, y=m9f0.1, col sep=comma] {validation/hart12coppice-coppice-WR.csv};
+%      \addplot table [x=date, y=m9f0.2, col sep=comma] {validation/hart12coppice-coppice-WR.csv};
+%      \addplot table [x=date, y=m9f0.3, col sep=comma] {validation/hart12coppice-coppice-WR.csv};
+      \addplot table [x=date, y=m9f0.5, col sep=comma] {validation/hart12coppice-coppice-WR.csv};
+    \end{axis}
+  \end{tikzpicture}
+  \begin{tikzpicture}
+    \begin{axis}[
+      no markers,
+      width=6in,
+      height=2in,
+      date coordinates in=x,
+      xticklabel={\month},
+%      xlabel={date},
+      ylabel=Stem Biomass,
+      ylabel style={yshift=10pt},
+      legend entries={$f=0.05$,$f=0.1$,$f=0.5$}
+%      legend style={
+%        at={(0.5,-0.3)},anchor=north,legend columns=-1}
+      ]
+      \addplot table [x=date, y=m7f0.05, col sep=comma] {validation/hart12coppice-coppice-WR.csv};
+      \addplot table [x=date, y=m7f0.1, col sep=comma] {validation/hart12coppice-coppice-WR.csv};
+%      \addplot table [x=date, y=m7f0.2, col sep=comma] {validation/hart12coppice-coppice-WR.csv};
+%      \addplot table [x=date, y=m7f0.3, col sep=comma] {validation/hart12coppice-coppice-WR.csv};
+      \addplot table [x=date, y=m7f0.5, col sep=comma] {validation/hart12coppice-coppice-WR.csv};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Coppice Regrowth fort various coppicing dates.}
+  \label{fig:test}
+\end{figure}
 
 \section*{Validation}
 
