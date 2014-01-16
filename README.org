@@ -1,0 +1,42 @@
+* Manuscript Preparation in LaTeX
+** LaTeX Version
+
+You are required to use LaTeX2e. If you do not have the latest version of LaTeX, you can download it from a number of sites including http://www.LaTeX-project.org/.
+
+** PLoS Provided Files
+
+plos_template.tex: For your convenience, PLoS provides a template for LaTeX submissions below. Use this template file as an empty framework for your submission. Do NOT change or remove elements from the template.
+plos2009.bst: BibTeX style sheet. Use this file to specify the formatting of your BibTeX file. This will ensure that your references are generated in the correct format.
+LaTeX Formatting Best Practices
+
+Below are some "best practices" for preparing your LaTeX manuscript. Though it may seem that we are not taking full advantage of the extensive abilities of LaTeX, due to current Typesetting constraints, we convert your LaTeX file our publishing format using a commercial software package. Some of the more "creative" (and even several somewhat standard) capabilities of LaTeX do not convert well.
+http://www.plosone.org/static/latexGuidelines.action
+
+
+** Model sensitivity analysis
+We present results from the following scenarios to suggest the impact of a range of management decisions and climate variability on modeled yield outcomes.
+
+| Description                | Perturbation                                              | Spatial domain                                            |
+|----------------------------+-----------------------------------------------------------+-----------------------------------------------------------|
+| Irrigation only            | Hold soil moisture content to 80% constant (Deckmyn 2004) | Where water content drops below %80 during growing season |
+| Irrigation + Fertilization | Same as above + 56 kg N/Ha                                | Same as above                                             |
+| Coppice                    | Coppice harvest at 3 years                                | All planted areas                                         |
+| Inter-crop                 | Alternating rows between coppice and round-wood           | All planted areas                                         |
+| Pulp sludge                | ??                                                        |                                                           |
+
+*** Irrigation
+
+*** Management
+Management regime will impact growth rates throughout the rotation period. The baseline roundwood scenario estimates growth without impact of harvest activities over the full rotation period. For coppice and inter-cropping the harvest activities impact growth rates following harvest activities. Following coppicing stem biomass partitioning increases and root partitioning diminishes. Inter-cropping will result in diminished available PAR for coppiced rows as a result of shading from roundwood rows. For three management scenarios (roundwood baseline, coppice, and energy crop), the table below conveys the way impacts of management regime on yields over the rotation period are modeled. Model inputs that are independent of management regime are not included.  
+
+**** Coppice
+
+\emph{Stand age effect $f_{age}$.} The 3-PG model incorporates the effect of tree age on growth. Empirical evidence suggests that $P_N$ diminishes over the lifespan of a tree. This is assumed to be the result diminished stomata function resulting from hydraulic limitations in the flow of water as trees age \cite(Landsberg1997,Ryan97, Tyree1988). After coppicing we assume that $f_{age}$ is reset to the initial value.
+
+\emph{Litterfall $\gamma_f$} Litterfall after coppice is reset to year 1 value.
+
+\emph{Stem Population.} Coppice harvesting can result in stem mortality either from mechanical dammage or metabolic stress. \cite{Heilman1972} found 83% stump survivorship in /empha{Populus trichocarpa} after two two-year harvest cycles. \cite{Strong1989} found 70% survivorship after three three-year harvest cycles. To reflect stump mortality we reset stocking density as a function of the number of years after planting that trees are coppiced.  This is done using a mortality constant (\ref{eqn:mort}).
+\begin{equation}
+\label{eqn:mort}
+
+

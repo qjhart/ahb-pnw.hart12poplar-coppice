@@ -1,0 +1,16 @@
+# use glob syntax.
+syntax: glob
+
+*.elc
+*.pyc
+*~
+*.rel
+*.log
+*.aux
+*.bbl
+*.blg
+*.pdf
+*.synctex.gz
+# switch to regexp syntax.
+# syntax: regexp
+# ^\.pc/
