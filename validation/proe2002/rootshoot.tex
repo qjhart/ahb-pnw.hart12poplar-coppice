@@ -1,0 +1,47 @@
+\begin{tikzpicture}
+  \begin{axis}[
+    no markers,
+    width=6in,
+    height=3in,
+    date coordinates in=x,
+    xtick={{1990-01-15},{1991-01-15},
+      {1992-01-15},
+      {1993-01-15},
+      {1994-01-15},
+      {1995-01-15}
+    },
+    minor x tick num = 11,
+    xmin={1989-05-15},
+    xmax={1995-12-15},
+    ymin=0,
+    ymax=2,
+    xticklabel={\year-\month},
+    % xlabel={date},
+    ylabel=Root:Shoot Ratio,
+    %ylabel style={yshift=10pt},
+    legend entries={No Coppice,Proe2002,Coppice,Proe2002},
+%    legend to name = temp
+    legend style={
+      at={(0.5,1.03)},anchor=south,legend columns=-1}
+    ]
+    \addplot table [x=date, y=noc_rootshoot, col sep=comma] {validation/proe2002/ratios.csv};
+    % \addplot[scatter, only marks,scatter src=explicit symbolic] 
+    \addplot+[only marks,mark=square*,color=blue, mark options={fill=blue}] 
+    coordinates {
+      (1990-07-15,0.21)
+      (1991-07-15,0.19)
+      (1992-07-15,0.16)
+      (1993-07-15,0.14)
+      };
+    \addplot+[color=green] table [x=date, y=cop_rootshoot, col sep=comma] {validation/proe2002/ratios.csv};
+    \addplot+[only marks, color=green, mark options={fill=green}] 
+    coordinates {
+      (1990-07-15,0.23)
+      (1991-07-15,0.24)
+      (1992-07-15,0.16)
+      (1993-07-15,0.13)
+      };
+
+  \end{axis}
+\end{tikzpicture}
+%\ref{temp}

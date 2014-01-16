@@ -1,0 +1,47 @@
+\begin{tikzpicture}
+  \begin{axis}[
+    no markers,
+    width=6in,
+    height=3in,
+    date coordinates in=x,
+    xtick={{1990-01-15},{1991-01-15},
+      {1992-01-15},
+      {1993-01-15},
+      {1994-01-15},
+      {1995-01-15}
+    },
+    minor x tick num = 11,
+    xmin={1989-05-15},
+    xmax={1995-12-15},
+    xticklabel={\year-\month},
+    % xlabel={date},
+    ylabel=Leaf Area Index,
+    %ylabel style={yshift=10pt},
+    legend entries={No Coppice,Proe2002,Coppice,Proe2002},
+%    legend to name = temp
+    legend style={
+      at={(0.5,1.03)},anchor=south,legend columns=-1}
+    ]
+    \addplot table [x=date, y=LAI, col sep=comma] {validation/proe2002/growthmodel-nocoppice.csv};
+    % \addplot[scatter, only marks,scatter src=explicit symbolic] 
+    \addplot+[only marks,mark=square*,color=blue, mark options={fill=blue}] 
+    coordinates {
+      (1990-07-15,2)
+      (1991-07-15,5.6)
+      (1992-07-15,4.5)
+      (1993-07-15,3.5)
+      (1995-07-15,6.1)
+      };
+    \addplot+[color=green] table [x=date, y=LAI, col sep=comma] {validation/proe2002/growthmodel-coppice.csv};
+    \addplot+[only marks, color=green, mark options={fill=green}] 
+    coordinates {
+      (1990-07-15,1)
+      (1991-07-15,3)
+      (1992-07-15,3.3)
+      (1993-07-15,3.3)
+      (1995-07-15,5.5)
+      };
+
+  \end{axis}
+\end{tikzpicture}
+%\ref{temp}

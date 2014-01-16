@@ -1,0 +1,16 @@
+\begin{tikzpicture}[scale=1.5]
+\begin{axis}[
+	xlabel=$Month$,
+	ylabel=$Mg/ha$,
+	legend entries={$3PG$,$TxB$,$TxD$,$T$,$DxT$,$DxN$,$N$},
+	legend pos=outer north east
+]
+\addplot+[no markers] table {validation/afras2008/afras2008.dat};
+\addplot+[only marks] table[x=Month,y=TxB] {validation/afras2008/afras2008.dat};
+\addplot+[only marks, yellow, mark options={fill=yellow}] table[x=Month,y=TxD] {validation/afras2008/afras2008.dat};
+\addplot+[only marks, color=green] table[x=Month,y=T] {validation/afras2008/afras2008.dat};
+\addplot+[only marks, color=blue, mark options={fill=blue}] table[x=Month,y=DxT] {validation/afras2008/afras2008.dat};
+\addplot+[only marks, color=gray, mark options={fill=gray}] table[x=Month,y=DxN] {validation/afras2008/afras2008.dat};
+\addplot+[only marks, color=black, mark options={fill=black}] table[x=Month,y=N] {validation/afras2008/afras2008.dat};
+\end{axis}
+\end{tikzpicture}

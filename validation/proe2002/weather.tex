@@ -1,0 +1,46 @@
+\begin{tikzpicture}
+  \begin{axis}[
+    no markers,
+    width=6in,
+    height=2in,
+    date coordinates in=x,
+    xtick={{1990-01-15},{1991-01-15},
+      {1992-01-15},
+      {1993-01-15},
+      {1994-01-15},
+      {1995-01-15}
+    },
+    minor x tick num = 11,
+    xmin={1989-05-15},
+    xmax={1995-12-15},
+    xticklabel={\year-\month},
+    % xlabel={date},
+    ylabel=Rad [MJ/day]; Temp [C]; Daylight [hr],
+    %ylabel style={yshift=10pt},
+    legend entries={$T_n$,$T_x$,$R$,$Hrs$},
+    legend to name = temp
+    % legend style={
+    % at={(0.5,-0.3)},anchor=north,legend columns=-1}
+    ]
+    \addplot+[color=blue] table [x=date, y=tmin, col sep=comma] {validation/proe2002/weather.csv};
+    \addplot+[color=red ] table [x=date, y=tmax, col sep=comma] {validation/proe2002/weather.csv};
+    \addplot [ybar, bar width=1pt, color=blue] table [x=date, y=rad, col sep=comma] {validation/proe2002/weather.csv};
+    \addplot [ybar, bar width=1pt, color=green] table [x=date, y=daylight, col sep=comma] {validation/proe2002/weather.csv};
+  \end{axis}
+  \begin{axis}[
+     no markers,
+     width=6in,
+     height=2in,
+  %   scale only axis,
+     date coordinates in=x,
+  %   ylabel=PPT [mm],
+     axis y line=right,
+     axis x line=none,
+  %   % ylabel style={yshift=10pt},
+     legend entries={$PPT$},
+     legend to name = ppt,
+     ]
+    \addplot+[color=green] table [x=date, y=ppt, col sep=comma] {validation/proe2002/weather.csv};
+   \end{axis}
+\end{tikzpicture}
+%\ref{temp}
