@@ -1,0 +1,41 @@
+\begin{tikzpicture}
+  \begin{axis}[
+    no markers,
+    width=\linewidth,
+    height=2in,
+    date coordinates in=x,
+    xticklabel={\month},
+    ylabel style={align=center}, ylabel=Rad {$[MJ/day]$}; Temp {$[C]$}\\ Daylight {$[hr]$},
+    stack plots=false,
+    bar width=2pt,
+    legend entries={$T_n$,$T_x$,$R$,$Hrs$},
+    legend style={at={(0.4,1.03)},anchor=south},
+    legend columns=4,
+    %legend to name = temp
+    % legend style={
+    % at={(0.5,-0.3)},anchor=north,legend columns=-1}
+    ]
+    \addplot+[color=yellow] table [x=date, y=tmin, col sep=comma] {coppice/weather.csv};
+    \addplot+[color=red ] table [x=date, y=tmax, col sep=comma] {coppice/weather.csv};
+    \addplot+[ybar, color=blue, fill=blue] table [x=date, y=rad, col sep=comma] {coppice/weather.csv};
+    \addplot+[ybar, color=green, fill=green] table [x=date, y=daylight, col sep=comma] {coppice/weather.csv};
+    
+  \end{axis}
+  \begin{axis}[
+     no markers,
+     width=\linewidth,
+     height=2in,
+     date coordinates in=x,
+  %   ylabel=PPT [mm],
+     axis y line=right,
+     axis x line=none,
+  %   % ylabel style={yshift=10pt},
+     legend entries={$PPT$},
+     legend style={        at={(.7,1.03)},        anchor=south},
+     %legend to name = ppt,
+     ylabel style={align=center}, ylabel=Precip {$[mm]$},
+     ]
+    \addplot+[color=black] table [x=date, y=ppt, col sep=comma] {coppice/weather.csv};
+   \end{axis}
+\end{tikzpicture}
+%\ref{temp}
