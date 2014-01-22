@@ -1,0 +1,45 @@
+Scotland Data:
+wget http://www.metoffice.gov.uk/climate/uk/stationdata/paisleydata.txt
+
+Then import with PGLOADER
+
+Paris
+
+Spreadsheet: https://docs.google.com/spreadsheet/ccc?key=0Av7cUV-o2QQYdExub1FjYW1YYWcxQnhMV0ZZMll5VXc&usp=drive_web#gid=24
+
+Raw CSV:
+https://docs.google.com/file/d/0B_7cUV-o2QQYVy1ncFhVRmNOdjA/edit?usp=drive_web
+
+Source:
+http://www.tutiempo.net/en/Climate/Paris_Le_Bourget/01-1987/71500.htm
+*Note: there is no csv export.  Wrote this script to harvest data: https://github.com/CSTARS/AHB-PNW/tree/master/models/data_harvest/paris_weather
+
+
+Scotland
+
+Spreadsheet:
+
+
+Raw CSV:
+http://www.metoffice.gov.uk/climate/uk/stationdata/paisleydata.txt
+
+Source:
+http://www.metoffice.gov.uk/climate/uk/stationdata/
+
+
+Belgium
+
+Raw CSV:
+https://github.com/CSTARS/AHB-PNW/blob/master/models/data/Antwerpen_Deurne.csv
+
+Source:
+http://www.tutiempo.net/en/Climate/Antwerpen_Deurne/64500.htm
+* used same script as paris to harvest
+
+Other
+Good resource for European solar data:
+http://www.helioclim.org/radiation/index.html
+
+
+
+

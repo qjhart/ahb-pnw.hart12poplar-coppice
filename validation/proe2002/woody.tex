@@ -1,0 +1,45 @@
+\begin{tikzpicture}
+  \begin{axis}[
+    no markers,
+    width=6in,
+    height=3in,
+    date coordinates in=x,
+    xtick={{1990-01-15},{1991-01-15},
+      {1992-01-15},
+      {1993-01-15},
+      {1994-01-15},
+      {1995-01-15}
+    },
+    minor x tick num = 1,
+    xmin={1989-05-15},
+    xmax={1995-12-15},
+    xticklabel={\year-\month},
+    % xlabel={date},
+    ylabel=Biomass T/ha,
+    %ylabel style={yshift=10pt},
+    legend entries={No Coppice,Proe2002,Coppice,Proe2002},
+    legend style={
+      at={(0.5,1.03)},anchor=north,legend columns=-1}
+    ]
+    \addplot table [x=date, y=WS, col sep=comma] {validation/proe2002/growthmodel-nocoppice.csv};
+    % \addplot[scatter, only marks,scatter src=explicit symbolic] 
+    \addplot+[only marks,mark=square*,color=blue, mark options={fill=blue}] 
+    coordinates {
+      (1990-07-15,5)
+      (1991-07-15,21.2)
+      (1992-07-15,28.2)
+      (1993-07-15,34.8)
+      (1995-07-15,72.1)
+      };
+    \addplot+[color=green] table [x=date, y=WS, col sep=comma] {validation/proe2002/growthmodel-coppice.csv};
+    \addplot+[only marks, color=green, mark options={fill=green}] 
+    coordinates {
+      (1990-07-15,1.4)
+      (1991-07-15,11.4)
+      (1992-07-15,21.6)
+      (1993-07-15,28.8)
+      (1995-07-15,55.9)
+      };
+
+  \end{axis}
+\end{tikzpicture}

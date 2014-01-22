@@ -1,0 +1,17 @@
+# use glob syntax.
+syntax: glob
+
+*.elc
+*.pyc
+*~
+*.rel
+*.log
+*.aux
+*.bbl
+*.blg
+*.synctex.gz
+# switch to regexp syntax.
+# syntax: regexp
+# ^\.pc/
+
+.DS_Store

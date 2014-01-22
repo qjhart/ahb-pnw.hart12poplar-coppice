@@ -1,0 +1,128 @@
+  \begin{tikzpicture}
+    \begin{axis}[
+      name=f0001,
+      legend entries={$WS$,$WR$,$WF$},
+      legend style={
+        at={(0.5,1)},anchor=north,legend columns=-1},
+      no markers,
+      width=\linewidth,
+      height=0.25\linewidth,
+      date coordinates in=x,
+      xmin={2016-02-15},
+      xmax={2019-10-15},
+      xtick={2016-06-15,2016-09-15,2016-12-15,
+      2017-03-15,2017-06-15,2017-09-15,2017-12-15,
+      2018-03-15,2018-06-15,2018-09-15,2018-12-15,
+      2019-03-15,2019-06-15,2019-09-15},
+      xticklabels=\empty,
+      ymin=0,ymax=60,
+      ytick={20,40},
+      yticklabels={20,40},
+      ]
+      \node[right] at (axis cs:{2016-02-15},50) {$\acs{Rdp}=0.001$};
+      \addplot+[color=green] table [x=date, y=m08f0.001, col sep=comma] {coppice/hart12c2oppice-coppice-wf.csv};
+      \addplot+[color=brown] table [x=date, y=m08f0.001, col sep=comma] {coppice/hart12coppice-coppice-ws.csv};
+      \addplot+[color=red] table [x=date, y=m08f0.001, col sep=comma] {coppice/hart12coppice-coppice-wr.csv};
+    \end{axis}
+    \begin{axis}[
+      name=f001,
+      at={(f0001.below south west)},yshift=5pt,
+      anchor=north west,
+      no markers,
+      width=\linewidth,
+      height=0.25\linewidth,
+      date coordinates in=x,
+      xtick={2016-06-15,2016-09-15,2016-12-15,
+      2017-03-15,2017-06-15,2017-09-15,2017-12-15,
+      2018-03-15,2018-06-15,2018-09-15,2018-12-15,
+      2019-03-15,2019-06-15,2019-09-15},
+      xticklabels=\empty,
+      xmin={2016-02-15},
+      xmax={2019-10-15},
+      ymin=0,ymax=60,
+      ytick={20,40},
+      yticklabels={20,40},
+%      ylabel=Biomass
+      ]
+      \node[right] at (axis cs:{2016-02-15},50) {$\acs{Rdp}=0.01$};
+      \addplot+[color=brown] table [x=date, y=m05f0.01, col sep=comma] {coppice/hart12coppice-coppice-ws.csv};
+      \addplot+[color=red] table [x=date, y=m05f0.01, col sep=comma] {coppice/hart12coppice-coppice-wr.csv};
+      \addplot+[color=green] table [x=date, y=m05f0.01, col sep=comma] {coppice/hart12coppice-coppice-wf.csv};
+    \end{axis}
+    \begin{axis}[
+      name=f01,
+      at={(f001.below south west)},yshift=5pt,
+      anchor=north west,
+      no markers,
+      width=\linewidth,
+      height=0.25\linewidth,
+      date coordinates in=x,
+      xtick={2016-06-15,2016-09-15,2016-12-15,
+      2017-03-15,2017-06-15,2017-09-15,2017-12-15,
+      2018-03-15,2018-06-15,2018-09-15,2018-12-15,
+      2019-03-15,2019-06-15,2019-09-15},
+      xticklabels=\empty,
+      xmin={2016-02-15},
+      xmax={2019-10-15},
+      ymin=0,ymax=60,
+      ytick={20,40,60},
+      yticklabels={20,40},
+%      ylabel=Biomass
+      ]
+      \node[right] at (axis cs:{2016-02-15},50) {$\acs{Rdp}=0.1$};
+      \addplot+[color=brown] table [x=date, y=m08f0.1, col sep=comma] {coppice/hart12coppice-coppice-ws.csv};
+      \addplot+[color=red] table [x=date, y=m08f0.1, col sep=comma] {coppice/hart12coppice-coppice-wr.csv};
+      \addplot+[color=green] table [x=date, y=m08f0.1, col sep=comma] {coppice/hart12coppice-coppice-wf.csv};
+    \end{axis}
+    \begin{axis}[
+      name=f05,
+      at={(f01.below south west)},yshift=5pt,
+      anchor=north west,
+      no markers,
+      width=\linewidth,
+      height=0.25\linewidth,
+      date coordinates in=x,
+      xtick={2016-06-15,2016-09-15,2016-12-15,
+      2017-03-15,2017-06-15,2017-09-15,2017-12-15,
+      2018-03-15,2018-06-15,2018-09-15,2018-12-15,
+      2019-03-15,2019-06-15,2019-09-15},
+      xticklabels=\empty,
+      xmin={2016-02-15},
+      xmax={2019-10-15},
+      ymin=0,ymax=60,
+      ytick={20,40,60},
+      yticklabels={20,40},
+%      ylabel=Biomass
+      ]
+      \node[right] at (axis cs:{2016-02-15},50) {$\acs{Rdp}=0.5$};
+      \addplot+[color=brown] table [x=date, y=m08f0.5, col sep=comma] {coppice/hart12coppice-coppice-ws.csv};
+      \addplot+[color=red] table [x=date, y=m08f0.5, col sep=comma] {coppice/hart12coppice-coppice-wr.csv};
+      \addplot+[color=green] table [x=date, y=m08f0.5, col sep=comma] {coppice/hart12coppice-coppice-wf.csv};
+    \end{axis}
+    \begin{axis}[
+      name=f1,
+      at={(f05.below south west)},yshift=5pt,
+      anchor=north west,
+      no markers,
+      width=\linewidth,
+      height=0.2916\linewidth,
+      date coordinates in=x,
+      xmin={2016-02-15},
+      xmax={2019-10-15},
+      xtick={2016-06-15,2016-09-15,2016-12-15,
+      2017-03-15,2017-06-15,2017-09-15,2017-12-15,
+      2018-03-15,2018-06-15,2018-09-15,2018-12-15,
+      2019-03-15,2019-06-15,2019-09-15},
+      xticklabel={\year-\month},
+      ymin=0,ymax=70,
+      ytick={20,40,60},
+      yticklabels={20,40,60},
+%      ylabel=Biomass,
+      x tick label style={rotate=45, anchor=east}
+      ]
+      \node[right] at (axis cs:{2016-02-15},50) {$\acs{Rdp}=0.5$};
+      \addplot+[color=brown] table [x=date, y=m11f1, col sep=comma] {coppice/hart12coppice-coppice-ws.csv};
+      \addplot+[color=red] table [x=date, y=m11f1, col sep=comma] {coppice/hart12coppice-coppice-wr.csv};
+      \addplot+[color=green] table [x=date, y=m11f1, col sep=comma] {coppice/hart12coppice-coppice-wf.csv};
+    \end{axis}
+  \end{tikzpicture}
