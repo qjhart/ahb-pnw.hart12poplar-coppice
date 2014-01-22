@@ -1,3 +1,11 @@
+\definecolor{color1}{HTML}{3366CC}
+\definecolor{color2}{HTML}{DC3912}
+\definecolor{color3}{HTML}{FF9900}
+\definecolor{color4}{HTML}{109618}
+\definecolor{color5}{HTML}{990099}
+\definecolor{color6}{HTML}{0099C6}
+\definecolor{color7}{HTML}{DD4477}
+
 \begin{tikzpicture}[scale=1.5]
 \begin{axis}[
 	xlabel=$Month$,
@@ -5,12 +13,13 @@
 	legend entries={$3PG$,$TxB$,$TxD$,$T$,$DxT$,$DxN$,$N$},
 	legend pos=outer north east
 ]
-\addplot+[no markers] table {validation/afras2008/afras2008.dat};
-\addplot+[only marks] table[x=Month,y=TxB] {validation/afras2008/afras2008.dat};
-\addplot+[only marks, yellow, mark options={fill=yellow}] table[x=Month,y=TxD] {validation/afras2008/afras2008.dat};
-\addplot+[only marks, color=green] table[x=Month,y=T] {validation/afras2008/afras2008.dat};
-\addplot+[only marks, color=blue, mark options={fill=blue}] table[x=Month,y=DxT] {validation/afras2008/afras2008.dat};
-\addplot+[only marks, color=gray, mark options={fill=gray}] table[x=Month,y=DxN] {validation/afras2008/afras2008.dat};
-\addplot+[only marks, color=black, mark options={fill=black}] table[x=Month,y=N] {validation/afras2008/afras2008.dat};
+\addplot+[no markers, color=color1,line width=1pt] table {validation/afras2008/afras2008.dat};
+\addplot+[only marks, mark=*, mark options={color2}] table[x=Month,y=TxB] {validation/afras2008/afras2008.dat};
+\addplot+[only marks, mark=*, mark options={color3}] table[x=Month,y=TxD] {validation/afras2008/afras2008.dat};
+\addplot+[only marks, mark=*, mark options={color4}] table[x=Month,y=T] {validation/afras2008/afras2008.dat};
+\addplot+[only marks, mark=*, mark options={color5}] table[x=Month,y=DxT] {validation/afras2008/afras2008.dat};
+\addplot+[only marks, mark=*, mark options={color6}] table[x=Month,y=DxN] {validation/afras2008/afras2008.dat};
+\addplot+[only marks, mark=*, mark options={color7}] table[x=Month,y=N] {validation/afras2008/afras2008.dat};
+%\addplot+[only marks, color=black, mark options={fill=black}] table[x=Month,y=N] {validation/afras2008/afras2008.dat};
 \end{axis}
 \end{tikzpicture}

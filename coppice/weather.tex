@@ -1,13 +1,24 @@
+\definecolor{color1}{HTML}{3366CC}
+\definecolor{color2}{HTML}{DC3912}
+\definecolor{color3}{HTML}{FF9900}
+\definecolor{color4}{HTML}{109618}
+\definecolor{color5}{HTML}{990099}
+\definecolor{color6}{HTML}{0099C6}
+
+
 \begin{tikzpicture}
   \begin{axis}[
     no markers,
     width=\linewidth,
     height=2in,
-    date coordinates in=x,
-    xticklabel={\month},
+    %date coordinates in=x,
+    %xticklabel={\month},
     ylabel style={align=center}, ylabel=Rad {$[MJ/day]$}; Temp {$[C]$}\\ Daylight {$[hr]$},
-    stack plots=false,
-    bar width=2pt,
+    xlabel style={align=center}, xlabel=Month,
+    %stack plots=false,
+    xmin=.8,
+    xmax=12.2,
+    bar width=3pt,
     legend entries={$T_n$,$T_x$,$R$,$Hrs$},
     legend style={at={(0.4,1.03)},anchor=south},
     legend columns=4,
@@ -15,17 +26,19 @@
     % legend style={
     % at={(0.5,-0.3)},anchor=north,legend columns=-1}
     ]
-    \addplot+[color=yellow] table [x=date, y=tmin, col sep=comma] {coppice/weather.csv};
-    \addplot+[color=red ] table [x=date, y=tmax, col sep=comma] {coppice/weather.csv};
-    \addplot+[ybar, color=blue, fill=blue] table [x=date, y=rad, col sep=comma] {coppice/weather.csv};
-    \addplot+[ybar, color=green, fill=green] table [x=date, y=daylight, col sep=comma] {coppice/weather.csv};
+    \addplot+[color=color1,line width=1pt] table [x=month, y=tmin, col sep=comma] {coppice/weather.csv};
+    \addplot+[color=color2,line width=1pt] table [x=month, y=tmax, col sep=comma] {coppice/weather.csv};
+    \addplot+[ybar, ybar legend, color=color5, fill=color5] table [x=month, y=rad, col sep=comma] {coppice/weather.csv};
+    \addplot+[ybar, ybar legend, bar shift=4pt, color=color6, fill=color6] table [x=month, y=daylight, col sep=comma] {coppice/weather.csv};
     
   \end{axis}
   \begin{axis}[
      no markers,
      width=\linewidth,
      height=2in,
-     date coordinates in=x,
+     xmin=.8,
+     xmax=12.2,
+  %   date coordinates in=x,
   %   ylabel=PPT [mm],
      axis y line=right,
      axis x line=none,
@@ -35,7 +48,7 @@
      %legend to name = ppt,
      ylabel style={align=center}, ylabel=Precip {$[mm]$},
      ]
-    \addplot+[color=black] table [x=date, y=ppt, col sep=comma] {coppice/weather.csv};
+    \addplot+[color=color4,line width=1pt] table [x=month, y=ppt, col sep=comma] {coppice/weather.csv};
    \end{axis}
 \end{tikzpicture}
 %\ref{temp}
