@@ -6,12 +6,17 @@
 \definecolor{color6}{HTML}{0099C6}
 \definecolor{color7}{HTML}{DD4477}
 
-\begin{tikzpicture}[scale=1.5]
+\begin{tikzpicture}[scale=1]
 \begin{axis}[
+    height=3in,
+    width=\linewidth,
 	xlabel=$Month$,
 	ylabel=$Mg/ha$,
 	legend entries={$3PG$,$TxB$,$TxD$,$T$,$DxT$,$DxN$,$N$},
-	legend pos=outer north east
+	legend style={at={(0.5,.95)},anchor=south},
+    legend columns=7,
+    xmin=15,
+    xmax=102
 ]
 \addplot+[no markers, color=color1,line width=1pt] table {validation/afras2008/afras2008.dat};
 \addplot+[only marks, mark=*, mark options={color2}] table[x=Month,y=TxB] {validation/afras2008/afras2008.dat};
