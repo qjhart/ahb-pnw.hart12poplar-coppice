@@ -1,0 +1,28 @@
+\definecolor{color1}{HTML}{3366CC}
+\definecolor{color2}{HTML}{DC3912}
+\definecolor{color3}{HTML}{FF9900}
+\definecolor{color4}{HTML}{109618}
+\definecolor{color5}{HTML}{990099}
+\definecolor{color6}{HTML}{0099C6}
+\definecolor{color7}{HTML}{DD4477}
+
+\begin{tikzpicture}[scale=1]
+\begin{axis}[
+    height=3in,
+    width=\linewidth,
+    xlabel=$month$,
+    ylabel=$Mg/ha$,
+    legend entries={$3PG$,$Beaupre$,$Raspalje$,$Pauley$,$Robusta$},
+    %legend pos=outer north east
+    legend style={at={(0.5,.95)},anchor=south},
+    legend columns=5,
+    xmin=0,
+    xmax=135
+]
+\addplot+[no markers, color=color1,line width=1pt] table[x=month,y=3PG] {validation/pontailler1999/pontailler1999.dat};
+\addplot+[only marks, mark=*, mark options={color2}] table[x=month,y=Beaupre] {validation/pontailler1999/pontailler1999.dat};
+\addplot+[only marks, mark=*, mark options={color3}] table[x=month,y=Raspalje] {validation/pontailler1999/pontailler1999.dat};
+\addplot+[only marks, mark=*, mark options={color4}] table[x=month,y=Pauley] {validation/pontailler1999/pontailler1999.dat};
+\addplot+[only marks, mark=*, mark options={color5}] table[x=month,y=Robusta] {validation/pontailler1999/pontailler1999.dat};
+\end{axis}
+\end{tikzpicture}
