@@ -22,7 +22,7 @@
 
 \usepackage{color}
 \usepackage[squaren]{SIunits} 
-%\usepackage{units}
+\usepackage{units}
 
 % Use doublespacing - comment out for single spacing
 %\usepackage{setspace} 
@@ -76,13 +76,13 @@
 Quinn Hart$^{1,\ast}$,
 Olga Prelipova$^{2}$,
 Justin Merz$^{1}$,
-Peter Tittmann$^{3}$, 
-Bryan Jenkins$^{4}$
+%Peter Tittmann$^{3}$, 
+Bryan Jenkins$^{3}$
 \\
 $^{\textbf{1}}$ Department of Land, Air, and Water, University of California, Davis, USA
 $^{\textbf{2}}$ Department of Computer Science, University of California, Davis, USA
-$^{\textbf{3}}$ Department of Forestry, University of California, Berkeley, USA
-$^{\textbf{4}}$ Energy Institute, University of California, Davis, USA
+%$^{\textbf{3}}$ Department of Forestry, University of California, Berkeley, USA
+$^{\textbf{3}}$ Energy Institute, University of California, Davis, USA
 \\
 %\\textbf{3} Author3 Dept/Program/Center, Institution Name, City, State, Country
 $\ast$ E-mail: qjhart@ucdavis.edu
@@ -93,18 +93,25 @@ $\ast$ E-mail: qjhart@ucdavis.edu
 
 \acp{SRWC} have been proposed in an number of studies as a good
 potential feedstock for a cellulosic derived biofuel.  The ability to
-accurately predict the growth and yield of \ac{SRWC} under various
-environmental conditions is an important step in the development of
-energy system that can incorporate these feedstocks.  An important
-aspect of \acp{SWRC} is how coppicing is often used in the management
-of a plantation.  There have been a number of studies that have used
-the \ac{3pg} as a model for predicting growth and yields. 
+accurately predict the growth of \acp{SRWC} and potential feedstock
+yield of under various environmental conditions is an important step
+in the development of energy system that can incorporate these
+feedstocks.  \acp{SRWC} have another important consideration in that
+coppicing is often used in the management of a plantation.  Modeling
+the response of the \ac{SRWC} to the coppice cycle is a requirement in
+the long term predictions of a stand of trees over several years.
 
-In this study, the \acf{3pg} model was modified for \ac{SRWC} with the
-inclusion of a coppicing model.  We parameterized the model some
-previously published results for modeling poplar growth, and then
-applied this model to a set of field tests measuring poplar growth and
-yields in a coppiced regime.
+There have been a number of studies that have used the \ac{3pg} as a
+model for predicting growth and yields.  In this study, the \acf{3pg}
+model was modified for \ac{SRWC} with the inclusion of a coppicing
+model.
+
+In order to validate the model, we first obtained our species related
+inputs from published studies to match a representative poplar
+species.  We then identified a number of previously published poplar
+field trials, that included one or more coppicing events.  We
+parameterized the model to be as close to the growing conditions as
+possible for those trials and compared our model to those results.
  
 % Please keep the Author Summary between 150 and 200 words
 % Use first person. PLoS ONE authors please skip this step. 
@@ -113,33 +120,30 @@ yields in a coppiced regime.
 
 \section*{Introduction}
 
-The goals of this research were to develop modifications to the
+The primary goal of this study was to develop extensions to the
 \ac{3pg} model to allow for an accurate representation of growth of
-\ac{SRWC}, particularly poplar over a range of environmental
-conditions and to validate the model compared to various field trials.
+\ac{SRWC}, particularly poplar, over a range of management practices
+and environmental conditions.  Additionally we have validated the
+model as compared to a number of published field trials.
 
-We are developing and testing species parameters to use the \acf{3pg}
-model as a means to estimate poplar yields, primarily for the Pacific
-Northwest.  Modeling the physiological growth is advantageous because
-it allows variation of poplar species parameters and management
-practices.  Because it is a canopy carbon balanced model, allocations
-for both above and below ground biomass can be tracked for studies
-like life-cycle analysis.
+We are developing and testing species parameters to enable the use of
+the \acf{3pg} model as a means to estimate poplar yields, primarily
+for the Pacific Northwest.  Modeling the physiological growth is
+advantageous because it allows for the variation of poplar species
+parameters and management practices in the presence of dynamic
+environmental conditions.  In addition, because the modeled canopy is
+carbon balanced, allocations for both above and below ground biomass
+can be tracked for studies into life-cycle analysis of a poplar based
+bio-fuel in comparison to other fuel options.
 
 The original \ac{3pg} model does not include coppicing as a management
 practice, which is problematic as it cannot reasonably account for
-post-coppicing regrowth.  The extended model includes coppicing with a
-general model that allows a monthly growth contribution from an
-existing root mass.  The model specifies a relatively small
-contribution of above-ground growth from the accumulated root mass
-after coppicing in order to initiate the next cycle of production.
-
-The primary modification is the inclusion of a coppicing model for the
-prediction of biomass production over the course of a number of
-coppicing cycles.  The coppicing model introduced is a simple extension
-that models the sprouting of the coppice, contribution to growth from
-the existing root system, and modifications to the allocation of
-resources based on the coppicing.
+post-coppicing regrowth.  We have extended model that includes
+coppicing by providing a simple model that allows for an additional
+growth contribution from an existing root mass.  The model specifies a
+relatively small contribution of above-ground growth from the
+accumulated root mass after coppicing in order to initiate the next
+cycle of production.
 
 We parameterized the model some previously published results for
 modeling poplar growth, and then applied this model to a set of field
@@ -147,39 +151,37 @@ tests measuring poplar growth and yields in a coppiced regime.
 
 \newcommand{\pop}{\textit{Populus} }
 
-%\begin{multicols}{3}[\section*{Acronyms}]
-%\addcontentsline{toc}{section}{Acronyms}
-%{\normalsize
-%\raggedright
-%\setlength{\columnseprule}{1pt}
-%\begin{acronym}
-\acrodef{gbsm}[\textsc{GBSM}]{Geospatial Bioenergy Systems Model}
 \acrodef{3pg}[\textsc{3PG}]{Physiological Principles in Predicting Growth}
-\acrodef{dW}[\ensuremath{\Delta W}]{Total Monthly Growth}
+\acrodef{BLcond}[\ensuremath{BL_{cond}}]{Canopy Boundary Layer Conductance}
+\acrodef{DOB}[\ensuremath{DOB}]{Basal Diameter}
 \acrodef{GIS}[\textsc{GIS}]{Geographical Information System}
-\acrodef{SRWC}[\textsc{SRWC}]{Short Rotation Woody Crops}
-\acrodef{NPP}[\ensuremath{NPP}]{Net Primary Productivity}
-\acrodef{LAI}[\ensuremath{LAI}]{Leaf Area Index}
 \acrodef{LAIt}[\ensuremath{LAI_{T}}]{Target Leaf Area Index}
-\acrodef{RP}[\ensuremath{RP}]{Root Productivity}
+\acrodef{LAI}[\ensuremath{LAI}]{Leaf Area Index}
 \acrodef{NPPdef}[\ensuremath{NPP_{def}}]{$NPP$ deficit}
 \acrodef{NPPt}[\ensuremath{NPP_{T}}]{$NPP$ if $LAI = LAI_{T}$}
-\acrodef{dRres}[\ensuremath{\Delta R_{res}}]{Residual root contribution}
-\acrodef{pRx}[\ensuremath{p_{R\%x}}]{Maximum root \%}
+\acrodef{NPP}[\ensuremath{NPP}]{Net Primary Productivity}
+\acrodef{RP}[\ensuremath{RP}]{Root Productivity}
 \acrodef{Rdp}[\ensuremath{R_{\Delta\%}}]{Root contribution}
-\acrodef{W}[\ensuremath{W}]{Total plant mass}
+\acrodef{SLA}[\ensuremath{SLA}]{Specific Leaf Area}
+\acrodef{SRWC}[\textsc{SRWC}]{Short Rotation Woody Crops}
 \acrodef{WR}[\ensuremath{W_R}]{Total root mass}
+\acrodef{W}[\ensuremath{W}]{Total plant mass}
+\acrodef{dRres}[\ensuremath{\Delta R_{res}}]{Residual root contribution}
+\acrodef{dW}[\ensuremath{\Delta W}]{Total Monthly Growth}
 \acrodef{fAge}[\ensuremath{f_{age}}]{age Growth Limiter}
 \acrodef{fR}[\ensuremath{f_R}]{Root conversion efficiency}
+\acrodef{fT}[\ensuremath{f_T}]{Temperature growth limiter}
+\acrodef{fT}[\ensuremath{f_T}]{Temperature growth limiter}
 \acrodef{fi}[\ensuremath{f_i}]{Generic growth limiters}
-%\end{acronym}
-%}
-%\end{multicols}
+\acrodef{gbsm}[\textsc{GBSM}]{Geospatial Bioenergy Systems Model}
+\acrodef{k}[\ensuremath{k}]{Radiation Extinction Coefficient}
+\acrodef{lf}[\ensuremath{lf}]{Litterfall}
+\acrodef{pRx}[\ensuremath{p_{R\%x}}]{Maximum root \%}
 
 % You may title this section "Methods" or "Models". 
 % "Models" is not a valid title for PLoS ONE authors. However, PLoS ONE
 % authors may use "Analysis" 
-\section*{Models}
+\section*{Methods}
 
 Figure~\ref{fig:growth-model} shows and overview of the main
 components used in the development of the poplar growth model. The
@@ -188,7 +190,7 @@ model is based primarily on the \acf{3pg} model~\cite{Landsberg1997,
 \ac{SRWC}.
 
 \begin{figure}[!ht]
-\includegraphics[width=0.5\linewidth]{model_overview}
+\includegraphics[width=\linewidth]{model_overview}
 \caption{ \textbf{\ac{3pg} Overview.}}
 \label{fig:growth-model}
 \end{figure}
@@ -202,27 +204,32 @@ additional management parameters, such as irrigation scheduling, and
 when the poplar is coppiced are also be included.
 
 The physiological components of the \ac{3pg} model comprises of
-sub-modules for estimating growth modifiers and \ac{NPP}, biomass
+sub-modules for estimating growth modifiers, \ac{NPP}, biomass
 allocation, and soil water balance.  We have added an additional
-module for regrowth after coppicing.  In general, the \ac{3pg} model
-works by predicting expected productivity based on input weather
-conditions, soil parameters and their interaction with the species
-being modeled.  The productivity is basically a computed maximum value
-with a number of multiplicative limiters based on the plants response
-to temperature, water availability, fertility, and other species
-dependent processes.
+sub-module to provide additional regrowth from an existing root mass,
+for example, after a coppicing event.  In general, the \ac{3pg} model
+works by predicting expected productivity based on the soil, the
+current weather, and their interaction with the species under
+consideration.  At each time step, a level of productivity is
+calculated, This is basically potential maximum value, based on the
+weather conditions, scaled with a number of multiplicative limiters
+based on the plants response to temperature, water availability,
+fertility, and other species dependent processes.
 
 %\subsubsection*{Poplar Hybrids with \ac{3pg}}
 
-There have been a few studies have been reported for modeling poplar
-using the \ac{3pg} model~\cite{Amichev2010,Headlee2012}.
-Headlee~\cite{Headlee2012} in particular, developed a set in \pop
-parameters from a set of both laboratory and field studies.  The
-inputs used in this study draw from these studies to parameterize the
-growth of a representative hybrid poplar.  As will be discussed in
-Section~\ref{sec:validation}, different \pop clones can vary
-considerably in their growth patterns.  The following tables summarize
-the base parameters used for the generic \pop model, for this study.
+There have been a few studies have been reported specifically for
+modeling poplar using the \ac{3pg}
+model~\cite{Amichev2010,Headlee2012}.  Headlee~\cite{Headlee2012} in
+particular, developed a set in \pop parameters from a set of both
+laboratory and field studies.  The inputs used below draw from these
+studies to parameterize the growth of a representative hybrid poplar.
+As will be discussed below, when compared to field trials, it can be
+seen that different \pop clones can vary considerably in their growth
+patterns.  This suggests a wider range of variation, that may be
+modeled with appropriate changes to the \ac{3pg} input parameters.
+Tables~\ref{tab:3pg-tree} and \ref{tab:3pg-tree2} summarize the base
+parameters used for the generic \pop model in this study.
 
 \begin{table}[!ht]
 \caption{\textbf{\ac{3pg} Model Tree Parameters}}
@@ -232,6 +239,16 @@ the base parameters used for the generic \pop model, for this study.
   modeling of the potential Growth model for poplar.
 \end{flushleft}
 \label{tab:3pg-tree}
+ \end{table}
+
+\begin{table}[!ht]
+\caption{\textbf{\ac{3pg} Model Tree Parameters}}
+%\input{plantation_site_tabular.tex}
+\input{tree_tabular2.tex}
+\begin{flushleft}The table shows the data sources used for the
+  modeling of the potential Growth model for poplar.
+\end{flushleft}
+\label{tab:3pg-tree2}
  \end{table}
 
 \subsection*{Coppicing Model}
@@ -318,14 +335,13 @@ coppicing~(Figure~\ref{fig:grow_4}), the plants are well established.
 After coppicing, there is a surfeit of root mass, and no foliage to
 provide photosynthetic based productivity to the
 tree~(Figure~\ref{fig:grow_5}).  However, a portion of the root mass
-is available as a production source for the tree.  Sometime later, the tree
-resprouts with the root ball providing initial energy for the
+is available as a production source for the tree.  Sometime later, the
+tree resprouts with the root ball providing initial energy for the
 reestablishment of seedlings~(Figure~\ref{fig:grow_6}) which then
 leads through the maturation of the poplar, ready for the next
-harvest~(Figures~\ref{fig:grow_7} and~\ref{fig:grow_8}).
-
-Modeling the growth of the \ac{SRWC} then becomes a task of determining
-the size and timing of the regrowth from the existing root mass.
+harvest~(Figures~\ref{fig:grow_7} and~\ref{fig:grow_8}).  Modeling the
+growth of the \ac{SRWC} then becomes a task of determining the size
+and timing of the regrowth from the existing root mass.
 
 We have developed a simple root interaction system added to the
 \ac{3pg} model to model the behavior both of the post-coppiced
@@ -337,7 +353,7 @@ augmentation is zero, however, with the initial planting of the
 cutting, or after a coppicing event, this augmentation is used to add
 foliage to the tree and start transpiration based production again.
 
-An overview of the model is shown in figure~\ref{fig:coppice}.  Three
+The parameters of the model are shown in figure~\ref{fig:coppice}.  Three
 species specific parameters control the coppicing model.  Combined
 with the input weather, and some parameters in the \ac{3pg} model,
 these control the extent and the timing of the regrowth from the
@@ -355,10 +371,10 @@ coppiced plant.
 \begin{align}
 \acs{dW}=\acs{NPP}+\acs{RP} \\
 \acs{RP} = \begin{cases} 0 & \acs{NPPdef} <=0 \\
-\acs{fR} ~ min (\acs{dRdef} ,\acs{NPPdef}) & \acs{NPPdef} > 0  
+\acs{fR} ~ min (\acs{dRres} ,\acs{NPPdef}) & \acs{NPPdef} > 0  
 \end{cases} \\
 \acs{NPPdef} = \acs{NPPt}-\acs{NPP} \\
-\acs{dRdef} = \acs{WR}(\acs{WR}/\acs{W} - \acs{pRx})\acs{Rdp}
+\acs{dRres} = \acs{WR}(\acs{WR}/\acs{W} - \acs{pRx})\acs{Rdp}
 \end{align}
 \caption{Model Definition}
 \end{subtable}
@@ -381,33 +397,29 @@ within a given timestep.  This target can in turn be defined with
 \acs{LAIt}, a target \ac{LAI} which may or may not be realized by
 tree's current distribution .  The \acs{LAIt} parameter can be thought
 of as defining a minimum operational \acs{NPP} which the plant
-attempting to reach.
-
-\acs{LAIt} can vary from 0 and greater.  A value of 0 indicates no
-root contribution, where higher values indicate contribution from the
-roots even as the plant is producing higher values for \acs{NPP} from
-it's foliage.
+attempting to reach.  \acs{LAIt} can vary from 0 and greater.  A value
+of 0 indicates no root contribution, where higher values indicate
+contribution from the roots even as the plant is producing higher
+values for \acs{NPP} from it's foliage.
 
 This affects the timing of the root contribution, because the
 \ac{NPPt} is affected by the current weather conditions.  If those
-conditions are not conducive to plant transpiration, then \ac{NPPt}
-is low, and resources are not allocated for growth.
-
-\ac{NPPdef} is then defined as the difference between the \ac{NPPt}
-and \ac{NPP}. \ac{NPPdef} defines a maximum contribution from the
-roots to the overall plant growth.  The actual contribution is also
-limited by the amount of energy available in the root mass at any
-given timestep.
+conditions are not conducive to plant transpiration, then \ac{NPPt} is
+low, and resources are not allocated for growth.  \ac{NPPdef} is then
+defined as the difference between the \ac{NPPt} and
+\ac{NPP}. \ac{NPPdef} defines a maximum contribution from the roots to
+the overall plant growth.  The actual contribution is also limited by
+the amount of energy available in the root mass at any given timestep.
 
 As described above, \ac{3pg} model defines a root allocation
 parameter, \acs{pRx}, which defines the root size with respect to the
 entire plant size.  After coppicing, the root mass is larger then
-\acs{pRx}.  Some amount of that extra root mass will be made available
-for \ac{RP}.  The parameter, \ac{Rdp}, (ranging from 0 to 1), defines
-what fraction this surplus root mass can contribute to \ac{RP} in a
-given timestep.  A value of 0 indicates no root contribution for
-regrowth, higher values indicate more potential growth available to
-the plant at each timestep.
+\acs{pRx}.  Some amount of that extra root mass,\acs{dRres} will be
+made available for production.  The parameter, \ac{Rdp}, (ranging from
+0 to 1), defines what fraction this surplus root mass can contribute
+to \ac{RP} in a given timestep.  A value of 0 indicates no root
+contribution for regrowth, higher values indicate more potential
+growth available to the plant at each timestep.
 
 Finally, the parameter \acf{fR}, ranging from 0 to 1, determines the
 efficiency of the contribution, in effect, determining the fraction of
@@ -421,15 +433,15 @@ post-coppiced trees.
 
 Figures~\ref{fig:date},~\ref{fig:rdp} and~\ref{fig:lai} illustrate the
 effect of these parameters on the expected plant growth.  For these
-examples, the climatic parameters described in
+examples, the climatic parameters shown in
 Figure~\ref{fig:weather} were used.  The plants were also never
 limited by water availability.
 
 \begin{figure}
   \centering
   \input{coppice/weather.tex}
-  \caption{Input example weather data, replicating conditions around
-    Corvallis, OR}
+  \caption{Illustrative weather data, replicating conditions similar
+    to those found in Corvallis, OR}
   \label{fig:weather}
 \end{figure}
 
@@ -438,7 +450,7 @@ $\acs{LAIt}=100$ will reallocate the maximum resources back into plant
 growth as fast as possible.  This is an illustrative example to show
 the affect of the season on the modeled regrowth.
 Figure~\ref{fig:date} shows the response of this plant for various
-coppicing dates.  In this example, the
+coppicing dates.
 
 \begin{figure}
   \centering
@@ -449,23 +461,82 @@ coppicing dates.  In this example, the
   \label{fig:date}
 \end{figure}
 
+These figures show the predicted amounts of biomass partitioned among
+stem, root and foilage.  Coppicing is modeled in the third year, in
+February, May, August, or November.  The results predicted by the each
+coppicing event are shown.  During periods with high potential
+productivity, roots contribute more quickly to the regrowth of the
+stem and foilage, matching the higher potential \ac{NPP}.  Late season
+harvests defer their growth until the following spring conditions, and
+at a slower rate to match the lower potential productivities at those
+times.  The total production of the plantation, is affected by the
+timing of the coppicing.  Even with the root contribution, this is due
+to a lost opportunity for production during the growing season.
+
+The model predictions show the total foilage and root biomass
+converging to similar values for all of the coppicing dates.
+
+Figure~\ref{fig:rdp} shows the model variation from various values for
+\acf{Rdp}.  In these graphs, the foilage, stem, and root mass are
+compared for two separate coppicing dates for the third year growth in
+August and November.  The value for \ac{Rdp} ranges from 0.001 to 1.
+
 \begin{figure}
   \centering
   \input{coppice/rdp-by-type.tex}
   \caption{Coppice regrowth model results for various levels of \acf{Rdp}.
     Y-axis is the dry mass of each component of the plantation, in
-    terms of $\frac{T}{ha}$.}
+    terms of $\frac{T}{ha}$. $\ac{Rdp}=100$ and $\ac{fR}=1$.}
   \label{fig:rdp}
 \end{figure}
 
-%\begin{figure}
-%  \centering
-%  \input{coppice/lai-by-type.tex}
-%  \caption{Coppice regrowth model results for various levels of \acf{LAIt}.
-%    Y-axis is the dry mass of each component of the plantation, in
-%    terms of $\frac{T}{ha}$.}
-%  \label{fig:rdp}
-%\end{figure}
+The figure shows a long term decrease in plant growth for very low
+values of \ac{Rdp}, but values of \ac{Rdp} over about .1, the foilage
+and stem growth are very similar after the first 6 months of growth.
+This is because while the root's contribution to the plants
+productivity is smaller for lower values if \ac{Rdp} it does continue
+to contribute at each timestep while the root mass overly large. The
+root mass itself shows large differences over a longer period for
+these variations in \ac{Rdp}.  
+
+The comparisons are closer for November, as the potential
+productivities are smaller in the early months, and the lower values
+of \ac{Rdp} can still provide enough production to match the
+environmental conditions.
+
+For modeling actual plants, values of \ac{Rdp} approaching 1 are
+unlikey, as that \ac{Rdp} indicates mass that can be easily converted
+to energy for the plants, priomarily starches and sugars.  For poplar
+in particular, roots' starch and sugar contents vary with the root
+diameter, and range from low values to as much as 20\%.  A value of
+$\ac{Rdp}=0.1$ is used for the comparisons to the field trials below. 
+
+Figure~\ref{fig:lai} shows the change of the model with respect to the
+change in the \ac{LAIt} value.  The figure shows the same coppicing
+events as Figure~\ref{fig:rdp}, August and Novemeber events after 3
+years of growth.  \ac{Rdp} is set to 10\%.  The figure shows very
+little dependence on the \ac{LAIt} parameter as \ac{LAIt} is greater
+than about 1.
+
+\begin{figure}
+  \centering
+  \input{coppice/lai-by-type.tex}
+  \caption{Coppice regrowth model results for various levels of
+    \acf{LAIt}.  $\ac{Rdp} = 0.1$ and $\ac{r}=1$.  Y-axis is the dry
+    mass of each component of the plantation, in terms of
+    $\frac{T}{ha}$.}
+  \label{fig:lai}
+\end{figure}
+
+There are a number of points to note about this value.  \ac{LAI} is
+chosen as the primary target parameter for the \ac{3pg} as it is a
+simple plant parameter that (?).  It's primary affect on the
+productivity at a given timestep is how it affects the light gathering
+for the tree.  That fractional modifier is given in the \ac{3pg} model
+as $1-\exp{-k LAI}$.  For poplar we have defined $k=0.5$, and this
+parameter does not change more than \%5 for any values above
+$\ac{LAI}=6$.
+
 
 \section*{Validation}
 \label{sec:validation}
@@ -486,7 +557,6 @@ reported by the literature as possible.
 In each case, input weather conditions were obtained for the time of
 the field work, and soil parameters were either obtained, or estimated
 from the description in the literature.
-
 
 \subsection*{Pontailler 1999}
 \label{sec:pont}
@@ -531,14 +601,6 @@ swconst &  & -1,\\
   \caption{Comparison of model to measurements for yearly growth over five
     coppicing events.}
 \label{fig:pont-biomass}
-\end{figure}
-
-\begin{figure}[!ht]
-  \centering
-  \input{validation/pontailler1999/pontailler1999.tex}
-  \caption{Comparison of model to measurements for yearly growth over five
-    coppicing events.}
-\label{fig:afas-biomass}
 \end{figure}
 
 
@@ -654,7 +716,17 @@ input parameters of : ?
 
 \section*{Discussion}
 
-Need to discuss senescence in the context of this model.
+Although not considered in current model, there are other
+considerations when coppicing during the growing season.  Some studies
+have indentified higher rates of stump depth related to coppicing in
+the growing season~\cite{}.  Also, the current model defines a
+constant value for \ac{Rdp}.  Studies of the available starches and
+sugars in a poplar root suggest a seasonal dependence on these values,
+with higher values as the plants enter into cooler
+seasons\cite{Regier2010}.
+
+%Need to identify the best field tests to be done, and discuss w/ Greenwood.
+
 
 % \section*{Management Considerations}
 % \label{sec:management-reg}

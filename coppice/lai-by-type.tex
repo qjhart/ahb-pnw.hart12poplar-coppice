@@ -2,6 +2,7 @@
       no markers,
       width=0.5\linewidth,
       height=0.25\linewidth,
+      every axis plot/.append style={line width=1pt},
       date coordinates in=x,
       xmin={2017-03-15},
       xmax={2019-10-15},
@@ -18,8 +19,9 @@
       ytick={20,40,60},
       yticklabels={20,40,60},
       ylabel=Stem~$\frac{T}{ha}$,
+%      legend entries={$\acs{LAIt}_{(\acs{Rdp}=.1)}=0.1$,$\acs{LAIt}_{(\acs{Rdp}=.1)}=1$,$\acs{LAIt}_{(\acs{Rdp}=.1)}=.1$,$\acs{LAIt}_{(\acs{Rdp}=.1)}=1$},
 %      legend entries={$\acs{Rdp}=.1 \acs{LAIt}=0$,$\acs{Rdp}=.1 \acs{LAIt}=0.1$,$\acs{Rdp}=.1 \acs{LAIt}=1$,$\acs{Rdp}=1 \acs{LAIt}=.1$,$\acs{Rdp}=1 \acs{LAIt}=1$},
-      legend entries={$\acs{LAIt}_{(\acs{Rdp}=.1)}=0.1$,$\acs{LAIt}_{(\acs{Rdp}=.1)}=1$,$\acs{LAIt}_{(\acs{Rdp}=.1)}=.1$,$\acs{LAIt}_{(\acs{Rdp}=.1)}=1$},
+      legend entries={$\acs{LAIt}=0.1$,$\acs{LAIt}=1$,$\acs{LAIt}=10$},
       legend style={
         at={(1.0,1.0)},anchor=south,legend columns=-1,yshift=2pt}
       ]
@@ -27,8 +29,9 @@
 %      \addplot+[color=red] table [x=date, y=m08f0.1lai0, col sep=comma] {coppice/hart12coppice-lai-ws.csv};
       \addplot+[color=orange] table [x=date, y=m08f0.1lai0.1, col sep=comma] {coppice/hart12coppice-lai-ws.csv};
       \addplot+[color=yellow] table [x=date, y=m08f0.1lai1, col sep=comma] {coppice/hart12coppice-lai-ws.csv};
-      \addplot+[color=green] table [x=date, y=m08f1lai0.1, col sep=comma] {coppice/hart12coppice-lai-ws.csv};
-      \addplot+[color=blue] table [x=date, y=m08f1lai1, col sep=comma] {coppice/hart12coppice-lai-ws.csv};
+      \addplot+[color=green] table [x=date, y=m08f0.1lai10, col sep=comma] {coppice/hart12coppice-lai-ws.csv};
+%      \addplot+[color=green] table [x=date, y=m08f1lai0.1, col sep=comma] {coppice/hart12coppice-lai-ws.csv};
+%      \addplot+[color=blue] table [x=date, y=m08f1lai1, col sep=comma] {coppice/hart12coppice-lai-ws.csv};
     \end{axis}
     \begin{axis}[
       name=ws11,
@@ -42,8 +45,9 @@
 %      \addplot+[color=red] table [x=date, y=m11f0.1lai0, col sep=comma] {coppice/hart12coppice-lai-ws.csv};
       \addplot+[color=orange] table [x=date, y=m11f0.1lai0.1, col sep=comma] {coppice/hart12coppice-lai-ws.csv};
       \addplot+[color=yellow] table [x=date, y=m11f0.1lai1, col sep=comma] {coppice/hart12coppice-lai-ws.csv};
-      \addplot+[color=green] table [x=date, y=m11f1lai0.1, col sep=comma] {coppice/hart12coppice-lai-ws.csv};
-      \addplot+[color=blue] table [x=date, y=m11f1lai1, col sep=comma] {coppice/hart12coppice-lai-ws.csv};
+      \addplot+[color=green] table [x=date, y=m11f0.1lai10, col sep=comma] {coppice/hart12coppice-lai-ws.csv};
+%      \addplot+[color=green] table [x=date, y=m11f1lai0.1, col sep=comma] {coppice/hart12coppice-lai-ws.csv};
+%      \addplot+[color=blue] table [x=date, y=m11f1lai1, col sep=comma] {coppice/hart12coppice-lai-ws.csv};
     \end{axis}
 
     \begin{axis}[
@@ -59,8 +63,9 @@
 %      \addplot+[color=red] table [x=date, y=m08f0.1lai0, col sep=comma] {coppice/hart12coppice-lai-wf.csv};
       \addplot+[color=orange] table [x=date, y=m08f0.1lai0.1, col sep=comma] {coppice/hart12coppice-lai-wf.csv};
       \addplot+[color=yellow] table [x=date, y=m08f0.1lai1, col sep=comma] {coppice/hart12coppice-lai-wf.csv};
-      \addplot+[color=green] table [x=date, y=m08f1lai0.1, col sep=comma] {coppice/hart12coppice-lai-wf.csv};
-      \addplot+[color=blue] table [x=date, y=m08f1lai1, col sep=comma] {coppice/hart12coppice-lai-wf.csv};
+      \addplot+[color=green] table [x=date, y=m08f0.1lai10, col sep=comma] {coppice/hart12coppice-lai-wf.csv};
+%      \addplot+[color=green] table [x=date, y=m08f1lai0.1, col sep=comma] {coppice/hart12coppice-lai-wf.csv};
+%      \addplot+[color=blue] table [x=date, y=m08f1lai1, col sep=comma] {coppice/hart12coppice-lai-wf.csv};
     \end{axis}
 
     \begin{axis}[
@@ -75,8 +80,9 @@
 %      \addplot+[color=red] table [x=date, y=m11f0.1lai0, col sep=comma] {coppice/hart12coppice-lai-wf.csv};
       \addplot+[color=orange] table [x=date, y=m11f0.1lai0.1, col sep=comma] {coppice/hart12coppice-lai-wf.csv};
       \addplot+[color=yellow] table [x=date, y=m11f0.1lai1, col sep=comma] {coppice/hart12coppice-lai-wf.csv};
-      \addplot+[color=green] table [x=date, y=m11f1lai0.1, col sep=comma] {coppice/hart12coppice-lai-wf.csv};
-      \addplot+[color=blue] table [x=date, y=m11f1lai1, col sep=comma] {coppice/hart12coppice-lai-wf.csv};
+      \addplot+[color=green] table [x=date, y=m11f0.1lai10, col sep=comma] {coppice/hart12coppice-lai-wf.csv};
+%      \addplot+[color=green] table [x=date, y=m11f1lai0.1, col sep=comma] {coppice/hart12coppice-lai-wf.csv};
+%      \addplot+[color=blue] table [x=date, y=m11f1lai1, col sep=comma] {coppice/hart12coppice-lai-wf.csv};
     \end{axis}
 
     \begin{axis}[
@@ -97,8 +103,9 @@
 %      \addplot+[color=red] table [x=date, y=m08f0.1lai0, col sep=comma] {coppice/hart12coppice-lai-wr.csv};
       \addplot+[color=orange] table [x=date, y=m08f0.1lai0.1, col sep=comma] {coppice/hart12coppice-lai-wr.csv};
       \addplot+[color=yellow] table [x=date, y=m08f0.1lai1, col sep=comma] {coppice/hart12coppice-lai-wr.csv};
-      \addplot+[color=green] table [x=date, y=m08f1lai0.1, col sep=comma] {coppice/hart12coppice-lai-wr.csv};
-      \addplot+[color=blue] table [x=date, y=m08f1lai1, col sep=comma] {coppice/hart12coppice-lai-wr.csv};
+      \addplot+[color=green] table [x=date, y=m08f0.1lai10, col sep=comma] {coppice/hart12coppice-lai-wr.csv};
+%      \addplot+[color=green] table [x=date, y=m08f1lai0.1, col sep=comma] {coppice/hart12coppice-lai-wr.csv};
+%      \addplot+[color=blue] table [x=date, y=m08f1lai1, col sep=comma] {coppice/hart12coppice-lai-wr.csv};
     \end{axis}
 
     \begin{axis}[
@@ -119,8 +126,9 @@
 %      \addplot+[color=red] table [x=date, y=m11f0.1lai0, col sep=comma] {coppice/hart12coppice-lai-wr.csv};
       \addplot+[color=orange] table [x=date, y=m11f0.1lai0.1, col sep=comma] {coppice/hart12coppice-lai-wr.csv};
       \addplot+[color=yellow] table [x=date, y=m11f0.1lai1, col sep=comma] {coppice/hart12coppice-lai-wr.csv};
-      \addplot+[color=green] table [x=date, y=m11f1lai0.1, col sep=comma] {coppice/hart12coppice-lai-wr.csv};
-      \addplot+[color=blue] table [x=date, y=m11f1lai1, col sep=comma] {coppice/hart12coppice-lai-wr.csv};
+      \addplot+[color=green] table [x=date, y=m11f0.1lai10, col sep=comma] {coppice/hart12coppice-lai-wr.csv};
+%      \addplot+[color=green] table [x=date, y=m11f1lai0.1, col sep=comma] {coppice/hart12coppice-lai-wr.csv};
+%      \addplot+[color=blue] table [x=date, y=m11f1lai1, col sep=comma] {coppice/hart12coppice-lai-wr.csv};
     \end{axis}
 
   \end{tikzpicture}
