@@ -1,0 +1,70 @@
+\definecolor{color1}{HTML}{3366CC}
+\definecolor{color2}{HTML}{DC3912}
+\definecolor{color3}{HTML}{FF9900}
+\definecolor{color4}{HTML}{109618}
+\definecolor{color5}{HTML}{990099}
+\definecolor{color6}{HTML}{0099C6}
+
+\begin{tikzpicture}
+  \begin{axis}[
+    no markers,
+    width=6in,
+    height=3in,
+    date coordinates in=x,
+    xtick={
+      {1987-01-15},
+      {1988-01-15},
+      {1989-01-15},
+      {1990-01-15},
+      {1991-01-15},
+      {1992-01-15},
+      {1993-01-15},
+      {1994-01-15},
+      {1995-01-15},
+      {1996-01-15},
+      {1997-01-15}
+    },
+    x tick label style={rotate=45, anchor=east},
+    xticklabel={\year-\month},
+    minor x tick num = 11,
+    xmin={1987-01-15},
+    xmax={1997-12-15},
+    % xlabel={date},
+    ylabel style={align=center}, ylabel=Rad {$[MJ/day]$}; Temp {$[C]$}\\ Daylight {$[hr]$},
+    %ylabel=Rad [MJ/day]; Temp [C];\\ Daylight [hr],
+    %ylabel style={yshift=10pt},
+    legend entries={$T_n$,$T_x$,$R$,$Hrs$},
+    legend style={        at={(0.4,1.03)},        anchor=south},
+    legend columns=4,
+    %legend to name = temp
+    % legend style={
+    % at={(0.5,-0.3)},anchor=north,legend columns=-1}
+    ]
+    \addplot+[color=color1, line width=1pt] table [x=date, y=tmin, col sep=comma] {validation/pontailler1999/weather.csv};
+    \addplot+[color=color2, line width=1pt] table [x=date, y=tmax, col sep=comma] {validation/pontailler1999/weather.csv};
+    \addplot [ybar, ybar legend, bar width=1pt, color=color5, fill=color5] table [x=date, y=rad, col sep=comma] {validation/pontailler1999/weather.csv};
+    \addplot [ybar, ybar legend, bar width=1pt, color=color6, fill=color6, bar shift=1pt] table [x=date, y=daylight, col sep=comma] {validation/pontailler1999/weather.csv};
+    
+
+  \end{axis}
+  \begin{axis}[
+     no markers,
+     width=6in,
+     height=3in,
+     xmin={1987-01-15},
+    xmax={1997-12-15},
+  %   scale only axis,
+     date coordinates in=x,
+  %   ylabel=PPT [mm],
+     axis y line=right,
+     axis x line=none,
+  %   % ylabel style={yshift=10pt},
+     legend entries={$PPT$},
+     legend style={        at={(.7,1.03)},        anchor=south},
+     %legend to name = ppt,
+     ylabel style={align=center}, ylabel=Precip {$[mm]$},
+     ]
+    \addplot+[color=color4] table [x=date, y=ppt, col sep=comma] {validation/pontailler1999/weather.csv};
+   \end{axis}
+\end{tikzpicture}
+%\ref{temp}
