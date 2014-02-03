@@ -12,17 +12,36 @@
     height=3in,
     date coordinates in=x,
     xtick={
-      {1990-01-15},
-      {1991-01-15},
-      {1992-01-15},
-      {1993-01-15},
-      {1994-01-15},
-      {1995-01-15}
+      {1989-09-15},
+      {1989-12-15},
+      {1990-09-15},
+      {1990-12-15},
+      {1991-03-15},
+      {1991-06-15},
+      {1991-09-15},
+      {1991-12-15},
+      {1992-03-15},
+      {1992-06-15},
+      {1992-09-15},
+      {1992-12-15},
+      {1993-03-15},
+      {1993-06-15},
+      {1993-09-15},
+      {1993-12-15},
+      {1994-03-15},
+      {1994-06-15},
+      {1994-09-15},
+      {1994-12-15},
+      {1995-03-15},
+      {1995-06-15},
+      {1995-09-15},
+      {1995-12-15}
     },
+    x tick label style={rotate=45, anchor=east},
+    xticklabel={\year-\month},
     minor x tick num = 11,
     xmin={1989-05-15},
     xmax={1995-12-15},
-    xticklabel={\year-\month},
     % xlabel={date},
     ylabel style={align=center}, ylabel=Rad {$[MJ/day]$}; Temp {$[C]$}\\ Daylight {$[hr]$},
     %ylabel=Rad [MJ/day]; Temp [C];\\ Daylight [hr],
@@ -34,8 +53,8 @@
     % legend style={
     % at={(0.5,-0.3)},anchor=north,legend columns=-1}
     ]
-    \addplot+[color=color1] table [x=date, y=tmin, col sep=comma] {validation/proe2002/weather.csv};
-    \addplot+[color=color2 ] table [x=date, y=tmax, col sep=comma] {validation/proe2002/weather.csv};
+    \addplot+[color=color1, line width=1pt] table [x=date, y=tmin, col sep=comma] {validation/proe2002/weather.csv};
+    \addplot+[color=color2, line width=1pt] table [x=date, y=tmax, col sep=comma] {validation/proe2002/weather.csv};
     \addplot [ybar, ybar legend, bar width=1pt, color=color5, fill=color5] table [x=date, y=rad, col sep=comma] {validation/proe2002/weather.csv};
     \addplot [ybar, ybar legend, bar width=1pt, color=color6, fill=color6, bar shift=1pt] table [x=date, y=daylight, col sep=comma] {validation/proe2002/weather.csv};
     
