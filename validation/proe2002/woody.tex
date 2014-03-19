@@ -1,45 +1,107 @@
+\pgfplotscreateplotcyclelist{colorfix}{%
+blue,every mark/.append style={fill=blue!80!black},mark=*\\%
+red,every mark/.append style={fill=red!80!black},mark=square*\\%
+blue,every mark/.append style={fill=brown!80!black},mark=otimes*\\%
+red,mark=star\\%
+blue,densely dashed,every mark/.append style={
+solid,fill=brown!80!black},mark=square*\\%
+red,densely dashed,every mark/.append style={solid,fill=gray},mark=otimes*\\%
+blue,densely dashed,mark=star,every mark/.append style=solid\\%
+red,densely dashed,every mark/.append style={solid,fill=red!80!black},mark=diamond*\\%
+}
+
+\newcommand{\fn}[1]{validation/proe2002/#1.csv}
+
+\pgfplotsset{
+  no markers,
+  width=\linewidth,
+  height=0.25\linewidth,
+  date coordinates in=x,
+  xtick={
+    {1990-01-15},{1990-04-15},{1990-07-15},{1990-10-15},
+    {1991-01-15},{1991-04-15},{1991-07-15},{1991-10-15},
+    {1992-01-15},{1992-04-15},{1992-07-15},{1992-10-15},
+    {1993-01-15},{1993-04-15},{1993-07-15},{1993-10-15},
+    {1994-01-15},{1994-04-15},{1994-07-15},{1994-10-15},
+    {1995-01-15},{1995-04-15},{1995-07-15},{1995-10-15}
+  },
+  minor x tick num = 1,
+  xmin={1989-05-15},
+  xmax={1995-12-15},
+  x tick label style={rotate=45, anchor=east},
+  xticklabel={\year-\month},
+  legend style={
+    at={(0.5,1)},anchor=south,legend columns=-1,yshift=1pt},
+  table/col sep=comma,
+  cycle list name = colorfix,
+  every axis plot/.append style={line width=1pt},
+  every mark/.append style={solid}
+}
+
 \begin{tikzpicture}
   \begin{axis}[
-    no markers,
-    width=6in,
-    height=3in,
-    date coordinates in=x,
-    xtick={{1990-01-15},{1991-01-15},
-      {1992-01-15},
-      {1993-01-15},
-      {1994-01-15},
-      {1995-01-15}
-    },
-    minor x tick num = 1,
-    xmin={1989-05-15},
-    xmax={1995-12-15},
-    xticklabel={\year-\month},
-    % xlabel={date},
-    ylabel=Biomass T/ha,
+    name=stem,
+    ylabel={$WS$~$[\unitfrac{BDT}{ha}]$},
+    xticklabels=\empty,
     %ylabel style={yshift=10pt},
-    legend entries={No Coppice,Proe2002,Coppice,Proe2002},
-    legend style={
-      at={(0.5,1.03)},anchor=north,legend columns=-1}
+    legend entries={No Coppice,Coppiced},
     ]
-    \addplot table [x=date, y=WS, col sep=comma] {validation/proe2002/growthmodel-nocoppice.csv};
-    % \addplot[scatter, only marks,scatter src=explicit symbolic] 
-    \addplot+[only marks,mark=square*,color=blue, mark options={fill=blue}] 
-    coordinates {
-      (1990-07-15,5)
-      (1991-07-15,21.2)
-      (1992-07-15,28.2)
-      (1993-07-15,34.8)
-      (1995-07-15,72.1)
-      };
-    \addplot+[color=green] table [x=date, y=WS, col sep=comma] {validation/proe2002/growthmodel-coppice.csv};
-    \addplot+[only marks, color=green, mark options={fill=green}] 
-    coordinates {
-      (1990-07-15,1.4)
-      (1991-07-15,11.4)
-      (1992-07-15,21.6)
-      (1993-07-15,28.8)
-      (1995-07-15,55.9)
-      };
+   \addplot+[blue,only marks] table [x=date, y=WS] {\fn{nocoppice}};
+   \addplot+[red,only marks] table [x=date, y=WS] {\fn{coppice}};
 
+   \addplot table [x=date, y=WS] {\fn{proe-def-nocoppice}};
+   \addplot table [x=date, y=WS] {\fn{proe-def-coppice}};
+
+   \addplot+[dashed] table [x=date, y=WS] {\fn{proe-raspalje-nocoppice}};
+   \addplot+[dashed] table [x=date, y=WS] {\fn{proe-raspalje-coppice}};
+
+  \end{axis}
+  \begin{axis}[
+    name=lai,
+    at={(stem.below south west)},yshift=2pt,
+    anchor=north west,
+    xticklabels=\empty,
+    ylabel=\ac{LAI},
+    ymin=0,ymax=10,
+    ]
+   \addplot+[only marks] table [x=date, y=LAI] {\fn{nocoppice}};
+   \addplot+[only marks] table [x=date, y=LAI] {\fn{coppice}};
+
+   \addplot table [x=date, y=LAI] {\fn{proe-def-nocoppice}};
+   \addplot table [x=date, y=LAI] {\fn{proe-def-coppice}};
+
+   \addplot+[dashed] table [x=date, y=LAI] {\fn{proe-raspalje-nocoppice}};
+   \addplot+[dashed] table [x=date, y=LAI] {\fn{proe-raspalje-coppice}};
+  \end{axis}
+  \begin{axis}[
+    name=fbs,
+    at={(lai.below south west)},yshift=2pt,
+    anchor=north west,
+    xticklabels=\empty,
+    ylabel=$\unitfrac{\ac{WF}}{\ac{WF}+\ac{WS}}$,
+    ymin=0,ymax=0.5,
+    ]
+   \addplot+[only marks] table [x=date, y=fbs] {\fn{nocoppice}};
+   \addplot+[only marks] table [x=date, y=fbs] {\fn{coppice}};
+    \addplot table [x=date, y=fbs] {\fn{proe-def-nocoppice}};
+    \addplot table [x=date, y=fbs] {\fn{proe-def-coppice}};
+    \addplot+[dashed] table [x=date, y=fbs] {\fn{proe-raspalje-nocoppice}};
+    \addplot+[dashed] table [x=date, y=fbs] {\fn{proe-raspalje-coppice}};
+  \end{axis}
+  \begin{axis}[
+    name=root,
+    at={(fbs.below south west)},yshift=2pt,
+    anchor=north west,
+    %xticklabels=\empty,
+    ylabel=$\unitfrac{\ac{WS}}{\ac{WF}}$,
+    ymin=0,ymax=0.5,
+    %ylabel style={yshift=10pt},
+    ]
+   \addplot+[only marks] table [x=date, y=rootshoot]{\fn{nocoppice}};
+   \addplot+[only marks] table [x=date, y=rootshoot]{\fn{coppice}};
+    \addplot table [x=date, y=rootshoot] {\fn{proe-def-nocoppice}};
+    \addplot table [x=date, y=rootshoot] {\fn{proe-def-coppice}};
+    \addplot+[dashed] table [x=date, y=rootshoot] {\fn{proe-raspalje-nocoppice}};
+    \addplot+[dashed] table [x=date, y=rootshoot] {\fn{proe-raspalje-coppice}};
   \end{axis}
 \end{tikzpicture}
