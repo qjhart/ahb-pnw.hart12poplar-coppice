@@ -1,50 +1,67 @@
+\pgfplotscreateplotcyclelist{pontvariety}{%
+{blue},
+{green},
+{red},
+{orange}
+}
+
+\newcommand{\fn}[1]{validation/pontailler1999/#1.csv}
+
+\pgfplotstableread[col sep=comma]{validation/pontailler1999/ws.csv}\ws
+
+\newcommand{\plotvarieties}[1]{
+    \pgfplotsset{cycle list name={pontvariety},cycle list shift=#1}
+    \addplot table [x=date, y=Beaupre] {\ws};
+    \addplot table [x=date, y=Raspalje]{\ws};
+    \addplot table [x=date, y=Pauley] {\ws};
+    \addplot table [x=date, y=Robusta] {\ws};
+}
+
 \begin{tikzpicture}
   \begin{axis}[
-    no markers,
-    width=6in,
+    width=\linewidth,
     height=3in,
-    date coordinates in=x
-    % xtick={
-    %   {1987-06-15},
-    %   {1988-01-01},
-    %   {1988-06-15},
-    %   {1989-01-01},
-    %   {1989-06-15},
-    %   {1990-01-01},
-    %   {1990-06-15},
-    %   {1991-01-01},
-    %   {1991-06-15},
-    %   {1992-01-01},
-    %   {1992-06-15},
-    %   {1993-01-01},
-    %   {1993-06-15},
-    %   {1994-01-01},
-    %   {1994-06-15},
-    %   {1995-01-01},
-    %   {1995-06-15},
-    %   {1996-01-01},
-    %   {1996-06-15},
-    %   {1997-01-01},
-    %   {1997-06-15}
-    % },
-    % minor x tick num = 1,
-    % xmin={1987-02-15},
-    % xmax={1997-09-15},
-    % xticklabel={\year-\month},
-    % ylabel=Biomass T/ha,
-    % %ylabel style={yshift=10pt},
-    % legend entries={Model,Beaupre,Raspalje,Pauley,Robusta},
-    % legend style={
-    %   at={(0.5,1.03)},anchor=north,legend columns=-1}
+    date coordinates in=x,
+    xmin={1987-01-15},
+    xmax={1997-12-15},
+    xtick={
+      {1987-12-15},
+      {1988-06-15},{1988-12-15},
+      {1989-06-15},{1989-12-15},
+      {1990-06-15},{1990-12-15},
+      {1991-06-15},{1991-12-15},
+      {1992-06-15},{1992-12-15},
+      {1993-06-15},{1993-12-15},
+      {1994-06-15},{1994-12-15},
+      {1995-06-15},{1995-12-15},
+      {1996-06-15},{1996-12-15},
+      {1997-06-15},{1997-12-15}
+    },
+    x tick label style={rotate=45, anchor=east},
+    xticklabel={\year-\month},
+    ylabel=Stem Biomass \unitfrac{BDT}{ha},
+    legend entries={Beaupre,Pauley-Fritzi,Raspalje,Robusta,3PG},
+    legend style={
+       at={(0.5,1.0)},anchor=south,yshift=2pt,legend columns=-1
+     },
+     table/col sep=comma,
+     cycle list name = pontvariety,
+     no markers,
+     every axis plot/.append style={line width=1pt},
+     every mark/.append style={solid}
     ]
-    \addplot table [x=date, y=WS, col sep=comma] {validation/pontailler1999/3pg.csv};
-     \addplot+[only marks,mark=square*,color=blue, mark options={fill=blue}]
-     table [x=date, y=Beaupre, col sep=comma] {validation/pontailler1999/ws.csv};
-    \addplot+[only marks,mark=square*,color=green, mark options={fill=green}] 
-     table [x=date, y=Raspalje, col sep=comma] {validation/pontailler1999/ws.csv};
-    \addplot+[only marks,mark=square*,color=red, mark options={fill=red}] 
-    table [x=date, y=Pauley, col sep=comma] {validation/pontailler1999/ws.csv};
-    \addplot+[only marks,mark=square*,color=black, mark options={fill=black}] 
-    table [x=date, y=Robusta, col sep=comma] {validation/pontailler1999/ws.csv};
+    \addplot table [x=date, y=WS] {\fn{pont-beaupre}};
+    \addplot table [x=date, y=WS] {\fn{pont-fritzi}};
+    \addplot table [x=date, y=WS] {\fn{pont-raspalje}};
+    \addplot table [x=date, y=WS] {\fn{pont-robusta}};
+    \addplot+[color=gray] table [x=date, y=WS] {\fn{pont-hart12coppice}};
+%    \plotvarieties{-5}
+    \pgfplotsset{cycle list shift=-5}
+    \addplot+[only marks] table [x=date, y=Beaupre] {\ws};
+%    \addplot+[boxplot={data={y}} ] table [x=date,y=Beaupre} {\ws};
+    \addplot+[only marks] table [x=date, y=Raspalje]{\ws};
+    \addplot+[only marks] table [x=date, y=Pauley] {\ws};
+    \addplot+[only marks] table [x=date, y=Robusta] {\ws};
+
   \end{axis}
 \end{tikzpicture}

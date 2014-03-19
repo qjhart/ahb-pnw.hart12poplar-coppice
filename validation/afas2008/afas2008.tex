@@ -10,21 +10,36 @@
 \begin{axis}[
     height=3in,
     width=\linewidth,
-	xlabel=$Month$,
-	ylabel=$Mg/ha$,
-	legend entries={$3PG$,$TxB$,$TxD$,$T$,$DxT$,$DxN$,$N$},
-	legend style={at={(0.5,.95)},anchor=south},
-    legend columns=7,
-    xmin=15,
-    xmax=102
+    date coordinates in=x,
+    xtick={
+      {1996-12-15},
+      {1997-06-15},{1997-12-15},
+      {1998-06-15},{1998-12-15},
+      {1999-06-15},{1999-12-15},
+      {2000-06-15},{2000-12-15},
+      {2001-06-15},{2001-12-15},
+      {2002-06-15},{2002-12-15},
+      {2003-06-15},{2003-12-15},
+      {2004-06-15},{2004-12-15},
+      {2005-06-15},{2005-12-15}
+    },
+    x tick label style={rotate=45, anchor=east},
+    xticklabel={\year-\month},
+    minor x tick num = 11,
+    xmin={1996-04-15},
+    xmax={2005-12-15},
+    ylabel=Stem biomass \unitfrac{BDT}{ha},
+    legend entries={$TxB$,$TxD$,$T$,$DxT$,$DxN$,$N$},
+    legend style={at={(0.5,1.0)},anchor=south},yshift=1pt,
+    legend columns=-1,
 ]
-\addplot+[no markers, color=color1,line width=1pt] table {validation/afras2008/afras2008.dat};
-\addplot+[only marks, mark=*, mark options={color2}] table[x=Month,y=TxB] {validation/afras2008/afras2008.dat};
-\addplot+[only marks, mark=*, mark options={color3}] table[x=Month,y=TxD] {validation/afras2008/afras2008.dat};
-\addplot+[only marks, mark=*, mark options={color4}] table[x=Month,y=T] {validation/afras2008/afras2008.dat};
-\addplot+[only marks, mark=*, mark options={color5}] table[x=Month,y=DxT] {validation/afras2008/afras2008.dat};
-\addplot+[only marks, mark=*, mark options={color6}] table[x=Month,y=DxN] {validation/afras2008/afras2008.dat};
-\addplot+[only marks, mark=*, mark options={color7}] table[x=Month,y=N] {validation/afras2008/afras2008.dat};
-%\addplot+[only marks, color=black, mark options={fill=black}] table[x=Month,y=N] {validation/afras2008/afras2008.dat};
+\addplot [only marks, mark=*, mark options={color2}] table[x=date,y=TxB, col sep=comma] {validation/afas2008/afas.csv};
+\addplot [only marks, mark=*, mark options={color3}] table[x=date,y=TxD, col sep=comma] {validation/afas2008/afas.csv};
+\addplot [only marks, mark=*, mark options={color4}] table[x=date,y=T, col sep=comma] {validation/afas2008/afas.csv};
+\addplot [only marks, mark=*, mark options={color5}] table[x=date,y=DxT, col sep=comma] {validation/afas2008/afas.csv};
+\addplot [only marks, mark=*, mark options={color6}] table[x=date,y=DxN, col sep=comma] {validation/afas2008/afas.csv};
+\addplot [only marks, mark=*, mark options={color7}] table[x=date,y=N, col sep=comma] {validation/afas2008/afas.csv};
+\addplot [no markers,blue] table [x=date, y=WS, col sep=comma] {validation/afas2008/afas-hart12coppice.csv};
+\addplot [no markers,black] table [x=date, y=WS, col sep=comma] {validation/afas2008/afas-raspalje.csv};
 \end{axis}
 \end{tikzpicture}

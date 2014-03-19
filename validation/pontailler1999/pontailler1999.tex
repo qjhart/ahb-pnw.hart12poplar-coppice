@@ -10,7 +10,8 @@
 \begin{axis}[
     height=3in,
     width=\linewidth,
-    xlabel=$month$,
+    date coordinates in=x,
+    xticklabel={\year-\month},
     ylabel=$Mg/ha$,
     legend entries={$3PG$,$Beaupre$,$Raspalje$,$Pauley$,$Robusta$},
     %legend pos=outer north east
@@ -19,10 +20,15 @@
     xmin=0,
     xmax=135
 ]
-\addplot+[no markers, color=color1,line width=1pt] table[x=month,y=WS] {validation/pontailler1999/pontailler1999.dat};
-\addplot+[only marks, mark=*, mark options={color2}] table[x=month,y=Beaupre] {validation/pontailler1999/pontailler1999.dat};
-\addplot+[only marks, mark=*, mark options={color3}] table[x=month,y=Raspalje] {validation/pontailler1999/pontailler1999.dat};
-\addplot+[only marks, mark=*, mark options={color4}] table[x=month,y=Pauley] {validation/pontailler1999/pontailler1999.dat};
-\addplot+[only marks, mark=*, mark options={color5}] table[x=month,y=Robusta] {validation/pontailler1999/pontailler1999.dat};
+%\addplot+[no markers, color=color1,line width=1pt] table[x=datefull,y=WS] {validation/pontailler1999/pontailler1999.dat};
+\addplot+[no markers, color=black,line width=1pt] table[x=date,y=WS col sep=comma] {validation/pontailler1999/pont-hart12coppice.csv};
+\addplot+[no markers, color=color2,line width=1pt] table[x=date,y=WS col sep=comma] {validation/pontailler1999/pont-beaupre.csv};
+\addplot+[no markers, color=color3,line width=1pt] table[x=date,y=WS col sep=comma] {validation/pontailler1999/pont-fritzi.csv};
+\addplot+[no markers, color=color4,line width=1pt] table[x=date,y=WS col sep=comma] {validation/pontailler1999/pont-raspalje.csv};
+\addplot+[no markers, color=color5,line width=1pt] table[x=date,y=WS col sep=comma] {validation/pontailler1999/pont-robusta.csv};
+\addplot+[only marks, mark=*, mark options={color2}] table[x=date,y=Beaupre col sep=comma] {validation/pontailler1999/field_test.csv};
+\addplot+[only marks, mark=*, mark options={color3}] table[x=date,y=Raspalje col sep=comma] {validation/pontailler1999/field_test.csv};
+\addplot+[only marks, mark=*, mark options={color4}] table[x=date,y=Pauleycol sep=comma] {validation/pontailler1999/field_test.csv};
+\addplot+[only marks, mark=*, mark options={color5}] table[x=date,y=Robusta,col sep=comma] {validation/pontailler1999/field_test.csv};
 \end{axis}
 \end{tikzpicture}

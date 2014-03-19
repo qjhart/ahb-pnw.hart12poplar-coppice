@@ -1,3 +1,8 @@
+% -*- mode: LaTeX/P; fill-column: 80; -*-
+% Local Variables:
+% eval: (reftex-mode)
+% eval: (TeX-PDF-mode)
+% End:
 % Template for PLoS
 % Version 1.0 January 2009
 
@@ -20,16 +25,9 @@
 % cite package, to clean up citations in the main text. Do not remove.
 \usepackage{cite}
 
-\usepackage{color}
-\usepackage[squaren]{SIunits} 
-\usepackage{units}
-
 % Use doublespacing - comment out for single spacing
 %\usepackage{setspace} 
 %\doublespacing
-
-\usepackage{pgfplots}
-\usepgfplotslibrary{dateplot}
 
 % Text layout
 \topmargin 0.0cm
@@ -50,7 +48,6 @@
 \renewcommand{\@biblabel}[1]{\quad#1.}
 \makeatother
 
-
 % Leave date blank
 \date{}
 
@@ -60,7 +57,55 @@
 %% ** EDIT HERE **
 %% PLEASE INCLUDE ALL MACROS BELOW
 \usepackage[printonlyused]{acronym}
-\usepackage{multicol}
+%\usepackage{multicol}
+
+\usepackage{color}
+\usepackage{colortbl}
+\definecolor{gray9}{gray}{0.9}
+\definecolor{gray92}{gray}{0.92}
+\definecolor{gray95}{gray}{0.95}
+\usepackage[squaren]{SIunits} 
+\usepackage{units}
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+%\usepgfplotslibrary{statistics}
+
+\newcommand{\pop}{\textit{Populus} }
+\newcommand{\note}[1]{\textit{#1}}
+
+\acrodef{3pg}[\textsc{3PG}]{Physiological Principles in Predicting Growth}
+\acrodef{BLcond}[\ensuremath{BL_{cond}}]{Canopy Boundary Layer Conductance}
+\acrodef{dbh}[\ensuremath{dbh}]{Diameter at Breast Height}
+\acrodef{DOB}[\ensuremath{DOB}]{Basal Diameter}
+\acrodef{GIS}[\textsc{GIS}]{Geographical Information System}
+\acrodef{LAIt}[\ensuremath{LAI_{T}}]{Target Leaf Area Index}
+\acrodef{LAI}[\ensuremath{LAI}]{Leaf Area Index}
+\acrodef{NPPdef}[\ensuremath{NPP_{def}}]{$NPP$ deficit}
+\acrodef{NPPt}[\ensuremath{NPP_{T}}]{$NPP$ if $LAI = LAI_{T}$}
+\acrodef{NPP}[\ensuremath{NPP}]{Net Primary Productivity}
+\acrodef{RP}[\ensuremath{RP}]{Root Productivity}
+\acrodef{Rdp}[\ensuremath{R_{\Delta\%}}]{Root contribution}
+\acrodef{SLA}[\ensuremath{SLA}]{Specific Leaf Area}
+\acrodef{SRWC}[\textsc{SRWC}]{Short Rotation Woody Crops}
+\acrodef{WF}[\ensuremath{W_F}]{Total Foliage Biomass}
+\acrodef{WS}[\ensuremath{W_S}]{Total Stem Biomass}
+\acrodef{WR}[\ensuremath{W_R}]{Total Root Biomass}
+\acrodef{W}[\ensuremath{W}]{Total Plant Biomass}
+\acrodef{dRres}[\ensuremath{\Delta R_{res}}]{Residual root contribution}
+\acrodef{dW}[\ensuremath{\Delta W}]{Total Monthly Growth}
+\acrodef{fAge}[\ensuremath{f_{age}}]{age Growth Limiter}
+\acrodef{fR}[\ensuremath{f_R}]{Root conversion efficiency}
+\acrodef{fT}[\ensuremath{f_T}]{Temperature growth limiter}
+\acrodef{fi}[\ensuremath{f_i}]{Generic growth limiters}
+\acrodef{gbsm}[\textsc{GBSM}]{Geospatial Bioenergy Systems Model}
+\acrodef{k}[\ensuremath{k}]{Radiation Extinction Coefficient}
+\acrodef{lf}[\ensuremath{lf}]{Litterfall}
+\acrodef{pRx}[\ensuremath{p_{R\%x}}]{Maximum root \%}
+\acrodef{pfs}[\ensuremath{p_{FS}}]{foliage allocation to stem allocation}
+\acrodef{VI}[\ensuremath{VI}]{Volume Index}
+\acrodef{sps}[\ensuremath{n_{stems}}]{Stems per stump}
+\acrodef{cancover}[\ensuremath{CanCover}]{Canopy Coverage}
+\acrodef{LA}[\ensuremath{LA}]{Leaf Area per Stem}
 
 %% END MACROS SECTION
 
@@ -106,12 +151,12 @@ predicting growth and yields for \acp{SRWC} In this study, the
 \ac{3pg} model was modified with the inclusion of a
 coppicing model.
 
-To validate the model, we first obtained species related
-inputs from published studies to model a representative poplar
-species.  We then identified a number of previously published poplar
-field trials, that included one or more coppicing events.  We
-parameterized the model to be as close to the growing conditions as
-possible for those trials and compared our model to those results.
+To validate the model, we first obtained species related inputs from
+published studies to model a representative poplar species.  We then
+identified a number of previously published poplar field trials that
+included one or more coppicing events.  We parameterized the soil and
+weather inputs to be as close to the growing conditions as possible
+for those trials and compared our model to those results.
  
 % Please keep the Author Summary between 150 and 200 words
 % Use first person. PLoS ONE authors please skip this step. 
@@ -127,56 +172,27 @@ and environmental conditions.  Additionally we have validated the
 model as compared to a number of published field trials.
 
 We are developing and testing species parameters to enable the use of
-the \acf{3pg} model as a means to estimate poplar yields, primarily
-for the Pacific Northwest.  Modeling the physiological growth is
-advantageous because it allows for the variation of poplar species
-parameters and management practices in the presence of dynamic
-environmental conditions.  In addition, because the modeled canopy is
-carbon balanced, allocations for both above and below ground biomass
-can be tracked for studies into life-cycle analysis of a poplar based
-bio-fuel in comparison to other fuel options.
+the \acf{3pg} model as a means to estimate poplar yields.  Modeling
+the physiological growth is advantageous because it allows for the
+variation of poplar species parameters and management practices in the
+presence of dynamic environmental conditions.  In addition, because
+the modeled canopy is carbon balanced, allocations for both above and
+below ground biomass can be included in studies into life-cycle
+analysis of a poplar based bio-fuel in comparison to other fuel
+options.
 
 The original \ac{3pg} model does not include coppicing as a management
 practice, which is problematic as it cannot reasonably account for
-post-coppicing regrowth.  We have extended model that includes
+post-coppicing regrowth.  We have extended \ac{3pg} to include
 coppicing by providing a simple model that allows for an additional
 growth contribution from an existing root mass.  The model specifies a
-relatively small contribution of above-ground growth from the
+relatively small contribution to above-ground growth from the
 accumulated root mass after coppicing in order to initiate the next
 cycle of production.
 
 We parameterized the model some previously published results for
 modeling poplar growth, and then applied this model to a set of field
 tests measuring poplar growth and yields in a coppiced regime.
-
-\newcommand{\pop}{\textit{Populus} }
-
-\acrodef{3pg}[\textsc{3PG}]{Physiological Principles in Predicting Growth}
-\acrodef{BLcond}[\ensuremath{BL_{cond}}]{Canopy Boundary Layer Conductance}
-\acrodef{DOB}[\ensuremath{DOB}]{Basal Diameter}
-\acrodef{GIS}[\textsc{GIS}]{Geographical Information System}
-\acrodef{LAIt}[\ensuremath{LAI_{T}}]{Target Leaf Area Index}
-\acrodef{LAI}[\ensuremath{LAI}]{Leaf Area Index}
-\acrodef{NPPdef}[\ensuremath{NPP_{def}}]{$NPP$ deficit}
-\acrodef{NPPt}[\ensuremath{NPP_{T}}]{$NPP$ if $LAI = LAI_{T}$}
-\acrodef{NPP}[\ensuremath{NPP}]{Net Primary Productivity}
-\acrodef{RP}[\ensuremath{RP}]{Root Productivity}
-\acrodef{Rdp}[\ensuremath{R_{\Delta\%}}]{Root contribution}
-\acrodef{SLA}[\ensuremath{SLA}]{Specific Leaf Area}
-\acrodef{SRWC}[\textsc{SRWC}]{Short Rotation Woody Crops}
-\acrodef{WR}[\ensuremath{W_R}]{Total root mass}
-\acrodef{W}[\ensuremath{W}]{Total plant mass}
-\acrodef{dRres}[\ensuremath{\Delta R_{res}}]{Residual root contribution}
-\acrodef{dW}[\ensuremath{\Delta W}]{Total Monthly Growth}
-\acrodef{fAge}[\ensuremath{f_{age}}]{age Growth Limiter}
-\acrodef{fR}[\ensuremath{f_R}]{Root conversion efficiency}
-\acrodef{fT}[\ensuremath{f_T}]{Temperature growth limiter}
-\acrodef{fT}[\ensuremath{f_T}]{Temperature growth limiter}
-\acrodef{fi}[\ensuremath{f_i}]{Generic growth limiters}
-\acrodef{gbsm}[\textsc{GBSM}]{Geospatial Bioenergy Systems Model}
-\acrodef{k}[\ensuremath{k}]{Radiation Extinction Coefficient}
-\acrodef{lf}[\ensuremath{lf}]{Litterfall}
-\acrodef{pRx}[\ensuremath{p_{R\%x}}]{Maximum root \%}
 
 % You may title this section "Methods" or "Models". 
 % "Models" is not a valid title for PLoS ONE authors. However, PLoS ONE
@@ -185,7 +201,7 @@ tests measuring poplar growth and yields in a coppiced regime.
 
 Figure~\ref{fig:growth-model} shows and overview of the main
 components used in the development of the poplar growth model. The
-model is based primarily on the \acf{3pg} model~\cite{Landsberg1997,
+model is based primarily on the \ac{3pg} model~\cite{Landsberg1997,
   landsberg2010physiological}, with modifications for coppicing with
 \ac{SRWC}.
 
@@ -207,7 +223,7 @@ The physiological components of the \ac{3pg} model comprises of
 sub-modules for estimating growth modifiers, \ac{NPP}, biomass
 allocation, and soil water balance.  We have added an additional
 sub-module to provide additional regrowth from an existing root mass,
-for example, after a coppicing event.  In general, the \ac{3pg} model
+primarily after a coppicing event.  In general, the \ac{3pg} model
 works by predicting expected productivity based on the soil, the
 current weather, and their interaction with the species under
 consideration.  At each time step, a level of productivity is
@@ -216,45 +232,48 @@ weather conditions, scaled with a number of multiplicative limiters
 based on the plants response to temperature, water availability,
 fertility, and other species dependent processes.
 
-%\subsubsection*{Poplar Hybrids with \ac{3pg}}
+\subsubsection*{Poplar Hybrids parameterized for \ac{3pg}}
 
-There have been a few studies have been reported specifically for
-modeling poplar using the \ac{3pg}
-model~\cite{Amichev2010,Headlee2012}.  Headlee~\cite{Headlee2012} in
-particular, developed a set in \pop parameters from a set of both
-laboratory and field studies.  The inputs used below draw from these
-studies to parameterize the growth of a representative hybrid poplar.
-As will be discussed below, when compared to field trials, it can be
-seen that different \pop clones can vary considerably in their growth
-patterns.  This suggests a wider range of variation, that may be
-modeled with appropriate changes to the \ac{3pg} input parameters.
-Tables~\ref{tab:3pg-tree} and \ref{tab:3pg-tree2} summarize the base
-parameters used for the generic \pop model in this study.
+There have been a few studies specifically for modeling poplar using the
+\ac{3pg} model~\cite{Amichev2010,Headlee2012}.  Headlee~\cite{Headlee2012} in
+particular, developed a set of \pop parameters from a set of both laboratory and
+field studies.  These parameters, with a few modifications, were used as the
+control set to parameterize the growth of a representative hybrid poplar.  As
+will be discussed below, when compared to field trials it can be seen that
+different \pop clones can vary considerably in their growth patterns.  These
+changes can be modeled with appropriate changes to the \ac{3pg} input
+parameters.  Tables~\ref{tab:3pg-tree-productivity},
+\ref{tab:3pg-tree-modifiers} and \ref{tab:3pg-tree-allocate} summarize the
+control parameters used for the generic \pop model in this study.
 
 \begin{table}[!ht]
-\caption{\textbf{\ac{3pg} Model Tree Parameters}}
-%\input{plantation_site_tabular.tex}
-\input{tree_tabular.tex}
-\begin{flushleft}The table shows the data sources used for the
-  modeling of the potential Growth model for poplar.
+\caption{\textbf{\ac{3pg} Model Productivity Parameters}}
+\input{tree_productivity.tex}
+\begin{flushleft}Parameters primarily concerned with the overall productivity and transpiration of the plant.
 \end{flushleft}
-\label{tab:3pg-tree}
+\label{tab:3pg-tree-productivity}
  \end{table}
 
 \begin{table}[!ht]
-\caption{\textbf{\ac{3pg} Model Tree Parameters}}
-%\input{plantation_site_tabular.tex}
-\input{tree_tabular2.tex}
-\begin{flushleft}The table shows the data sources used for the
-  modeling of the potential Growth model for poplar.
+\caption{\textbf{\ac{3pg} Growth Modifier Parameters}}
+\input{tree_productivity.tex}
+\begin{flushleft}Parameters used in the determining species specific modifiers to the potential plant production.
 \end{flushleft}
-\label{tab:3pg-tree2}
+\label{tab:3pg-tree-modifiers}
+ \end{table}
+
+\begin{table}[!ht]
+\caption{\textbf{\ac{3pg} Tree allocation Parameters}}
+\input{tree_allocate.tex}
+\begin{flushleft}Parameters primarily used for predicting the allocation of growth among the components of the tree.
+\end{flushleft}
+\label{tab:3pg-tree-allocate}
  \end{table}
 
 \subsection*{Coppicing Model}
 \label{sec:coppicing-model}
 
-The original \ac{3pg} model allocates the monthly productivity from
+The \ac{3pg} model allocates the monthly productivity from
 transpiration of the trees into the creation of new roots, stems and
 foliage.  In the standard \ac{3pg} model, the amount allocated to
 roots is basically a constant allocation, potentially with a modifier
@@ -265,8 +284,8 @@ situation where the stem and foliage are removed, but the root ball
 remains.  Because the original model derives it's production from
 transpiration, the \ac{3pg} model has no mechanism to increase to
 start re-growth from this situation.  In addition the model does not
-moderate the allocations based on the abrupt changes in the allocation
-in the plant.
+moderate the allocations based on the abrupt changes in the composition
+of the plant.
 
 \begin{figure}[!ht]
 \begin{subfigure}[b]{.1125\linewidth}
@@ -337,11 +356,13 @@ provide photosynthetic based productivity to the
 tree~(Figure~\ref{fig:grow_5}).  However, a portion of the root mass
 is available as a production source for the tree.  Sometime later, the
 tree resprouts with the root ball providing initial energy for the
-reestablishment of seedlings~(Figure~\ref{fig:grow_6}) which then
-leads through the maturation of the poplar, ready for the next
-harvest~(Figures~\ref{fig:grow_7} and~\ref{fig:grow_8}).  Modeling the
-growth of the \ac{SRWC} then becomes a task of determining the size
-and timing of the regrowth from the existing root mass.
+reestablishment of seedlings~(Figure~\ref{fig:grow_6}). In most
+species, resprouting will occur among multiple stems from the same
+root.  Re-sprouting leads through the maturation of the poplar, ready for
+the next harvest~(Figures~\ref{fig:grow_7} and~\ref{fig:grow_8}).
+Modeling the growth of the \ac{SRWC} then becomes, in part, a task of
+determining the size and timing of the regrowth from the existing root
+mass.
 
 We have developed a simple root interaction system added to the
 \ac{3pg} model to model the behavior both of the post-coppiced
@@ -351,20 +372,20 @@ transpiration with an additional production from utilization of
 reserves with in the root mass.  Under normal conditions, this
 augmentation is zero, however, with the initial planting of the
 cutting, or after a coppicing event, this augmentation is used to add
-foliage to the tree and start transpiration based production again.
+foliage to the tree and restart transpiration based production.
 
-The parameters of the model are shown in figure~\ref{fig:coppice}.  Three
-species specific parameters control the coppicing model.  Combined
-with the input weather, and some parameters in the \ac{3pg} model,
-these control the extent and the timing of the regrowth from the
-coppiced plant.
+The parameters of the model are shown in figure~\ref{fig:coppice}.
+Three species specific parameters control the coppicing model.
+Combined with the input weather, and some parameters in the \ac{3pg}
+model, these control the extent and the timing of the regrowth from
+the coppiced plant.
 
 \begin{figure}[!ht]
   \centering
 \begin{subfigure}[b]{.2\linewidth}
   \includegraphics[width=1.0\linewidth]{img/tree_pics_10}
-  \caption{Parameters}
-  \label{fig:coppice-img}
+%  \caption{Parameters}
+%  \label{fig:coppice-img}
 \end{subfigure}
 \quad
 \begin{subtable}[b]{.75\linewidth}
@@ -376,14 +397,14 @@ coppiced plant.
 \acs{NPPdef} = \acs{NPPt}-\acs{NPP} \\
 \acs{dRres} = \acs{WR}(\acs{WR}/\acs{W} - \acs{pRx})\acs{Rdp}
 \end{align}
-\caption{Model Definition}
+%\caption{Model Definition}
 \end{subtable}
 \caption{\textbf{Coppice Model Overview}}
-  \label{fig:coppice}
+\label{fig:coppice}
 \end{figure}
 
 The model is designed to integrate easily into that existing \ac{3pg}
-equations, with limited modifications.  To that end, at each monthly
+equations, with only limited modifications.  To that end, at each monthly
 timestep, the model allocates it's productivity as before.  The only
 difference being that \acf{dW} is now the sum of the \acf{NPP} and an
 additional \acf{RP}.  The contribution from \ac{RP} however, is
@@ -429,7 +450,12 @@ the available root mass to determine \ac{RP}.
 In poplar plantations, initially planted with cuttings, original
 growth is modeled the same way.  A different set of parameters for
 \ac{LAIt},\ac{Rdp}, and \acs{fR} can be used for the cutting and the
-post-coppiced trees.
+post-coppiced trees.  Because poplars are typically propagated from
+cuttings, some of the parameters of the tree vary between the initial
+planting and a coppicing event.  Because of this, we have altered our
+model to allow for a different set of tree parameters to be associated
+with the original cutting, and the post coppiced tree.  These
+differences have been limited to changes in the root parameters.
 
 Figures~\ref{fig:date},~\ref{fig:rdp} and~\ref{fig:lai} illustrate the
 effect of these parameters on the expected plant growth.  For these
@@ -439,7 +465,7 @@ limited by water availability.
 
 \begin{figure}
   \centering
-  \input{coppice/weather.tex}
+%  \input{coppice/weather.tex}
   \caption{Illustrative weather data, replicating conditions similar
     to those found in Corvallis, OR}
   \label{fig:weather}
@@ -462,22 +488,22 @@ coppicing dates.
 \end{figure}
 
 These figures show the predicted amounts of biomass partitioned among
-stem, root and foilage.  Coppicing is modeled in the third year, in
+stem, root and foliage.  Coppicing is modeled in the third year, in
 February, May, August, or November.  The results predicted by the each
 coppicing event are shown.  During periods with high potential
 productivity, roots contribute more quickly to the regrowth of the
-stem and foilage, matching the higher potential \ac{NPP}.  Late season
+stem and foliage, matching the higher potential \ac{NPP}.  Late season
 harvests defer their growth until the following spring conditions, and
-at a slower rate to match the lower potential productivities at those
+at a slower rate to match the lower potential productivity at those
 times.  The total production of the plantation, is affected by the
 timing of the coppicing.  Even with the root contribution, this is due
 to a lost opportunity for production during the growing season.
 
-The model predictions show the total foilage and root biomass
+The model predictions show the total foliage and root biomass
 converging to similar values for all of the coppicing dates.
 
 Figure~\ref{fig:rdp} shows the model variation from various values for
-\acf{Rdp}.  In these graphs, the foilage, stem, and root mass are
+\acf{Rdp}.  In these graphs, the foliage, stem, and root mass are
 compared for two separate coppicing dates for the third year growth in
 August and November.  The value for \ac{Rdp} ranges from 0.001 to 1.
 
@@ -491,7 +517,7 @@ August and November.  The value for \ac{Rdp} ranges from 0.001 to 1.
 \end{figure}
 
 The figure shows a long term decrease in plant growth for very low
-values of \ac{Rdp}, but values of \ac{Rdp} over about .1, the foilage
+values of \ac{Rdp}, but values of \ac{Rdp} over about .1, the foliage
 and stem growth are very similar after the first 6 months of growth.
 This is because while the root's contribution to the plants
 productivity is smaller for lower values if \ac{Rdp} it does continue
@@ -505,15 +531,15 @@ of \ac{Rdp} can still provide enough production to match the
 environmental conditions.
 
 For modeling actual plants, values of \ac{Rdp} approaching 1 are
-unlikey, as that \ac{Rdp} indicates mass that can be easily converted
-to energy for the plants, priomarily starches and sugars.  For poplar
+unlikely, as that \ac{Rdp} indicates mass that can be easily converted
+to energy for the plants, primarily starches and sugars.  For poplar
 in particular, roots' starch and sugar contents vary with the root
 diameter, and range from low values to as much as 20\%.  A value of
 $\ac{Rdp}=0.1$ is used for the comparisons to the field trials below. 
 
 Figure~\ref{fig:lai} shows the change of the model with respect to the
 change in the \ac{LAIt} value.  The figure shows the same coppicing
-events as Figure~\ref{fig:rdp}, August and Novemeber events after 3
+events as Figure~\ref{fig:rdp}, August and November events after 3
 years of growth.  \ac{Rdp} is set to 10\%.  The figure shows very
 little dependence on the \ac{LAIt} parameter as \ac{LAIt} is greater
 than about 1.
@@ -522,21 +548,31 @@ than about 1.
   \centering
   \input{coppice/lai-by-type.tex}
   \caption{Coppice regrowth model results for various levels of
-    \acf{LAIt}.  $\ac{Rdp} = 0.1$ and $\ac{r}=1$.  Y-axis is the dry
+    \acf{LAIt}.  $\ac{Rdp} = 0.1$ and $\ac{fR}=1$.  Y-axis is the dry
     mass of each component of the plantation, in terms of
     $\frac{T}{ha}$.}
   \label{fig:lai}
 \end{figure}
 
-There are a number of points to note about this value.  \ac{LAI} is
-chosen as the primary target parameter for the \ac{3pg} as it is a
-simple plant parameter that (?).  It's primary affect on the
-productivity at a given timestep is how it affects the light gathering
-for the tree.  That fractional modifier is given in the \ac{3pg} model
-as $1-\exp{-k LAI}$.  For poplar we have defined $k=0.5$, and this
-parameter does not change more than \%5 for any values above
-$\ac{LAI}=6$.
+\ac{LAI} is chosen as the primary target parameter for the \ac{3pg} as
+it is a simple plant parameter controlling productivity.  It's primary
+affect at a given timestep is that it affects the light gathering for
+the tree.  That fraction is given in the \ac{3pg} model as $1-\exp{-k
+  LAI}$.  For poplar we have defined $k=0.5$, and the productivity of
+the tree starts to become dominated with this term for relatively low
+values of \ac{LAI}.
 
+Table~\ref{tab:3pg-tree-coppice} shows the parameters related to coppicing
+chosen for the \ac{3pg} model.  They vary slightly between the planted cutting
+and the subsequently coppiced trees.
+
+\begin{table}[!ht]
+\caption{\textbf{\ac{3pg} Coppicing Parameters}}
+\input{tree_coppice.tex}
+\begin{flushleft}Parameters primarily used for predicting the allocation of growth among the components of the tree.
+\end{flushleft}
+\label{tab:3pg-tree-coppice}
+ \end{table}
 
 \section*{Validation}
 \label{sec:validation}
@@ -544,56 +580,86 @@ $\ac{LAI}=6$.
 %% Results and Discussion can be combined.
 %\section*{Results}
 
+The \ac{3pg} model was tested with three specific field tests with documented
+results for woody biomass~\cite{Proe2002,Proe1999,Pontailler1999,Afas2008a}.  
 
-The \ac{3pg} model was tested with three specific field tests with
-documented results~\cite{Proe2002,Proe1999,Pontailler1999,Afas2008a}.
-We chose field tests for \pop that included at least one coppicing
-rotation, included above-ground biomass measurements, and included
-enough information to replicate the growing parameters for the field
-test to some level of confidence.  In addition to above ground
-biomass, model results where compared to as many additional parameters
-reported by the literature as possible.
+We chose field tests for \pop that included at least one coppicing rotation,
+included above-ground biomass measurements, and included enough information to
+replicate the growing parameters for the field test to some level of confidence.
+In addition to above ground biomass, model results where compared to as many
+additional parameters reported by the literature as possible.
 
-In each case, input weather conditions were obtained for the time of
-the field work, and soil parameters were either obtained, or estimated
-from the description in the literature.
+In each case, input weather conditions were obtained for the time of the field
+work, and soil parameters were either obtained or estimated from the description
+in the literature.  Additionally, management practices and site specific soil
+parameters used in the model formulation are shown in
+Table~\ref{tab:field-test-manage}
+
+\begin{table}[!ht]
+\caption{
+\textbf{Field Test Management and Site Specific Parameters}}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Parameter & Pontailler & Proe & Afas \\
+\hline
+Stocking Density & \unitfrac[16025]{tree}{ha} & \unitfrac[10000]{tree}{ha} & \unitfrac[10000]{tree}{ha} \\
+Seedling Mass &  \unit[0.4]{kg} & \unit[0.6]{kg} & \unit[0.4]{kg} \\
+Soil Maximum Available Water & \unit[10]{cm} & \unit[100]{cm} & \unit[10]{cm} \\
+%\ac{3pg} $f_S$ Constant & \\
+%\ac{3pg} $f_S$ Power & \\
+\hline
+\end{tabular}
+\begin{flushleft}Additional \ac{3pg} site and field test dependant parameters.
+\end{flushleft}
+\label{tab:field-test-manage}
+ \end{table}
+
 
 \subsection*{Pontailler 1999}
 \label{sec:pont}
 
 Pontailler~\cite{Pontailler1999}, described the results of biomass
 measurements over 5 two year coppicing events for a five different
-poplar species, grown in Orsay, France from 1987 through 1997.
-Yields, post coppicing stems per stump, average height, and \ac{LAI}
-were among the parameters measured.
+poplar species, grown in Orsay, France from 1987 through 1997.  The
+goal of the project was to measure the production of a number of
+hybrid poplar clones, over a number of coppicing cycles.
 
-Pontailler found consistent biomass returns on the plots for the most
-part, and attributed differences, especially the lower returns in
-1991-1992, as due to drought conditions for the region.  
+Four \textit{Populus} (poplar) clones were used in this study. These
+included two fast growing, interspecific Interamerican
+(\textit{Populus trichocarpa $\times$ P deltoides}) hybrid clones
+(Beaupré and Raspalje), a native American \textit{P. trichocarpa}
+clone (Fritzi Pauley) and one Euramerican reference clone \textit{P.~deltoides $\times$ P.~nigra}, cv., (Robusta).
 
-\begin{table}[!ht]
-\caption{
-\textbf{\ac{3pg} Model Plantation and Site Parameters}}
-\begin{tabular}{|c|c|c|}
-\hline
-Parameter & Source & value\\
-\hline
-type &  & ,\\
-StockingDensity &  & 3587,\\
-SeedlingMass &  & 0.0004,\\
-\hline
-maxaws &  & -1,\\
-swpower &  & -1,\\
-swconst &  & -1,\\
-\hline
-\end{tabular}
+All were planted from cuttings.  At each coppicing event, woody biomass yields,
+stem diameter, height, number of stems per stump and \ac{LAI} were among the
+parameters measured.
 
-\begin{flushleft}The table shows the data sources used for the
-  modeling of the potential Growth model for poplar.
-\end{flushleft}
-\label{tab:3pg-plantation-site}
- \end{table}
+The weather parameters used for the \ac{3pg} modeling are shown in
+Figure~\ref{fig:pontailler-weather}.
 
+\begin{figure}
+  \centering
+  \input{validation/pontailler1999/weather.tex}
+  \caption{Input weather data for Paris France for Pontailler study.  Temperature and precipitation from \cite{}, Radiation from \cite{}.}
+  \label{fig:pontailler-weather}
+\end{figure}
+
+Pontailler found consistently high biomass returns on the plots for the most
+part.  For the first two coppicing cycles the plantations were fertilized and
+irrigated, but applications stopped after the second coppice.  There were
+variations in yields for the the final three coppicing events.  Pontailler
+speculated these differences, especially the lower returns in 1991-1992, were
+due to drought conditions for the region.
+
+Figure~\ref{fig:pont-biomass} shows the \ac{3pg} model predictions to the field
+tests for woody biomass.  Comparisons show the control model described above,
+underpredict most results obtained by Pontailler.  
+
+For this field test, the differences are most likely due predominantly to the
+management practices in this study as compared to some of the implicit
+assumptions of the control model.  Two of the most important considerations are
+the high density of plantings and the frequency of coppicing, which both affect
+some of the model assumptions used in the control.
 
 \begin{figure}[!ht]
   \centering
@@ -603,282 +669,254 @@ swconst &  & -1,\\
 \label{fig:pont-biomass}
 \end{figure}
 
+An important component of \ac{3pg} is the allocations of \ac{NPP} to roots,
+stems, and foliage.  This is controlled primarily with the \ac{pfs}, the ratio of
+\ac{WF} to \ac{WS}, $\acs{pfs}=\acs{WF}/\acs{WS}$, which helps determine the
+aboveground allocations.  \ac{pfs} is in turn calculated from a pair of
+allometric relations.  In \ac{3pg}, \ac{pfs} is obtained by inverting on
+allometric relationship between \ac{WS} and \ac{dbh} to obtain \ac{dbh}, and then
+use another relationship relating \ac{dbh} to \ac{pfs}.  These relations are
+typically determined from comparisons of more mature trees, for example,
+Headlee's estimates are based on poplars with an average \ac{dbh} of about
+\unit[3.5~-~25]{cm}~\cite{Headlee2012,Fortier2010}.
 
-The \ac{3pg}
-model was assigned parametric variations due to genotype.  These are
-shown in table~\ref{tab:pont-3pg}.
+For highly repeating coppicing, where the trees never get too big, an
+alternative set of allometric relationships to determine \ac{pfs} for the
+\acs{3pg} might be required.  For \ac{SRWC},
+Pontailler~\cite{pontailler97-volume-index} proposed an alternative set of
+parameterizations based on \acf{VI} where $VI = HD^2$, $H$ is height in meters,
+and $D$ is tree diameter at \unit[22]{cm} also in meters.
+
+Pontailler described power relationships between \ac{VI} and both above ground
+dry matter, and leaf area per stem.  These can be used in a similar manner to
+define \ac{pfs}, where \ac{WS} is inverted to estimate \ac{VI}, for each stem,
+and then this can be used to predict \ac{LA} and along with \ac{SLA}, \ac{WF}
+and \ac{pfs}.
+
+As these relationships were defined for each poplar variation in the
+field tests, the \ac{3pg} model was modified to predict \ac{pfs} with
+these relationships, and the model run with the parameters shown in
+Table~\ref{tab:pont-3pg}.  Two other modifications to the parameters
+were made.  Variations in measured \ac{sps} where included, and
+because of the high density of tree plantings, the \ac{cancover},
+which determines when the poplar canopy has closed was scale from 1.5
+years, post coppicing to \unit[0.6]{yrs}.
 
 \begin{table}[!ht]
   \centering
-%  \begin{tabular}{}    
-%  \end{tabular}
-  \caption{\ac{3pg} parameter variations of \ac{3pg} among genotypes}
+  \begin{tabularx}{\linewidth}{X|c|c|c|c|}   
+    Parameter & Beaupre & Fritzi Pauley & Raspalje & Robusta \\
+    \hline
+    $\gamma_{DM}$ &  0.854 & 0.863 & 0.887 & 0.838 \\
+    $\beta_{DM}$  & 166.0 & 157.6 & 161.5 & 162  \\
+    $\gamma_{LA}$ &  0.428 &  0.481 & 0.495 & 0.496 \\ 
+    $\beta_{LA}$ & $e^{-0.161}$ & $e^{-0.198}$ & $e^{-0.287}$ & $e^{-0.273}$ \\
+%    $\beta_{LA}$ & 0.851 & 0.820 & 0.751 & 0.761 \\
+    \ac{cancover} \unit{mo} & 4 & 4 & 4 & 4 \\
+    \ac{sps} & & & & \\
+    \hline 
+  \end{tabularx}
+  \caption{\ac{3pg} parameter variations of \ac{3pg} among genotypes. $DM=\beta_{DM} VI^{\gamma_{DM}}$, and $LA = \beta_{LA} VI^{\gamma_{LA}}$~\cite{pontailler97-volume-index,Pontailler1999,Ceulemans1993}}
   \label{tab:pont-3pg}
 \end{table}
+
+Figure~\ref{fig:pont-biomass} also includes \ac{3pg} predictions with these
+variation specific parameters.  From the figure it is clear that poplar
+variations demonstrate a wide range of variability under the same management
+practices.  However, without more information relating to the various \pop
+clones, modifying \ac{3pg} parameters to obtain a better fit is mostly
+speculative.  The \ac{3pg} inputs can be adjusted to more closely match the
+predictions for each clone, but justifying which particular parameters to adjust
+from one field test is more problematic.  
+
+To demonstrate, Figure~\ref{fig:pont-variation} shows the variation of one
+poplar clone, Raspalje, over a few of the more important \ac{3pg} inputs.  The
+quantum efficiency parameter directly affects the monthly \ac{NPP}.  Although
+this is constant in the \ac{3pg} model, lab measurements show clonal and
+seasonal variations of up to 0.02 $[\unitfrac{mol~C}{mol~PAR}]$, usually with
+maximums in the 0.08 region~\cite{Bernacchi2003}.
+
+
+\begin{figure}[!ht]
+  \centering
+  \input{validation/pontailler1999/variation.tex}
+  \caption{Comparison of model to measurements for yearly growth for various \ac{3pg} parameters.  }
+\label{fig:pont-variation}
+\end{figure}
+
+Also interesting are the variations from year to year.  Certain \ac{3pg}
+parameters, like growth modifiers that are dependant on temperature or the
+available soil water modifiers, should show dependence on the input weather
+parameters.  Matching this inter-coppicing variability would lend some
+justification for modification of those parameters.
+
+Figure~\ref{fig:pont-variation} shows a few parameters influenced by the
+weather, the optimal temperature of the tree shows some differences, as does the
+maximum tree conductance.  Neither can account for the changes in the field
+trials, especially the dip in 1992-1993, or the peak in the following coppice
+cycle.  The tree canopy conductance shows a small variation with a shape
+somewhat more weather dependent, but not at the scale shown in the trials.
+
+The general downward trend in the last three coppicing events are due to a
+decrease in the general suitability of the weather, it is possible that the
+best weather estimates did not adequately represent variations at the field site
+proper.
+
+The stems per stump variations are interesting. The current \ac{3pg} model
+allocates the same biomass to each stem, but although Pontailler describes the
+average count of stems per stump, the distribution of stem diameters is not
+given.  If more biomass is allocated to a single stem, then the \ac{3pg} model
+predicts a higher return.  So, the stems per stump value of 1 is more like an
+upper bound on yield regardless of the reported number of stems.  This could
+account for some variability between clones.
+
+\acf{cancover} is a similar parameter.  The \ac{3pg} model uses a linear
+relation with the stand age to determine canopy cover, which also linearly
+affects the \ac{NPP} for each month.  In the parameterization of the poplar
+trees, Headlee used canopy cover as variable to match the observed yields of some
+of the field tests.  However, on a highly dense plantation, the canopy might
+close more quickly.  
 
 
 \subsection*{Proe 2002}
 
-Proe~\cite{Proe2002} described the results of a number of different
-\ac{SRWC} field trials, including annual measurements of biomass,
-root:shoot ratio, leaf/stem ratios, LAI, PAR and other parameters.
-Light interception was measured seasonally as well.  The studies were
-developed over a 5 year period in central Scotland from 1989 through
-1999. Coppiced and single stem comparisons
-were made, but only for the affects of early coppicing after one year.
-Proe found increase in biomass production for more closely spaced
-plantings still noticeable up to the 5th year of the study.
+Proe~\cite{Proe2002} described the results of a number of different \ac{SRWC}
+field trials, including annual measurements of biomass, root:shoot ratio,
+leaf/stem ratios, \ac{LAI} and other parameters.  The studies were developed
+over a 5 year period in central Scotland from 1989 through 1999. Poplars were
+planted at a two densities, and both coppiced and single stem comparisons were
+made.  However, there was only one coppicing event in the first year for
+comparison.  Proe destructively tested plantation samples over the course of the
+growing cycle.
+
+The Proe test differed from the Pontailler study, in the longer coppicing cycle,
+the additional measurements within a cycle, and some variations on the data
+collected.
+
+%Proe found increase in biomass production for more closely spaced plantings
+%still noticeable up to the 5th year of the study.
 
 \begin{figure}
   \centering
   \input{validation/proe2002/weather.tex}
-  \caption{Input weather data for Paisley Scotland for Proe study}
+  \caption{Input weather data for Paisley Scotland for Proe 2002
+    study~\cite{Proe2002}.  Temperature and precipitation from
+    \cite{}.}
   \label{fig:proe-weather}
 \end{figure}
 
-\begin{figure}
-  \centering
-  \input{validation/afras2008/weather.tex}
-  \caption{Input weather data for Antwerpe Belgium for Afras study}
-  \label{fig:proe-weather}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \input{validation/pontailler1999/weather.tex}
-  \caption{Input weather data for Paris France for Pontailler study}
-  \label{fig:proe-weather}
-\end{figure}
-
-Comparisons the the \ac{3pg} model where made by replicating the three
-plantings under the conditions described.  Weather information for the
-Scotland field plots were determined from weather data from Paisley,
-Scotland.  Figure~\ref{fig:proe-weather} shows the input weather data
-for the duration of the field study.  Comparisons were made between
-the \ac{3pg} model and the measured values, for spacings of 1m and
-1.5m, and the single stem, and the coppicing methods.  Comparisons of
-the woody biomass, \ac{LAI}, and fraction of foliage to above ground
-biomass were made.
+Comparisons the the \ac{3pg} model where made by replicating the three plantings
+under the conditions described.  Weather information for the Scotland field
+plots were determined from weather data from Paisley, Scotland.
+Figure~\ref{fig:proe-weather} shows the input weather data for the duration of
+the field study.  Calculated clear sky radiation was moderated by the ratio of
+observed daylight hours to total daylight.  Comparisons were made between the
+\ac{3pg} model and the measured values for tree spacings of \unit[1]{m} and
+\unit[1.5]{m}, and the single stem, and the coppicing methods.  Comparisons of
+the woody biomass, \ac{LAI}, and fraction of foliage to above ground biomass
+were made.  In addition, two different allometric relations were used, the
+\ac{dbh} version from Headlee and one of the representation \ac{VI} relations
+from the Pontailler study~Figure~\ref{fig:proe-wood}.
 
 \begin{figure}
   \centering
   \input{validation/proe2002/woody.tex}
-  \caption{Woody Biomass predictions vs. Measurements}
+  \caption{Woody Biomass predictions vs. Measurements.  \ac{LAI} model vs. measurements. Leaf to Aboveground biomass model vs. measurements. Root:shoot model vs. measurements}
   \label{fig:proe-wood}
 \end{figure}
 
-\begin{figure}[!ht]
-  \centering
-  \input{validation/proe2002/lai.tex}  
-  \caption{\ac{LAI} model vs. measurements}
-  \label{fig:proe-light}
-\end{figure}
+The difference in the allometric relationships have a large effect on the
+predictions of the stem biomass, the~\ac{dbh} version seeming to track the field
+tests more closely.  But in this range, these relations commit too much
+allocation to the \ac{WF}, and hence over-predict values related to foliage,
+like the \ac{LAI} and the fraction $\frac{WF}{WF+WS}$.  On the other hand, the
+fact that the model over predicts \ac{LAI}, but under predicts
+$\frac{WF}{WF+WS}$ is puzzling and could indicate a different \ac{SLA} parameter
+for these poplar trees.  Proe also noted low values of \ac{LAI} were related to
+insect damage, especially in the third and fourth years.
 
-\begin{figure}[!ht]
-  \centering
-  \input{validation/proe2002/fbs.tex}  
-  \caption{Leaf to Aboveground biomass model vs. measurements}
-  \label{fig:proe-leaf}
-\end{figure}
+Proe independently showed the canopy to close in about 16 months from initial
+planting for both planting.  
 
-\begin{figure}[!ht]
-  \centering
-  \input{validation/proe2002/rootshoot.tex}  
-  \caption{Root:shoot model vs. measurements}
-  \label{fig:proe-rootshoot}
-\end{figure}
-
-\cite{Proe2002} compare the results of two stocking densities
-
-To compare comparison with the
-model, it's 
-
-There have been a few studies
 
 \subsection*{Afas 2008}
 \label{afas2008}
 
-Starting in 1996, Afas,~\cite{Afas2008a} studied 17 types of poplar
-over the course of 11 years for a field study in Belgium.  The study
-included measurements of three separate coppicing events.  The study
-found relatively high mortality rates for some of the genotypes.
-Comparisons between the \ac{3pg} and measured values were made for the
-genotypes with a survival rate of over 85\%.  No measurements of below
-ground biomass were included.  Afas did propose an alimetric
-relationship for non-destructive biomass estimations based on diameter
-measurements of the stems from the stool.
+Starting in 1996, Afas,~\cite{Afas2008a} studied 17 types of poplar over the
+course of 11 years for a field study in Belgium.  The study included
+measurements of three separate coppicing events.  The study found relatively
+high mortality rates for some of the genotypes.  Comparisons between the
+\ac{3pg} and measured values were made for the genotypes with a survival rate of
+over 85\%.  No measurements of below ground biomass were included.  Afas did
+propose an allometric relationship for non-destructive biomass estimations based
+on diameter measurements of the stems from the stool, but for consistency, the
+allometric relations used in the Pontailler study are used in the model below.
 
-Variations among the genotypes were estimated with changes to the \ac{3pg}
-input parameters of : ?
-
-\begin{table}[!ht]
+\begin{figure}
   \centering
-%  \begin{tabular}{}
+  \input{validation/afas2008/weather.tex}
+  \caption{Input weather data for Antwerp Belgium for Afas study}
+  \label{fig:afras-weather}
+\end{figure}
+
+
+% \begin{table}[!ht]
+%   \centering
+% %  \begin{tabular}{}
     
-%  \end{tabular}
-  \caption{\ac{3pg} parameter variations of \ac{3pg} among genotypes}
-  \label{tab:afas-3pg}
-\end{table}
+% %  \end{tabular}
+%   \caption{\ac{3pg} parameter variations of \ac{3pg} among genotypes}
+%   \label{tab:afas-3pg}
+% \end{table}
 
 \begin{figure}[!ht]
   \centering
-  \input{validation/afras2008/afras2008.tex}
+  \input{validation/afas2008/afas2008.tex}
   \caption{Comparison of model to measurements for yearly growth over three
     coppicing events.}
 \label{fig:afas-biomass}
 \end{figure}
 
+Opposite of the Pontailler study, the \ac{3pg} under predicts the Afas study.
+
 \section*{Discussion}
 
-Although not considered in current model, there are other
-considerations when coppicing during the growing season.  Some studies
-have indentified higher rates of stump depth related to coppicing in
-the growing season~\cite{}.  Also, the current model defines a
-constant value for \ac{Rdp}.  Studies of the available starches and
-sugars in a poplar root suggest a seasonal dependence on these values,
-with higher values as the plants enter into cooler
-seasons\cite{Regier2010}.
 
-%Need to identify the best field tests to be done, and discuss w/ Greenwood.
+We have developed a coppicing model.  The model seems somewhat insensitive to
+the parameters, when chosen in reasonable bounds.  We have used this coppicing
+model in the validation section above to predict poplar regrowth.  These studies
+focus on yields over complete coppicing cycles, however, and observations to
+test the model in the months directly after a coppice, or under a more complete
+range of coppicing event types are lacking.
 
+Although not considered in current model, there are other considerations when
+coppicing during the growing season.  Some studies have identified higher rates
+of stump depth related to coppicing in the growing season~\cite{}.  Also, the
+current model defines a constant value for \ac{Rdp}.  Studies of the available
+starches and sugars in a poplar root suggest a seasonal dependence on these
+values, with higher values as the plants enter into cooler
+seasons\cite{Regier2010}.  The field trials above all coppiced at the end of the
+growing season, but these are important considerations when considering other
+strategies, like store on stump management for more continuous feedstock
+delivery.
 
-% \section*{Management Considerations}
-% \label{sec:management-reg}
+Validation of the model with respect to previously published field trials of
+poplar for a number of different locations and management strategies, led to a
+number of conclusions, regarding poplar growth.  First, the differences among
+clones in terms of the productions and yields is often quite large.  A
+generalized model is only an estimate on behavior.  The model discussed here
+comes in somewhere in the middle of the field trials investigated.
 
-% In wood energy plantations, the management regime impacts the time
-% between harvest, the fraction of the total biomass that enters the
-% supply chain, and growth rates. Coppice style management generally
-% suggests the use of a continuous harvest machine (forage harvester) at
-% 3-5 year intervals over a 12-18 year rotation. Following coppice
-% harvest the stumps are left to re-sprout and will be harvested again
-% after 3-5 years.  Stem biomass that enters the feedstock supply chain
-% under coppice management is determined by the year of first entry
-% which determines stump volume.  Stump volume under coppice management
-% is not considered to enter the supply chain at any point in the
-% rotation. Round wood production implies the use of a piece-wise
-% (harvester) or semi piece-wise harvesting equipment
-% (feller-buncher). If stem diameter at harvest exceeds $\approx$ 8-10
-% cm, piece-wise harvesting is necessary. Following roundwood harvest,
-% the field will be cleared and preparedn for re-planting.
+For high density plantations of \ac{SRWC} with higher coppicing cycles, using
+allometric relations based on a parameter like the \acf{VI} as opposed to the
+\ac{dbh} is probably preferable.  It should be noted however, that these
+relationships are also possibly dependent on the planting density, and care
+should be used when applying under different management scenarios.  These
+relationships seem to vary with the duration of the coppicing cycle.
 
-% % Experimental work has suggested that there may be advantages to
-% % intercropping coppice and roundwood production. \emph{WHY?}. Under
-% % intercropping regime supply chain loss is determined by the combined
-% % loss from coppiced stumps and roundwood stumps over the rotation
-% % period.
-
-% \subsubsection*{Stocking Density}
-% \label{sec:stocking-density}
-
-% Initial stocking density is an important consideration, as planting
-% density is a primary driver in initialization costs, and need to be
-% recouped with gains in biomass production.  \ac{SRWC} differ from
-% more traditional plantations in the the total biomass is important
-% rather than the biomass per stem.  Actually, the fact that coppicing
-% results in more stems per stump can lead to efficiencies in the
-% harvesting 
-
-% \subsubsection*{Stump volume}
-% \label{sec:stump-volume}
-
-% The \ac{3pg} growth model estimates partitioning of biomass between stem,
-% leaf, and roots within a spatial domain defined by model input
-% parameters. Harvesting results in the collection of a fraction of the
-% total accumulated stem biomass into the feedstock supply chain for
-% energy production. The fraction of the biomass retained depends upon
-% the management regime. Stump, and saw kerf acount for the fraction of
-% stem biomass that is not captured in the supply chain.
-
-% Stump volume was determined using total tree volume predicted by \ac{3pg},
-% a stem taper function from for young poplar stands
-% \cite{Benbrahim2003} , and allometric relationships between total
-% biomass and diameter at breast height ($dbh$) \cite{Brahim2000}. The
-% taper equation was used to establish stem diameter at stump height,
-% and basal diameter, both of which which are necessary for determining
-% stump volume. Allometric biomass relationships in forestry are
-% generally described as in ~(\ref{form}).
-% \begin{equation}
-%   \label{eq:form}
-%   X=aY^b
-% \end{equation}
-
-% First, $dbh$ is calculated from tree mass $M$
-% \begin{equation}
-%     \label{eqn:dbh}
-%     dbh=aM^b
-%     \end{equation}
-
-% as in (\ref{eqn:form}) where $a=0.122$ and $b=2.38$ from \cite{Landsberg1997}.
-
-% We the calculate total tree height ($H$) using coefficients provided by \cite{Brahim2000}
-% \begin{equation}
-%     \label{eqn:height}
-%     \begin{bmatrix}\frac{14705.8823529412 M + 250.0 d^{2.34} -56617.6470588235}{D^{2.34}}\end{bmatrix}
-%     \end{equation}where $D$ is $dbh$ for the individual tree and $d$ is the stand average $dbh$. The use of stand average can improve the accuracy of the relationship, however as the 3-PG model does not predict variation in $dbh$ between stands we simply use the derived $dbh$ from \ref{eqn:dbh} fro both values. \cite{Benbrahim2003} also provides (\ref{eqn:taper}) to determine diameter at a given height or height at a given diameter:
-% \begin{equation}
-%     \label{eqn:taper}
-%     0=-d+\left(b_d-b_d\left(\frac{\log{\frac{1-h}{Ha}}}{-b}\right)^{1/c}\right)
-%     \end{equation}The taper equation provided by \cite{Benbrahim2003} also requires a basal diameter ($b_d$). We calculate $b_d$ modifying equation (\ref{eqn:taper}) using coefficients provided and $H$, $dbh$ from above. Using a stump height of 10.0 cm we calculate the top stump diameter with which we can calculate the stump volume.
-% \begin{equation}
-%     \label{eqn:sectionvolume}
-%     V=\left(\frac{l\pi}{12}\right)(d_1^2+d_a^2+d_1d_2)
-%     \end{equation}We then calculate stump mass using a wood density of 0.38 $g \cdot cc^{-1}$ and compare with total tree mass $M$
-% \subsubsection*{Stump volume regression}
-% To determine a simplified relationship between tree volume and stump volume we derive coefficients $a$ and $b$ in (\ref{eqn:form}) using a the ratio of stump mass to total stem mass over a range of stem volumes based on the allometric relationships in section \ref{sec:allo}.\begin{figure}[h]
-%      \centering
-% %    \includegraphics[width=0.5\textwidth]{nlm_stump.png}
-%     \caption{Stump to stem volume ratio as a function of stem volume}
-%     \label{fig:stump_vol}
-%     \end{figure}
-% Coefficients used in calculating stump volume as a function of total stem volume were found to be $a=0.0179877356445$ and $b=-0.169054308617$.
-
-
-% \subsubsection{Predictions}
-
-% The \ac{ahb} project uses the above model to develop an estimate of
-% the potential yield of poplar throughout the study area.  Potential
-% yield maps only take into consideration the climatic, environmental
-% and phenological aspects.  They do not include the technical
-% considerations of the technical feasibility of poplar as a crop.
-% However, because management regimes effect poplar growth rates over
-% the period of the rotation different harvesting patterns are included
-% in the potential growth models.  The two practices considered were 12
-% year cycled harvesting, and 4 four year coppicing cycles.
-
-% The potential growth model implemented the \ac{3pg} forest growth
-% model over the study area, by implementing the \ac{3pg} model within a
-% \ac{GIS}.  \ac{3pg} modeled the growth of the poplar over a 12 year
-% cycle, ether with or without the coppicing cycles.  
-
-% Table~\ref{tab:3pg-grids} shows the required input grid parameters for
-% the \ac{3pg} model.  In addition, the model requires a number of other
-% parameterizations, primarily for the modeling of the forest. Table
-
-% \begin{table}[!ht]
-% \caption{
-% \textbf{Modeling Grids}}
-% \begin{tabular}{|c|c|c|}
-% \hline
-% Parameter & Units & Source \\
-% \hline
-% elevation & \meter & \\
-% \hline
-% precipitation & \milli\meter & \\
-% \hline
-% temperature & \celsius & \cite{prism-temp} \\
-% \hline
-% humidity & \unit{\%}  & \\
-% \hline
-% radiation & \mega\joule\per\squaremetre\usk\dday &  \\
-% \hline
-% sub-freezing days & \dday  & \\
-% \hline
-% \end{tabular}
-% \begin{flushleft}The table shows the data sources used for the
-%   modeling of the potential Growth model for poplar.
-% \end{flushleft}
-% \label{tab:3pg-grids}
-%  \end{table}
+For \ac{SRWC} the relationships between canopy cover and plantation density, and
+stems per stump could be investigated to determine some repeatable relationships
+between this parameters that could be added into the \ac{3pg} model. 
 
 
 % Do NOT remove this, even if you are not including acknowledgments
@@ -911,6 +949,16 @@ Move Table here at the end.
 
 \end{document}
 
-% LocalWords:  cellulosic biofuel feedstocks parameterized feedstock
-% LocalWords:  Coppicing coppicing coppiced timestep coppice Bioenergy
-% LocalWords:  Geospatial parameterize Biofuels resprouts
+% LocalWords:  cellulosic biofuel feedstocks parameterized feedstock allometric
+% LocalWords:  Coppicing coppicing coppiced timestep coppice Bioenergy Headlee
+% LocalWords:  Geospatial parameterize Biofuels resprouts Pontailler genotypes
+
+
+
+
+
+
+
+
+
+
