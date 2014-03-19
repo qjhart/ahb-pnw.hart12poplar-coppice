@@ -1,0 +1,46 @@
+\begin{tikzpicture}
+  \begin{axis}[
+    no markers,
+    line width=1pt,
+    width=\linewidth,
+    height=3in,
+    date coordinates in=x,
+    xtick={
+      {1987-12-15},
+      {1988-06-15},{1988-12-15},
+      {1989-06-15},{1989-12-15},
+      {1990-06-15},{1990-12-15},
+      {1991-06-15},{1991-12-15},
+      {1992-06-15},{1992-12-15},
+      {1993-06-15},{1993-12-15},
+      {1994-06-15},{1994-12-15},
+      {1995-06-15},{1995-12-15},
+      {1996-06-15},{1996-12-15},
+      {1997-06-15},{1997-12-15}
+    },
+    x tick label style={rotate=45, anchor=east},
+    xticklabel={\year-\month},
+    minor x tick num = 11,
+    xmin={1987-01-15},
+    xmax={1997-12-15},
+    ylabel=Biomass \unitfrac{BDT}{ha},
+    % %ylabel style={yshift=10pt},
+    legend entries={0.05,0.06,0.07,0.08,Berupre,Raspalje,Pauley,Robusta},
+    legend style={
+       at={(0.5,1.03)},anchor=north,legend columns=-1}
+    ]
+    \addplot+[color=gray] table [x=date, y=WS, col sep=comma] {validation/pontailler1999/pont-q5.csv};
+    \addplot+[color=brown] table [x=date, y=WS, col sep=comma] {validation/pontailler1999/pont-q6.csv};
+    \addplot+[color=cyan] table [x=date, y=WS, col sep=comma] {validation/pontailler1999/pont-q7.csv};
+    \addplot+[color=black] table [x=date, y=WS, col sep=comma] {validation/pontailler1999/pont-q8.csv};
+
+     \addplot [only marks,mark=square*,blue]
+     table [x=date, y=Beaupre, col sep=comma] {validation/pontailler1999/ws.csv};
+    \addplot [only marks,mark=square*, green] 
+     table [x=date, y=Raspalje, col sep=comma] {validation/pontailler1999/ws.csv};
+    \addplot [only marks,mark=square*,red] 
+    table [x=date, y=Pauley, col sep=comma] {validation/pontailler1999/ws.csv};
+    \addplot [orange,mark=square*,only marks] 
+    table [x=date, y=Robusta, col sep=comma] {validation/pontailler1999/ws.csv};
+  \end{axis}
+\end{tikzpicture}
