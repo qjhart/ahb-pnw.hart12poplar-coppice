@@ -1,0 +1,164 @@
+\pgfplotscreateplotcyclelist{pontvariety}{%
+{blue,only marks,mark=square*},
+{green,only marks,mark=square},
+{red,only marks,mark=o},
+{orange,only marks,mark=+}}
+
+\pgfplotstableread[col sep=comma]{validation/pontailler1999/ws.csv}\ws
+\newcommand{\fn}[1]{validation/pontailler1999/#1.csv}
+
+\newcommand{\plotvarieties}[1]{
+    \pgfplotsset{cycle list name={pontvariety},cycle list shift=#1}
+    \addplot table [x=date, y=Beaupre] {\ws};
+    \addplot table [x=date, y=Raspalje]{\ws};
+    \addplot table [x=date, y=Pauley] {\ws};
+    \addplot table [x=date, y=Robusta] {\ws};
+}
+
+\pgfplotsset{
+  no markers,
+  width=0.5\linewidth,
+  height=0.4\linewidth,
+  date coordinates in=x,
+  xmin={1987-01-15},
+  xmax={1997-12-15},
+  xtick={
+{1988-12-15},
+{1989-12-15},
+{1990-12-15},
+{1991-12-15},
+{1992-12-15},
+{1993-12-15},
+{1994-12-15},
+{1995-12-15},
+{1996-12-15},
+{1997-12-15}
+  },
+  xticklabels=\empty,
+  ymin=0,ymax=80,
+  ytick={20,40,60},
+  yticklabels={20,40,60},
+  title style={
+    at={(0,0.85)},anchor=north west,
+    font=\tiny
+  },
+    legend style={
+    at={(0.0,1.0)},anchor=north west,legend columns=-1,
+    font=\tiny
+  },
+  table/col sep=comma,
+  cycle list name =color,
+  every axis plot/.append style={line width=1pt},
+  every mark/.append style={solid}
+}
+\begin{tikzpicture}
+  \begin{axis}[
+    name=pop,
+    ylabel=\empty,
+    legend entries={Berupre,Raspalje,Pauley,Robusta},
+    legend style={
+    at={(1.0,1.0)},anchor=south,legend columns=-1,yshift=2pt},
+    ]
+    \plotvarieties{0}
+  \end{axis}
+
+  \begin{axis}[
+    name=temp,
+    at={(pop.north east)},
+    anchor= north east,
+    ylabel=Stem~$\frac{T}{ha}$,
+    title={Optimal Temperature~$[\unit{\celsius}]$},
+    legend entries={15,20,25},
+    ]
+    \addplot table [x=date, y=WS] {\fn{pont-t15}};
+    \addplot table [x=date, y=WS] {\fn{pont-t20}};
+    \addplot table [x=date, y=WS] {\fn{pont-t25}};
+    \plotvarieties{-3}
+  \end{axis}
+
+  \begin{axis}[
+    name=quant,
+    at={(temp.east)},xshift=2pt,
+    anchor=west,
+    yticklabels=\empty,
+    title={Quantum Efficiency~$[\unitfrac{mol~C}{mol~PAR}]$},
+    legend entries={0.06,0.08,0.10},
+    ]
+%    \addplot table [x=date, y=WS] {\fn{pont-q5}};
+    \addplot table [x=date, y=WS] {\fn{pont-q6}};
+%    \addplot table [x=date, y=WS] {\fn{pont-q7}};
+    \addplot table [x=date, y=WS] {\fn{pont-q8}};
+    \addplot table [x=date, y=WS] {\fn{pont-q10}};
+    \plotvarieties{-3}
+  \end{axis}
+
+  \begin{axis}[
+    name=cc,
+    at={(temp.below south west)},
+    anchor= north west,
+    ylabel=Stem~$\frac{T}{ha}$,
+    title={Canopy Cover~$[\unit{mo}]$},
+    legend entries={3,6,9},
+    ]
+%    \addplot table [x=date, y=WS] {\fn{pont-cc0}};
+    \addplot table [x=date, y=WS] {\fn{pont-cc3}};
+    \addplot table [x=date, y=WS] {\fn{pont-cc6}};
+    \addplot table [x=date, y=WS] {\fn{pont-cc9}};
+%    \addplot table [x=date, y=WS] {\fn{pont-cc12}};
+    \plotvarieties{-3}
+  \end{axis}
+
+  \begin{axis}[
+    name=lit,
+    at={(cc.east)},xshift=2pt,
+    anchor=west,
+    yticklabels=\empty,
+    title={Litterfall~$[\unitfrac{\%}{mo}]$},
+%    title={Tree Age Modifier $[\unit{yr}]$},
+    legend entries={3,6,10},
+%    legend entries={3.5,10,20},
+    ]
+%    \addplot table [x=date, y=WS] {\fn{pont-age35}};
+%    \addplot table [x=date, y=WS] {\fn{pont-age100}};
+%    \addplot table [x=date, y=WS] {\fn{pont-age200}};
+    \addplot table [x=date, y=WS] {\fn{pont-lit03}};
+    \addplot table [x=date, y=WS] {\fn{pont-lit06}};
+    \addplot table [x=date, y=WS] {\fn{pont-lit10}};
+    \plotvarieties{-3}
+  \end{axis}
+
+  \begin{axis}[
+    name=cond,
+    at={(cc.below south west)},yshift=5pt,
+    anchor=north west,
+    title={Maximum Canopy Conductance~$[\unitfrac{m}{s}]$},
+    legend entries={0.00,0.02,0.04},
+    ylabel={Stem~$\frac{T}{ha}$},
+    x tick label style={rotate=45, anchor=east},
+    xticklabel={\year-\month},
+    ]
+    \addplot table [x=date, y=WS] {\fn{pont-cond_mx0}};
+%    \addplot table [x=date, y=WS] {\fn{pont-cond_mx1}};
+    \addplot table [x=date, y=WS] {\fn{pont-cond_mx2}};
+%    \addplot table [x=date, y=WS] {\fn{pont-cond_mx3}};
+    \addplot table [x=date, y=WS] {\fn{pont-cond_mx4}};
+    \plotvarieties{-3}
+  \end{axis}
+
+  \begin{axis}[
+    name=stems,
+    at={(cond.east)},xshift=2pt,
+    anchor=west,
+    title={Stems per stump},
+    legend entries={1,2,3,4},
+    yticklabels=\empty,
+    x tick label style={rotate=45, anchor=east},
+    xticklabel={\year-\month}
+    ]
+    \addplot table [x=date, y=WS] {\fn{pont-stem1}};
+    \addplot table [x=date, y=WS] {\fn{pont-stem2}};
+    \addplot table [x=date, y=WS] {\fn{pont-stem3}};
+    \addplot table [x=date, y=WS] {\fn{pont-stem4}};
+    \plotvarieties{-4}
+  \end{axis}
+\end{tikzpicture}
