@@ -1,8 +1,11 @@
+-- Why BLcond 0.04 and not 0.05?
+--('hart12coppice',1.5, 0.5, 0.08, (0,20,50)::fT_t, 0.04, (1,0,47.5,3.5)::tdp_t, .26, (19,10.8,5,2)::tdp_t, (0.0001,0.02, 2.6)::cond_t, (0,0.24,7.3)::intcpt_t, (0.17,0.7,0.5,0.02)::pR_t, 0.47, (2.8, 0.18, 2.4, 2, -0.772, 1.3)::pfs_t, (0.1,1,0.75)::rootP_t, (0.0015,0.03,2,2.5)::tdp_t, 0.5);
+
 delete from m3pgjs.tree where type like 'afas-%';
 
 INSERT INTO m3pgjs.tree (type,"fullCanAge", "kG", "alpha", "fT", "BLcond", "fAge", "fN0", "SLA","Conductance", "Intcptn", "pR", "y", "pfs", "rootP","litterfall", "k") VALUES 
-('afas-hart12coppice-stick',1.5, 0.5, 0.08, (0,20,50)::fT_t, 0.04, (1,0,47.5,3.5)::tdp_t, .26, (19,10.8,5,2)::tdp_t, (0.0001,0.02, 2.6)::cond_t, (0,0.24,7.3)::intcpt_t, (0.17,0.7,0.5,0.02)::pR_t, 0.47, (1,0.081,2.46,2,-0.77,1.2)::pfs_t, (0.01,1,0.6)::rootP_t, (0.0015,0.03,2,2.5)::tdp_t, 0.5),
-('afas-hart12coppice',1.5, 0.5, 0.08, (0,20,50)::fT_t, 0.04, (1,0,47.5,3.5)::tdp_t, .26, (19,10.8,5,2)::tdp_t, (0.0001,0.02, 2.6)::cond_t, (0,0.24,7.3)::intcpt_t, (0.17,0.7,0.5,0.02)::pR_t, 0.47, (1, 0.081, 2.46, 2, -0.77, 1.2)::pfs_t, (0.1,1,0.75)::rootP_t, (0.0015,0.03,2,2.5)::tdp_t, 0.5);
+('afas-hart12coppice-stick',1.5, 0.5, 0.08, (0,20,50)::fT_t, 0.04, (1,0,47.5,3.5)::tdp_t, .26, (19,10.8,5,2)::tdp_t, (0.0001,0.02, 2.6)::cond_t, (0,0.24,7.3)::intcpt_t, (0.17,0.7,0.5,0.02)::pR_t, 0.47, (1,0.081,2.46,2,-1.161976,1.91698)::pfs_t, (0.01,1,0.6)::rootP_t, (0.0015,0.03,2,2.5)::tdp_t, 0.5),
+('afas-hart12coppice',1.5, 0.5, 0.08, (0,20,50)::fT_t, 0.04, (1,0,47.5,3.5)::tdp_t, .26, (19,10.8,5,2)::tdp_t, (0.0001,0.02, 2.6)::cond_t, (0,0.24,7.3)::intcpt_t, (0.17,0.7,0.5,0.02)::pR_t, 0.47, (1.0, 0.18, 2.46, 2, -1.161, 1.9)::pfs_t, (0.1,1,0.75)::rootP_t, (0.0015,0.03,2,2.5)::tdp_t, 0.5);
 
 INSERT INTO m3pgjs.tree (type,"fullCanAge", "kG", "alpha", "fT", "BLcond", "fAge", "fN0", "SLA","Conductance", "Intcptn", "pR", "y", "rootP","litterfall", "k","wsVI","laVI") VALUES 
 ('afas-beaupre-stick',0.8,0.5, 0.08,(0,20,50)::fT_t,0.04,(1,0,47.5,3.5)::tdp_t,0.26,(19,10.8,5,2)::tdp_t,(0.0001,0.02,2.6)::cond_t,(0,0.24,7.3)::intcpt_t,(0.17,0.7,0.5,0.02)::pR_t,0.47,(0.01,1,0.6)::rootP_t,(0.0015,0.03,2,2.5)::tdp_t,0.5,(166,0.854,1)::wsVI_t,(0.851,0.428)::laVI_t),
@@ -17,34 +20,6 @@ INSERT INTO m3pgjs.tree (type,"fullCanAge", "kG", "alpha", "fT", "BLcond", "fAge
 drop schema afas2008 cascade;
 create schema afas2008;
 set search_path=afas2008,m3pgjs,public;
-
-create table measurements (
-date date,
-TxB float,
-TxD float,
-T float,
-DxT float,
-DxN float,
-N float
-);
-
-\COPY measurements from afas2008/afas.csv with CSV header
-
-create view measure as 
-select date,'txb' as type,txb as ws from measurements 
-union
-select date,'txd' as type,txd from measurements 
-union
-select date,'t' as type,t from measurements 
-union
-select date,'dxt' as type,dxt from measurements 
-union
-select date,'dxn' as type,dxn from measurements 
-union
-select date,'txb' as type,txb from measurements 
-union
-select date,'n' as type,n from measurements ;
-
 
 -- Weather data
 create table weather (
@@ -71,7 +46,7 @@ TS float,
 FG float 
 );
 
-\COPY weather from afas2008/weather.csv with CSV header NULL '-'
+\COPY weather from afas2008/weather.csv with CSV header
 
 create view afas as 
 select type 
@@ -126,7 +101,7 @@ with d as (
  from input
 )
 select 'coppice'::text as manage_id,
-array_agg((0,0.3,
+array_agg(0,0.8,
 case when (date in ('1996-12-15'::date,'2001-01-15'::date,'2004-02-15'::date))
             then true else false end)::manage_t
  order by date) as manage
@@ -141,48 +116,4 @@ grow(plantation,soil,weather,manage) as ps
 from input,plantation join afas using (type),
 manage;
 
-create view summary as 
-with c(date) as (
- VALUES (ARRAY['1996-12-15'::date,'2001-01-15'::date,'2004-02-15'::date])
-), 
-sss as (
- select 
- unnest('1995-01-01'::date||date) as start,
- unnest(date||'2009-01-01'::date) as end from c
-),
-ss as (
- select row_number() OVER (ORDER BY start) as c,
- start,sss.end from sss
-),
-r(n,type) as (
- VALUES ('dbh','afas-hart12coppice'),('vi','afas-raspalje')
-),
-p as (
- select manage_id,type,unnest(dates) as date,
- (unnest(ps)).* from input join afas2008.growthmodel using (location_id)
-),
-m as (
- select date,
- avg(ws)::decimal(6,2) as avg,
- stddev_samp(ws)::decimal(6,2) as stddev,
- avg(ws)::decimal(6,2)||' \pm '||stddev_samp(ws)::decimal(6,2) as samp 
- from afas2008.measure 
- group by date order by date
-) 
-select 
-'Afas2008'::text as study,
-manage_id as manage,
-ss.start,
-ss.c-1 as coppice,
-n,
-((date-start)/365.25)::decimal(4,1) as years,
-"WS"::decimal(6,2),
-m.*
-from p join m using (date) 
-join r using (type) 
-join ss on ((date,date) OVERLAPS (ss.start,ss.end)) 
-where type in ('afas-hart12coppice','afas-raspalje') 
-order by n,date;
-
--- Output Files
-\set foo `for t in $(psql -A -F, -t --pset=footer=off  -d poplarcoppice -c 'select type from afas2008.afas'); do psql -A -F, --pset=footer=off -d poplarcoppice -c "with a as (select dates from afas2008.input) select unnest(dates) as date,(unnest(ps)).* from afas2008.growthmodel,a where type='$t'" > afas2008/$t.csv; done`
+-- for t in `psql -A -F, -t --pset=footer=off  -d poplarcoppice -c 'select type from afas2008.afas'`; do psql -A -F, --pset=footer=off -d poplarcoppice -c "with a as (select dates from afas2008.input) select unnest(dates) as date,(unnest(ps)).* from afas2008.growthmodel,a where type='$t'" > $t.csv; done

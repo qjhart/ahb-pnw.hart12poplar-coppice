@@ -13,6 +13,26 @@ drop schema proe2002 cascade;
 create schema proe2002;
 set search_path=proe2002,m3pgjs,public;
 
+-- measure
+-- ------------
+
+-- This table shows the 
+
+create table measure (
+manage_id text,
+date date,
+LAI float,
+WS float,
+fbs float,
+rootshoot float
+);
+
+\COPY measure (date,LAI,WS,fbs,rootshoot) from proe2002/coppice.csv with CSV HEADER
+update measure set manage_id='coppice';
+\COPY measure (date,LAI,WS,fbs,rootshoot) from proe2002/nocoppice.csv with CSV HEADER
+update measure set manage_id='nocoppice' where manage_id is null;
+
+
 -- paisley
 -- -------
 
@@ -41,12 +61,16 @@ sunp char
 delete from m3pgjs.tree where type like 'proe-%';
 
 INSERT INTO m3pgjs.tree (type,"fullCanAge", "kG", "alpha", "fT", "BLcond", "fAge", "fN0", "SLA","Conductance", "Intcptn", "pR", "y", "pfs", "rootP","litterfall", "k") VALUES 
-('proe-def-greenhouse',2.0, 0.5, 0.08, (0,20,50)::fT_t, 0.05, (1,0,47.5,3.5)::tdp_t, .26, (19,10.8,5,2)::tdp_t, (0.0001,0.02, 2.6)::cond_t, (0,0.24,7.3)::intcpt_t, (0.17,0.7,0.5,0.02)::pR_t, 0.47, (2.8, 0.18, 2.4, 2, -0.772, 1.3)::pfs_t, (0.2,10,0.75)::rootP_t, (0.0015,0.03,2,2.5)::tdp_t, 0.5),
-('proe-def',1.5, 0.5, 0.08, (0,20,50)::fT_t, 0.04, (1,0,47.5,3.5)::tdp_t, .26, (19,10.8,5,2)::tdp_t, (0.0001,0.02, 2.6)::cond_t, (0,0.24,7.3)::intcpt_t, (0.17,0.7,0.5,0.02)::pR_t, 0.47, (1.0, 0.18, 2.46, 2, -1.161, 1.9)::pfs_t, (0.1,1,0.75)::rootP_t, (0.0015,0.03,2,2.5)::tdp_t, 0.5);
+('proe-def-greenhouse',2.0, 0.5, 0.0801, (0,20,50)::fT_t, 0.05, (1,0,47.5,3.5)::tdp_t, .26, (19,10.8,5,2)::tdp_t, (0.0001,0.02, 2.6)::cond_t, (0,0.24,7.3)::intcpt_t, (0.17,0.7,0.5,0.02)::pR_t, 0.47, (1,0.081,2.46,2,-0.77,1.2)::pfs_t, (0.2,10,0.75)::rootP_t, (0.0015,0.03,2,2.5)::tdp_t, 0.5),
+('proe-def',1.5, 0.5, 0.0801, (0,20,50)::fT_t, 0.04, (1,0,47.5,3.5)::tdp_t, .26, (19,10.8,5,2)::tdp_t, (0.0001,0.02, 2.6)::cond_t, (0,0.24,7.3)::intcpt_t, (0.17,0.7,0.5,0.02)::pR_t, 0.47, (2.8, 0.081, 2.46, 2, -0.77, 1.2)::pfs_t, (0.1,1,0.75)::rootP_t, (0.0015,0.03,2,2.5)::tdp_t, 0.5);
+
 
 INSERT INTO m3pgjs.tree (type,"fullCanAge", "kG", "alpha", "fT", "BLcond", "fAge", "fN0", "SLA","Conductance", "Intcptn", "pR", "y", "rootP","litterfall", "k","wsVI","laVI") VALUES 
-('proe-raspalje-greenhouse',0.8,0.5, 0.08,(0,20,50)::fT_t,0.04,(1,0,47.5,3.5)::tdp_t,0.26,(19,10.8,5,2)::tdp_t,(0.0001,0.02,2.6)::cond_t,(0,0.24,7.3)::intcpt_t,(0.17,0.7,0.5,0.02)::pR_t,0.47,(0.1,1,0.75)::rootP_t,(0.0015,0.03,2,2.5)::tdp_t,0.5,(161.5,0.887,1)::wsVI_t,(0.751,0.495)::laVI_t),
-('proe-raspalje',0.6,0.5, 0.08,(0,20,50)::fT_t,0.04,(1,0,47.5,3.5)::tdp_t,0.26,(19,10.8,5,2)::tdp_t,(0.0001,0.02,2.6)::cond_t,(0,0.24,7.3)::intcpt_t,(0.17,0.7,0.5,0.02)::pR_t,0.47,(0.1,1,0.75)::rootP_t,(0.0015,0.03,2,2.5)::tdp_t,0.5,(161.5,0.887,2.8)::wsVI_t,(0.751,0.495)::laVI_t);
+('proe-raspalje-greenhouse',0.8,0.5, 0.0801,(0,20,50)::fT_t,0.04,(1,0,47.5,3.5)::tdp_t,0.26,(19,10.8,5,2)::tdp_t,(0.0001,0.02,2.6)::cond_t,(0,0.24,7.3)::intcpt_t,(0.17,0.7,0.5,0.02)::pR_t,0.47,(0.1,1,0.75)::rootP_t,(0.0015,0.03,2,2.5)::tdp_t,0.5,(161.5,0.887,1)::wsVI_t,(0.751,0.495)::laVI_t),
+--('proe-raspalje',0.6,0.5, 0.0801,(0,20,50)::fT_t,0.04,(1,0,47.5,3.5)::tdp_t,0.26,(19,10.8,5,2)::tdp_t,(0.0001,0.02,2.6)::cond_t,(0,0.24,7.3)::intcpt_t,(0.17,0.7,0.5,0.02)::pR_t,0.47,(0.1,1,0.75)::rootP_t,(0.0015,0.03,2,2.5)::tdp_t,0.5,(161.5,0.887,2.8)::wsVI_t,(0.751,0.495)::laVI_t),
+('proe-raspalje',0.5,0.5, 0.0801,(0,20,50)::fT_t,0.04,(1,0,47.5,3.5)::tdp_t,0.26,(19,10.8,5,2)::tdp_t,(0.0001,0.02,2.6)::cond_t,(0,0.24,7.3)::intcpt_t,(0.17,0.7,0.5,0.02)::pR_t,0.47,(0.1,1,0.75)::rootP_t,(0.0015,0.03,2,2.5)::tdp_t,0.5,(161.5,0.887,2.8)::wsVI_t,(0.751,0.495)::laVI_t),
+('proe-best-greenhouse',1.3,0.5, 0.0801,(0,20,50)::fT_t,0.04,(1,0,47.5,3.5)::tdp_t,0.26,(19,10.8,5,2)::tdp_t,(0.0001,0.02,2.6)::cond_t,(0,0.24,7.3)::intcpt_t,(0.17,0.17,0.5,0.04)::pR_t,0.47,(0.1,1,0.75)::rootP_t,(0.0015,0.03,2,2.5)::tdp_t,0.5,(161.5,0.887,1)::wsVI_t,(0.751,0.495)::laVI_t),
+('proe-best',1.3,0.5, 0.0801,(0,20,50)::fT_t,0.04,(1,0,47.5,3.5)::tdp_t,0.26,(19,10.8,5,2)::tdp_t,(0.0001,0.02,2.6)::cond_t,(0,0.24,7.3)::intcpt_t,(0.17,0.17,0.5,0.04)::pR_t,0.47,(0.1,1,0.75)::rootP_t,(0.0015,0.03,2,2.5)::tdp_t,0.5,(161.5,0.887,2.8)::wsVI_t,(0.751,0.495)::laVI_t);
 
 create view proe as 
 select type 
@@ -201,14 +225,14 @@ VALUES (0.5),(0.6),(0.7),(0.8)
 )
 select 'coppice' as manage_id,
 array_agg(
-(0,0.9,case when (date in ('1990-03-15'::date)) 
+(0.0,0.4,case when (date in ('1990-03-15'::date)) 
             then true else false end)::manage_t
  order by date) as manage
 from d 
 union select 
 'nocoppice' as manage_id,
 array_agg(
-(0,0.9,false)::manage_t 
+(0,0.5,false)::manage_t 
  order by date) as manage
 from d;
  
@@ -222,8 +246,58 @@ from input,
 plantation join proe using (type)
 ,manage;
 
+create view summary as 
+with ss(start,stop,c) as (
+ VALUES ('1989-05-15'::date,'1990-03-15'::date,1),
+ ('1990-03-15'::date,'1995-12-15'::date,2)
+), 
+r(n,type) as (
+ VALUES ('dbh','proe-def'),('vi','proe-raspalje')
+),
+p as (
+ select manage_id,type,unnest(dates) as date,
+ (unnest(ps)).* from input join proe2002.growthmodel using (location_id)
+),
+m as (
+ select date,
+ manage_id,
+ ws::decimal(6,2) as avg,
+ null::decimal(6,2) as stddev,
+ (ws::decimal(6,2))::text as samp 
+ from proe2002.measure 
+ order by date
+)
+select 'Proe2002'::text as study,
+manage_id as manage,
+ss.start,
+ss.c-1 as coppice,
+n,
+((date-start)/365.25)::decimal(4,1) as years,
+"WS"::decimal(6,2),
+m.date,m.avg,m.stddev,m.samp
+from p join m using (date,manage_id) 
+join r using (type) 
+join ss on ((date,date) OVERLAPS (ss.start,ss.stop)) 
+where
+manage_id='coppice'
+union
+select 'Proe2002'::text as study,
+manage_id as manage,
+'1989-05-15'::date,
+0 as coppice,
+n,
+((date-'1989-05-15'::date)/365.25)::decimal(4,1) as years,
+"WS"::decimal(6,2),
+m.date,m.avg,m.stddev,m.samp
+from p join m using (date,manage_id) 
+join r using (type) 
+where 
+manage_id='nocoppice'
+order by n,date;
+
+
 -- Having trouble w/ SolRad from cmdline :(
 create table dates as select dates from proe2002.input;
 
--- for c in coppice nocoppice; do for t in `psql -A -F, -t --pset=footer=off  -d poplarcoppice -c 'select type from proe2002.proe'`; do psql -A -F, --pset=footer=off -d poplarcoppice -c "with a as (select dates from proe2002.dates),b as (select unnest(dates) as date,(unnest(ps)).* from proe2002.growthmodel,a where type='$t' and manage_id='$c') select *,\"WF\"/(\"WS\"+\"WF\") as fbs,\"WR\"/(\"WS\"+\"WF\") as rootshoot from b" > $t-$c.csv; done; done
+\set foo `for c in coppice nocoppice; do for t in $(psql -A -F, -t --pset=footer=off  -d poplarcoppice -c 'select type from proe2002.proe'); do psql -A -F, --pset=footer=off -d poplarcoppice -c "with a as (select dates from proe2002.dates),b as (select unnest(dates) as date,(unnest(ps)).* from proe2002.growthmodel,a where type='$t' and manage_id='$c') select *,\"WF\"/(\"WS\"+\"WF\") as fbs,\"WR\"/(\"WS\"+\"WF\") as rootshoot from b" > proe2002/$t-$c.csv; done; done`
 
