@@ -5,7 +5,7 @@
 {orange}
 }
 
-\newcommand{\fn}[1]{validation/pontailler1999/#1.csv}
+\newcommand{\fn}[1]{validation/pontailler1999/coppice/#1.csv}
 
 \pgfplotstableread[col sep=comma]{validation/pontailler1999/ws.csv}\ws
 
@@ -26,20 +26,20 @@
     xmax={1997-12-15},
     xtick={
       {1987-12-15},
-      {1988-06-15},{1988-12-15},
-      {1989-06-15},{1989-12-15},
-      {1990-06-15},{1990-12-15},
-      {1991-06-15},{1991-12-15},
-      {1992-06-15},{1992-12-15},
-      {1993-06-15},{1993-12-15},
-      {1994-06-15},{1994-12-15},
-      {1995-06-15},{1995-12-15},
-      {1996-06-15},{1996-12-15},
-      {1997-06-15},{1997-12-15}
+      {1988-12-15},
+      {1989-12-15},
+      {1990-12-15},
+      {1991-12-15},
+      {1992-12-15},
+      {1993-12-15},
+      {1994-12-15},
+      {1995-12-15},
+      {1996-12-15},
+      {1997-12-15}
     },
     x tick label style={rotate=45, anchor=east},
     xticklabel={\year-\month},
-    ylabel=Stem Biomass \unitfrac{BDT}{ha},
+    ylabel=Stem Biomass (Mg ha-1),
     legend entries={Beaupre,Pauley-Fritzi,Raspalje,Robusta,3PG},
     legend style={
        at={(0.5,1.0)},anchor=south,yshift=2pt,legend columns=-1
@@ -50,18 +50,18 @@
      every axis plot/.append style={line width=1pt},
      every mark/.append style={solid}
     ]
-    \addplot table [x=date, y=WS] {\fn{pont-beaupre}};
-    \addplot table [x=date, y=WS] {\fn{pont-fritzi}};
-    \addplot table [x=date, y=WS] {\fn{pont-raspalje}};
-    \addplot table [x=date, y=WS] {\fn{pont-robusta}};
-    \addplot+[color=gray] table [x=date, y=WS] {\fn{pont-hart12coppice}};
-%    \plotvarieties{-5}
-    \pgfplotsset{cycle list shift=-5}
     \addplot+[only marks] table [x=date, y=Beaupre] {\ws};
 %    \addplot+[boxplot={data={y}} ] table [x=date,y=Beaupre} {\ws};
     \addplot+[only marks] table [x=date, y=Raspalje]{\ws};
     \addplot+[only marks] table [x=date, y=Pauley] {\ws};
     \addplot+[only marks] table [x=date, y=Robusta] {\ws};
+%    \pgfplotsset{cycle list shift=-5}
+%    \addplot table [x=date, y=WS] {\fn{pont-beaupre}};
+%    \addplot table [x=date, y=WS] {\fn{pont-fritzi}};
+    \addplot+[color=gray,dotted] table [x=date, y=WS] {\fn{pont-raspalje}};
+%    \addplot table [x=date, y=WS] {\fn{pont-robusta}};
+    \addplot+[color=gray] table [x=date, y=WS] {\fn{pont-hart12coppice}};
+%    \plotvarieties{-5}
 
   \end{axis}
 \end{tikzpicture}
