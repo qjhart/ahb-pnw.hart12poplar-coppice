@@ -41,7 +41,7 @@ red,densely dashed,every mark/.append style={solid,fill=red!80!black},mark=diamo
 \begin{tikzpicture}
   \begin{axis}[
     name=stem,
-    ylabel={$WS$~$[\unitfrac{BDT}{ha}]$},
+    ylabel={\WS~(Mg  ha-1)},
     xticklabels=\empty,
     %ylabel style={yshift=10pt},
     legend entries={No Coppice,Coppiced},
@@ -55,13 +55,16 @@ red,densely dashed,every mark/.append style={solid,fill=red!80!black},mark=diamo
    \addplot+[dashed] table [x=date, y=WS] {\fn{proe-raspalje-nocoppice}};
    \addplot+[dashed] table [x=date, y=WS] {\fn{proe-raspalje-coppice}};
 
+%    \addplot+[dotted] table [x=date, y=WS] {\fn{proe-best-nocoppice}};
+%    \addplot+[dotted] table [x=date, y=WS] {\fn{proe-best-coppice}};
+
   \end{axis}
   \begin{axis}[
     name=lai,
     at={(stem.below south west)},yshift=2pt,
     anchor=north west,
     xticklabels=\empty,
-    ylabel=\ac{LAI},
+    ylabel=\LAI,
     ymin=0,ymax=10,
     ]
    \addplot+[only marks] table [x=date, y=LAI] {\fn{nocoppice}};
@@ -72,13 +75,16 @@ red,densely dashed,every mark/.append style={solid,fill=red!80!black},mark=diamo
 
    \addplot+[dashed] table [x=date, y=LAI] {\fn{proe-raspalje-nocoppice}};
    \addplot+[dashed] table [x=date, y=LAI] {\fn{proe-raspalje-coppice}};
+
+%   \addplot+[dotted] table [x=date, y=LAI] {\fn{proe-best-nocoppice}};
+%   \addplot+[dotted] table [x=date, y=LAI] {\fn{proe-best-coppice}};
   \end{axis}
   \begin{axis}[
     name=fbs,
     at={(lai.below south west)},yshift=2pt,
     anchor=north west,
     xticklabels=\empty,
-    ylabel=$\unitfrac{\ac{WF}}{\ac{WF}+\ac{WS}}$,
+    ylabel=$\frac{\WF}{\WF+\WS}$,
     ymin=0,ymax=0.5,
     ]
    \addplot+[only marks] table [x=date, y=fbs] {\fn{nocoppice}};
@@ -87,13 +93,18 @@ red,densely dashed,every mark/.append style={solid,fill=red!80!black},mark=diamo
     \addplot table [x=date, y=fbs] {\fn{proe-def-coppice}};
     \addplot+[dashed] table [x=date, y=fbs] {\fn{proe-raspalje-nocoppice}};
     \addplot+[dashed] table [x=date, y=fbs] {\fn{proe-raspalje-coppice}};
+
+%   \addplot+[dotted] table [x=date, y=fbs] {\fn{proe-best-nocoppice}};
+%   \addplot+[dotted] table [x=date, y=fbs] {\fn{proe-best-coppice}};
+
   \end{axis}
   \begin{axis}[
     name=root,
     at={(fbs.below south west)},yshift=2pt,
     anchor=north west,
     %xticklabels=\empty,
-    ylabel=$\unitfrac{\ac{WS}}{\ac{WF}}$,
+%    ylabel=$root:shoot (\frac{\WR}{\WF+\WS})$,
+    ylabel=$\frac{\WR}{\WF+\WS}$,
     ymin=0,ymax=0.5,
     %ylabel style={yshift=10pt},
     ]
@@ -103,5 +114,9 @@ red,densely dashed,every mark/.append style={solid,fill=red!80!black},mark=diamo
     \addplot table [x=date, y=rootshoot] {\fn{proe-def-coppice}};
     \addplot+[dashed] table [x=date, y=rootshoot] {\fn{proe-raspalje-nocoppice}};
     \addplot+[dashed] table [x=date, y=rootshoot] {\fn{proe-raspalje-coppice}};
+
+%   \addplot+[dotted] table [x=date, y=rootshoot] {\fn{proe-best-nocoppice}};
+%   \addplot+[dotted] table [x=date, y=rootshoot] {\fn{proe-best-coppice}};
+
   \end{axis}
 \end{tikzpicture}

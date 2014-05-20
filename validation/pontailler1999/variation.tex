@@ -1,11 +1,17 @@
-\pgfplotscreateplotcyclelist{pontvariety}{%
+\pgfplotscreateplotcyclelist{pontvariety-save}{%
 {blue,only marks,mark=square*},
 {green,only marks,mark=square},
 {red,only marks,mark=o},
 {orange,only marks,mark=+}}
 
+\pgfplotscreateplotcyclelist{pontvariety}{%
+{gray,only marks},
+{gray,only marks},
+{gray,only marks},
+{gray,only marks}}
+
 \pgfplotstableread[col sep=comma]{validation/pontailler1999/ws.csv}\ws
-\newcommand{\fn}[1]{validation/pontailler1999/#1.csv}
+\newcommand{\fn}[1]{validation/pontailler1999/coppice/#1.csv}
 
 \newcommand{\plotvarieties}[1]{
     \pgfplotsset{cycle list name={pontvariety},cycle list shift=#1}
@@ -55,9 +61,9 @@
   \begin{axis}[
     name=pop,
     ylabel=\empty,
-    legend entries={Berupre,Raspalje,Pauley,Robusta},
-    legend style={
-    at={(1.0,1.0)},anchor=south,legend columns=-1,yshift=2pt},
+%    legend entries={Beaurpre,Raspalje,Pauley,Robusta},
+%    legend style={
+%    at={(1.0,1.0)},anchor=south,legend columns=-1,yshift=2pt},
     ]
     \plotvarieties{0}
   \end{axis}
@@ -66,8 +72,8 @@
     name=temp,
     at={(pop.north east)},
     anchor= north east,
-    ylabel=Stem~$\frac{T}{ha}$,
-    title={Optimal Temperature~$[\unit{\celsius}]$},
+    ylabel=Stem~(Mg ha-1),
+    title={Optimal Temperature~(C)},
     legend entries={15,20,25},
     ]
     \addplot table [x=date, y=WS] {\fn{pont-t15}};
@@ -81,7 +87,7 @@
     at={(temp.east)},xshift=2pt,
     anchor=west,
     yticklabels=\empty,
-    title={Quantum Efficiency~$[\unitfrac{mol~C}{mol~PAR}]$},
+    title={Quantum Efficiency~(mol~C per mol~PAR)},
     legend entries={0.06,0.08,0.10},
     ]
 %    \addplot table [x=date, y=WS] {\fn{pont-q5}};
@@ -93,45 +99,40 @@
   \end{axis}
 
   \begin{axis}[
-    name=cc,
+    name=full-age,
     at={(temp.below south west)},
     anchor= north west,
-    ylabel=Stem~$\frac{T}{ha}$,
-    title={Canopy Cover~$[\unit{mo}]$},
+    ylabel=Stem~(Mg ha-1),
+    title={Canopy Cover~(mo)},
     legend entries={3,6,9},
     ]
-%    \addplot table [x=date, y=WS] {\fn{pont-cc0}};
-    \addplot table [x=date, y=WS] {\fn{pont-cc3}};
-    \addplot table [x=date, y=WS] {\fn{pont-cc6}};
-    \addplot table [x=date, y=WS] {\fn{pont-cc9}};
-%    \addplot table [x=date, y=WS] {\fn{pont-cc12}};
+%    \addplot table [x=date, y=WS] {\fn{pont-full-age0}};
+    \addplot table [x=date, y=WS] {\fn{pont-full-age3}};
+    \addplot table [x=date, y=WS] {\fn{pont-full-age6}};
+    \addplot table [x=date, y=WS] {\fn{pont-full-age9}};
+%    \addplot table [x=date, y=WS] {\fn{pont-full-age12}};
     \plotvarieties{-3}
   \end{axis}
 
   \begin{axis}[
     name=lit,
-    at={(cc.east)},xshift=2pt,
+    at={(full-age.east)},xshift=2pt,
     anchor=west,
     yticklabels=\empty,
-    title={Litterfall~$[\unitfrac{\%}{mo}]$},
-%    title={Tree Age Modifier $[\unit{yr}]$},
-    legend entries={3,6,10},
-%    legend entries={3.5,10,20},
+    title={~kG, controls limiter due to VPD (kPa-1)},
+     legend entries={0.06,0.08,1.0}
     ]
-%    \addplot table [x=date, y=WS] {\fn{pont-age35}};
-%    \addplot table [x=date, y=WS] {\fn{pont-age100}};
-%    \addplot table [x=date, y=WS] {\fn{pont-age200}};
-    \addplot table [x=date, y=WS] {\fn{pont-lit03}};
-    \addplot table [x=date, y=WS] {\fn{pont-lit06}};
-    \addplot table [x=date, y=WS] {\fn{pont-lit10}};
+    \addplot table [x=date, y=WS] {\fn{pont-kG06}};
+    \addplot table [x=date, y=WS] {\fn{pont-kG08}};
+    \addplot table [x=date, y=WS] {\fn{pont-kG1}};
     \plotvarieties{-3}
   \end{axis}
 
   \begin{axis}[
     name=cond,
-    at={(cc.below south west)},yshift=5pt,
+    at={(full-age.below south west)},yshift=5pt,
     anchor=north west,
-    title={Maximum Canopy Conductance~$[\unitfrac{m}{s}]$},
+    title={Maximum Canopy Conductance~(m s-1)},
     legend entries={0.00,0.02,0.04},
     ylabel={Stem~$\frac{T}{ha}$},
     x tick label style={rotate=45, anchor=east},
@@ -142,23 +143,28 @@
     \addplot table [x=date, y=WS] {\fn{pont-cond_mx2}};
 %    \addplot table [x=date, y=WS] {\fn{pont-cond_mx3}};
     \addplot table [x=date, y=WS] {\fn{pont-cond_mx4}};
+%    \addplot table [x=date, y=WS] {\fn{pont-cond_mx6}};
     \plotvarieties{-3}
   \end{axis}
 
   \begin{axis}[
-    name=stems,
+    name=litter,
     at={(cond.east)},xshift=2pt,
     anchor=west,
-    title={Stems per stump},
-    legend entries={1,2,3,4},
+%    title={Litterfall~(fraction m-1)},
+    title={Tree Age at half growth (yr)},
+%    legend entries={3,6,10},
+    legend entries={5,10,30},
     yticklabels=\empty,
     x tick label style={rotate=45, anchor=east},
     xticklabel={\year-\month}
     ]
-    \addplot table [x=date, y=WS] {\fn{pont-stem1}};
-    \addplot table [x=date, y=WS] {\fn{pont-stem2}};
-    \addplot table [x=date, y=WS] {\fn{pont-stem3}};
-    \addplot table [x=date, y=WS] {\fn{pont-stem4}};
-    \plotvarieties{-4}
+    \addplot table [x=date, y=WS] {\fn{pont-age5}};
+    \addplot table [x=date, y=WS] {\fn{pont-age10}};
+    \addplot table [x=date, y=WS] {\fn{pont-age30}};
+%    \addplot table [x=date, y=WS] {\fn{pont-lit03}};
+%    \addplot table [x=date, y=WS] {\fn{pont-lit06}};
+%    \addplot table [x=date, y=WS] {\fn{pont-lit10}};
+    \plotvarieties{-3}
   \end{axis}
 \end{tikzpicture}

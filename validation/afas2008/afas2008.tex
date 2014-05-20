@@ -6,6 +6,21 @@
 \definecolor{color6}{HTML}{0099C6}
 \definecolor{color7}{HTML}{DD4477}
 
+\pgfplotscreateplotcyclelist{afasvariety}{%
+{color1},
+{color2},
+{color3},
+{color4},
+{color5},
+{color6},
+{color7}
+}
+
+
+\newcommand{\fn}[1]{validation/afas2008/#1.csv}
+
+\pgfplotstableread[col sep=comma]{validation/afas2008/afas.csv}\ws
+
 \begin{tikzpicture}[scale=1]
 \begin{axis}[
     height=3in,
@@ -28,18 +43,23 @@
     minor x tick num = 11,
     xmin={1996-04-15},
     xmax={2005-12-15},
-    ylabel=Stem biomass \unitfrac{BDT}{ha},
+    ylabel=Stem biomass (Mg ha-1),
     legend entries={$TxB$,$TxD$,$T$,$DxT$,$DxN$,$N$},
     legend style={at={(0.5,1.0)},anchor=south},yshift=1pt,
+    table/col sep=comma,
+     cycle list name = afasvariety,
+     no markers,
+     every axis plot/.append style={line width=1pt},
+     every mark/.append style={solid},
     legend columns=-1,
 ]
-\addplot [only marks, mark=*, mark options={color2}] table[x=date,y=TxB, col sep=comma] {validation/afas2008/afas.csv};
-\addplot [only marks, mark=*, mark options={color3}] table[x=date,y=TxD, col sep=comma] {validation/afas2008/afas.csv};
-\addplot [only marks, mark=*, mark options={color4}] table[x=date,y=T, col sep=comma] {validation/afas2008/afas.csv};
-\addplot [only marks, mark=*, mark options={color5}] table[x=date,y=DxT, col sep=comma] {validation/afas2008/afas.csv};
-\addplot [only marks, mark=*, mark options={color6}] table[x=date,y=DxN, col sep=comma] {validation/afas2008/afas.csv};
-\addplot [only marks, mark=*, mark options={color7}] table[x=date,y=N, col sep=comma] {validation/afas2008/afas.csv};
-\addplot [no markers,blue] table [x=date, y=WS, col sep=comma] {validation/afas2008/afas-hart12coppice.csv};
-\addplot [no markers,black] table [x=date, y=WS, col sep=comma] {validation/afas2008/afas-raspalje.csv};
+\addplot [only marks, mark=*, mark options={color2}] table[x=date,y=TxB, col sep=comma] {\ws};
+\addplot [only marks, mark=*, mark options={color3}] table[x=date,y=TxD, col sep=comma] {\ws};
+\addplot [only marks, mark=*, mark options={color4}] table[x=date,y=T, col sep=comma] {\ws};
+\addplot [only marks, mark=*, mark options={color5}] table[x=date,y=DxT, col sep=comma] {\ws};
+\addplot [only marks, mark=*, mark options={color6}] table[x=date,y=DxN, col sep=comma] {\ws};
+\addplot [only marks, mark=*, mark options={color7}] table[x=date,y=N, col sep=comma] {\ws};
+\addplot+[color=gray,dashed] table [x=date, y=WS] {\fn{afas-raspalje}};
+\addplot+[color=gray,solid] table [x=date, y=WS] {\fn{afas-hart12coppice}};
 \end{axis}
 \end{tikzpicture}
